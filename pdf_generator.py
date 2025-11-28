@@ -67,9 +67,9 @@ def generate_reduced_top_margin_resume(buffer, resume):
         textTransform='uppercase',
         spaceBefore=20,
         spaceAfter=5,
-        borderPadding=5,
         borderWidth=0,
-        borderColor=dark_blue
+        borderColor=dark_blue,
+        leftIndent=0
     )
 
     # Content Styles
@@ -79,7 +79,8 @@ def generate_reduced_top_margin_resume(buffer, resume):
         fontSize=11,
         fontName=work_sans,
         leading=14,
-        spaceAfter=2
+        spaceAfter=2,
+        leftIndent=0
     )
     
     company_style = ParagraphStyle(
@@ -87,7 +88,8 @@ def generate_reduced_top_margin_resume(buffer, resume):
         parent=body_style,
         fontName=work_sans_bold,
         fontSize=12,
-        textColor=colors.black
+        textColor=colors.black,
+        leftIndent=5
     )
     
     position_style = ParagraphStyle(
@@ -95,7 +97,8 @@ def generate_reduced_top_margin_resume(buffer, resume):
         parent=body_style,
         fontName=work_sans_italic,
         fontSize=11,
-        textColor=colors.black
+        textColor=colors.black,
+        leftIndent=5
     )
     
     date_location_style = ParagraphStyle(
@@ -122,32 +125,36 @@ def generate_reduced_top_margin_resume(buffer, resume):
         'SkillCategory',
         parent=body_style,
         fontName=work_sans_bold,
-        fontSize=11
+        fontSize=11,
+        leftIndent=0
     )
     
     skill_keywords_style = ParagraphStyle(
         'SkillKeywords',
         parent=body_style,
         fontName=work_sans,
-        fontSize=11
+        fontSize=11,
+        leftIndent=0
     )
 
-    # Define line separator for headers
-    line_separator = Table([[""]], colWidths=[7.5*72], rowHeights=[1])
+    # Define line separator for headers (width matches content area: 8.5" - 0.35" - 0.35" = 7.8")
+    line_separator = Table([[""]],colWidths=[7.8*72], rowHeights=[1])
     line_separator.setStyle(TableStyle([
         ("BACKGROUND", (0, 0), (-1, -1), dark_blue),
         ("TOPPADDING", (0, 0), (-1, -1), 0),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
+        ("LEFTPADDING", (0, 0), (-1, -1), 0),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 0),
     ]))
 
-    # Create PDF document with improved margins
+    # Create PDF document with minimal margins for maximum content
     doc = SimpleDocTemplate(
         buffer, 
         pagesize=letter, 
-        rightMargin=0.75*72, 
-        leftMargin=0.75*72, 
-        topMargin=0.5*72, 
-        bottomMargin=0.5*72
+        rightMargin=0.35*72, 
+        leftMargin=0.35*72, 
+        topMargin=0.35*72, 
+        bottomMargin=0.35*72
     )
     content_elements = []
 
@@ -168,14 +175,6 @@ def generate_reduced_top_margin_resume(buffer, resume):
     contact_line = " | ".join(contact_parts)
     content_elements.append(Paragraph(contact_line, contact_style))
     
-    # Horizontal line below header
-    header_line = Table([[""]], colWidths=[7.5*72], rowHeights=[0.5])
-    header_line.setStyle(TableStyle([
-        ("BACKGROUND", (0, 0), (-1, -1), colors.lightgrey),
-    ]))
-    content_elements.append(header_line)
-    content_elements.append(Spacer(1, 10))
-
     # --- Professional Summary ---
     if "professional_summary" in resume_data and resume_data["professional_summary"]:
         content_elements.append(Paragraph("Professional Summary", section_header_style))
@@ -203,7 +202,7 @@ def generate_reduced_top_margin_resume(buffer, resume):
                  Paragraph(keywords_str, skill_keywords_style)]
             ]
             
-            skill_table = Table(skill_data, colWidths=[1.8*72, 5.2*72])
+            skill_table = Table(skill_data, colWidths=[1.8*72, 6.0*72])
             skill_table.setStyle(TableStyle([
                 ('VALIGN', (0, 0), (-1, -1), 'TOP'),
                 ('LEFTPADDING', (0, 0), (-1, -1), 0),
@@ -234,7 +233,7 @@ def generate_reduced_top_margin_resume(buffer, resume):
                 [Paragraph(position, position_style), Paragraph(dates, date_location_style)]
             ]
             
-            job_header_table = Table(job_header_data, colWidths=[5*72, 2*72])
+            job_header_table = Table(job_header_data, colWidths=[5.5*72, 2.3*72])
             job_header_table.setStyle(TableStyle([
                 ('VALIGN', (0, 0), (-1, -1), 'TOP'),
                 ('LEFTPADDING', (0, 0), (-1, -1), 0),
@@ -273,7 +272,7 @@ def generate_reduced_top_margin_resume(buffer, resume):
                 [Paragraph(degree_info, position_style), Paragraph(location, date_location_style)]
             ]
             
-            edu_table = Table(edu_data, colWidths=[5.5*72, 1.5*72])
+            edu_table = Table(edu_data, colWidths=[6.0*72, 1.8*72])
             edu_table.setStyle(TableStyle([
                 ('VALIGN', (0, 0), (-1, -1), 'TOP'),
                 ('LEFTPADDING', (0, 0), (-1, -1), 0),
