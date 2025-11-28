@@ -1,21 +1,30 @@
 {
   "basics": {
-    "name": "Mehul Padwal",
-    "phone": "3158829930",
+    "name": "Satyen Amonkar",
+    "phone": "3154034538",
     "location": {
-      "address": "New York, NY"
+      "address": "Seattle, Washington"
     },
-    "email": "mdpadwal1@gmail.com"
+    "email": "95satyen@gmail.com"
   },
   "education": [
     {
       "institution": "Syracuse University",
-      "area": "Computer Science",
-      "startDate": "Jan 2018",
-      "endDate": "Jan 2020",
-      "gpa": "3.6",
-      "location": "Syracuse, NY",
+      "area": "Information Management",
+      "startDate": "Aug 2018",
+      "endDate": "May 2020",
+      "gpa": "3.8",
+      "location": "Syracuse, New York",
       "studyType": "MS"
+    },
+    {
+      "institution": "University of Mumbai",
+      "area": "Computer Science",
+      "startDate": "Aug 2012",
+      "endDate": "May 2016",
+      "gpa": "3.6",
+      "location": "Mumbai, India",
+      "studyType": "BS"
     }
   ]
 }

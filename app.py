@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 
 from flask import Flask, request, Response, render_template
 from flask import jsonify
@@ -10,6 +11,13 @@ from pdf_generator import generate_reduced_top_margin_resume
 from io import BytesIO
 
 app = Flask(__name__)
+
+# Determine resume data file based on command-line argument
+if len(sys.argv) > 1:
+    resume_name = sys.argv[1]
+    RESUME_DATA_FILE = f'resume_data_{resume_name}.json'
+else:
+    RESUME_DATA_FILE = 'resume_data.json'
 
 with open("secrets.yaml", "r") as file:
     secrets = yaml.safe_load(file)
@@ -71,7 +79,7 @@ def improve_resume():
         job_description = request.json['description']
         
         # Load original resume
-        with open('resume_data.json', 'r') as file:
+        with open(RESUME_DATA_FILE, 'r') as file:
             original_resume = json.load(file)
         
         # Prepare prompts
@@ -83,7 +91,8 @@ def improve_resume():
         "1.  **Output Format:** You must return **ONLY** valid, raw JSON. Do not include markdown formatting (like ```json), conversational filler, or explanations. Just the JSON object.",
         "2.  **Structure Integrity:** Do not change keys, variable names, or the overall structure of the JSON object.",
         "3.  **Minimal Edits:** You are allowed to change or insert a maximum of **3-4 specific keywords** to match the Job Description if necessary."
-        "4.  **Preserve Context:** Do not rewrite the sentences. Keep the original sentence structure and meaning, only swapping in technical terms or hard skills where they fit naturally.")
+        "4.  **Preserve Context:** Do not rewrite the sentences. Keep the original sentence structure and meaning, only swapping in technical terms or hard skills where they fit naturally.",
+        "5. **Pick and Choose:** Based on the Job Description, pick and choose the most relevant 5 `highlights`  per `company`. When possible combine multiple highlights into just 5 highlights concising")
         
         # Call OpenRouter API to improve resume
         client = OpenAI(
@@ -176,7 +185,7 @@ def gpt3_response():
                  "chances for it to be picked for a given job description. For a given job description and a resume " \
                  "json "
     job_description = request.json['description']
-    with open('resume_data.json', 'r') as file:
+    with open(RESUME_DATA_FILE, 'r') as file:
         resume_data = json.load(file)
 
     resume = json.dumps(resume_data, indent=4)
