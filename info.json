@@ -1,0 +1,21 @@
+{
+  "basics": {
+    "name": "Mehul Padwal",
+    "phone": "3158829930",
+    "location": {
+      "address": "New York, NY"
+    },
+    "email": "mdpadwal1@gmail.com"
+  },
+  "education": [
+    {
+      "institution": "Syracuse University",
+      "area": "Computer Science",
+      "startDate": "Jan 2018",
+      "endDate": "Jan 2020",
+      "gpa": "3.6",
+      "location": "Syracuse, NY",
+      "studyType": "MS"
+    }
+  ]
+}

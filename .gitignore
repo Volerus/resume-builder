@@ -1,0 +1,20 @@
+.idea/
+.venv/
+__pycache__/
+.DS_Store
+secrets.yaml
+resume.pdf
+Amazon/
+Barclays/
+Barclays_Bank/
+Barclays_Gibraltar/
+Capital_One/
+DTCC/
+Google/
+Gusto_Symmetry/
+IBM/
+Philips/
+Rippling/
+TestCompany/
+The company is Barclays./
+default_company/

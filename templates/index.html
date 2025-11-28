@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Customizer - Transform Your Resume</title>
+    <meta name="description"
+        content="Customize your resume with AI to match any job description. Get hired faster with tailored resumes.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/diff_match_patch/20121119/diff_match_patch.js"></script>
+</head>
+
+<body>
+    <div class="background-overlay"></div>
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="40" height="40" rx="10" fill="url(#gradient)" />
+                    <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <defs>
+                        <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
+                            <stop offset="0%" stop-color="#667eea" />
+                            <stop offset="100%" stop-color="#764ba2" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span>ResumeAI</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="form-container glass-card">
+                <form id="resumeForm">
+                    <div class="form-group">
+                        <label for="jobDescription" class="form-label">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M3 5C3 3.89543 3.89543 3 5 3H15C16.1046 3 17 3.89543 17 5V15C17 16.1046 16.1046 17 15 17H5C3.89543 17 3 16.1046 3 15V5Z"
+                                    stroke="currentColor" stroke-width="2" />
+                                <path d="M7 7H13M7 11H13M7 15H10" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                            Job Description
+                        </label>
+                        <textarea id="jobDescription" name="description" rows="10"
+                            placeholder="Paste the job description here..." required></textarea>
+                        <div class="character-count">
+                            <span id="charCount">0</span> characters
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 3V17M10 17L15 12M10 17L5 12" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            Generate Resume
+                        </span>
+                        <span class="btn-loader">
+                            <div class="spinner"></div>
+                            Generating...
+                        </span>
+                    </button>
+                </form>
+
+                <!-- Diff Editor Section -->
+                <div id="diffEditor" class="diff-editor-container hidden">
+                    <!-- Step Indicator -->
+                    <div class="step-indicator">
+                        <div class="step completed">
+                            <div class="step-number">1</div>
+                            <span>Generate</span>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step active">
+                            <div class="step-number">2</div>
+                            <span>Review & Edit</span>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <span>Download</span>
+                        </div>
+                    </div>
+
+                    <h3 class="diff-title">Review Resume Changes</h3>
+                    <p class="diff-subtitle">Review the AI-improved resume sections below. You can edit any field before
+                        generating the PDF.</p>
+
+                    <!-- Work Experience Section -->
+                    <div class="resume-section">
+                        <h4 class="section-title">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M3 5C3 3.89543 3.89543 3 5 3H15C16.1046 3 17 3.89543 17 5V15C17 16.1046 16.1046 17 15 17H5C3.89543 17 3 16.1046 3 15V5Z"
+                                    stroke="currentColor" stroke-width="2" />
+                            </svg>
+                            Work Experience
+                        </h4>
+                        <div id="workExperience" class="work-container">
+                            <!-- Work items will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Skills Section -->
+                    <div class="resume-section">
+                        <h4 class="section-title">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 3L12 8L17 9L13.5 12.5L14.5 17L10 14.5L5.5 17L6.5 12.5L3 9L8 8L10 3Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                            </svg>
+                            Skills
+                        </h4>
+                        <div id="skillsSection" class="skills-container">
+                            <!-- Skills will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="diff-actions">
+                        <button type="button" class="secondary-btn" onclick="resetForm()">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 8h12M2 8l4-4M2 8l4 4" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            Start Over
+                        </button>
+                        <button type="button" class="primary-btn" id="generatePdfBtn">
+                            <span class="btn-text">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 2v9m0 0l3-3m-3 3L5 8" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M2 14h12" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" />
+                                </svg>
+                                Generate PDF
+                            </span>
+                            <span class="btn-loader">
+                                <div class="spinner"></div>
+                                Generating...
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="result" class="result-container hidden">
+                    <div class="success-animation">
+                        <svg class="checkmark" viewBox="0 0 52 52">
+                            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none" />
+                            <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                        </svg>
+                    </div>
+                    <h3 class="result-title">Resume Generated Successfully!</h3>
+                    <p class="result-message">Your resume is ready to download.</p>
+                    <div class="result-actions">
+                        <a id="downloadBtn" href="#" class="download-btn" download>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 3V13M10 13L14 9M10 13L6 9" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M3 17H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                            Download Resume
+                        </a>
+                        <button type="button" class="new-resume-btn" onclick="resetForm()">
+                            Create Another
+                        </button>
+                    </div>
+                </div>
+
+                <div id="error" class="error-container hidden">
+                    <div class="error-icon">⚠️</div>
+                    <h3 class="error-title">Error</h3>
+                    <p id="errorMessage" class="error-message"></p>
+                    <button type="button" class="retry-btn" onclick="resetForm()">Try Again</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
