@@ -61,14 +61,13 @@ def generate_reduced_top_margin_resume(buffer, resume):
     section_header_style = ParagraphStyle(
         'SectionHeaderStyle',
         parent=styles['Heading2'],
-        fontName=avenir,
-        fontSize=14,
-        textColor=dark_blue,
+        fontName=work_sans_bold,
+        fontSize=11,
+        textColor=colors.black,
         textTransform='uppercase',
-        spaceBefore=20,
-        spaceAfter=5,
+        spaceBefore=12,
+        spaceAfter=3,
         borderWidth=0,
-        borderColor=dark_blue,
         leftIndent=0
     )
 
@@ -76,9 +75,9 @@ def generate_reduced_top_margin_resume(buffer, resume):
     body_style = ParagraphStyle(
         'BodyText',
         parent=styles['Normal'],
-        fontSize=11,
+        fontSize=10,
         fontName=work_sans,
-        leading=14,
+        leading=12,
         spaceAfter=2,
         leftIndent=0
     )
@@ -87,25 +86,27 @@ def generate_reduced_top_margin_resume(buffer, resume):
         'CompanyStyle',
         parent=body_style,
         fontName=work_sans_bold,
-        fontSize=12,
+        fontSize=11,
         textColor=colors.black,
-        leftIndent=5
+        leftIndent=7,
+        spaceAfter=0
     )
     
     position_style = ParagraphStyle(
         'PositionStyle',
         parent=body_style,
         fontName=work_sans_italic,
-        fontSize=11,
+        fontSize=10,
         textColor=colors.black,
-        leftIndent=5
+        leftIndent=7,
+        spaceAfter=2
     )
     
     date_location_style = ParagraphStyle(
         'DateLocationStyle',
         parent=body_style,
         fontName=work_sans,
-        fontSize=11,
+        fontSize=10,
         textColor=colors.black,
         alignment=TA_RIGHT
     )
@@ -114,10 +115,10 @@ def generate_reduced_top_margin_resume(buffer, resume):
         'BulletStyle',
         parent=body_style,
         fontName=work_sans,
-        fontSize=11,
-        leftIndent=15,
+        fontSize=10,
+        leftIndent=18,
         firstLineIndent=0,
-        spaceAfter=3,
+        spaceAfter=2,
         bulletIndent=5
     )
 
@@ -125,22 +126,22 @@ def generate_reduced_top_margin_resume(buffer, resume):
         'SkillCategory',
         parent=body_style,
         fontName=work_sans_bold,
-        fontSize=11,
-        leftIndent=0
+        fontSize=10,
+        leftIndent=7
     )
     
     skill_keywords_style = ParagraphStyle(
         'SkillKeywords',
         parent=body_style,
         fontName=work_sans,
-        fontSize=11,
+        fontSize=10,
         leftIndent=0
     )
 
     # Define line separator for headers (width matches content area: 8.5" - 0.35" - 0.35" = 7.8")
-    line_separator = Table([[""]],colWidths=[7.8*72], rowHeights=[1])
+    line_separator = Table([[""]],colWidths=[7.8*72], rowHeights=[0.5])
     line_separator.setStyle(TableStyle([
-        ("BACKGROUND", (0, 0), (-1, -1), dark_blue),
+        ("BACKGROUND", (0, 0), (-1, -1), colors.black),
         ("TOPPADDING", (0, 0), (-1, -1), 0),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
         ("LEFTPADDING", (0, 0), (-1, -1), 0),
