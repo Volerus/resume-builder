@@ -289,7 +289,7 @@ def generate_reduced_top_margin_resume(buffer, resume):
 
 
 if __name__ == "__main__":
-    with open('resumemake.json', 'r') as f:
+    with open('resume_data.json', 'r') as f:
         resume_data = json.load(f)
     with open('info.json', 'r') as f:
         info_data = json.load(f)

@@ -71,7 +71,7 @@ def improve_resume():
         job_description = request.json['description']
         
         # Load original resume
-        with open('resumemake.json', 'r') as file:
+        with open('resume_data.json', 'r') as file:
             original_resume = json.load(file)
         
         # Prepare prompts
@@ -176,7 +176,7 @@ def gpt3_response():
                  "chances for it to be picked for a given job description. For a given job description and a resume " \
                  "json "
     job_description = request.json['description']
-    with open('resumemake.json', 'r') as file:
+    with open('resume_data.json', 'r') as file:
         resume_data = json.load(file)
 
     resume = json.dumps(resume_data, indent=4)
