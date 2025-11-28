@@ -75,14 +75,15 @@ def improve_resume():
             original_resume = json.load(file)
         
         # Prepare prompts
-        pre_prompt = "You are a resume writer. You improve the resume which will increase the " \
-                     "chances for it to be picked for a given job description. For a given job description and a resume json"
+        pre_prompt = ("Act as a JSON Data Processor and ATS Optimization Specialist",
+                        "I am going to provide you with a **Resume in JSON format** and a **Target Job Description**.",
+                        "Your task is to update the values inside the `work`, `professional_summary`, and `skills` arrays within the JSON to better match the Job Description.")
         
-        post_prompt = ("Improve the resume. The resume should be better than the original. Don't change the Json format. "
-                      "Only change highlights and skills section."
-                      "9 highlights of capital one, 2 highlights for Datafabricx and 2 highlights for accenture."
-                      " Keep the language simple. Just return the correct JSON "
-                      "format and nothing else.")
+        post_prompt = ("**Strict Technical Constraints:**",
+        "1.  **Output Format:** You must return **ONLY** valid, raw JSON. Do not include markdown formatting (like ```json), conversational filler, or explanations. Just the JSON object.",
+        "2.  **Structure Integrity:** Do not change keys, variable names, or the overall structure of the JSON object.",
+        "3.  **Minimal Edits:** You are allowed to change or insert a maximum of **3-4 specific keywords** to match the Job Description if necessary."
+        "4.  **Preserve Context:** Do not rewrite the sentences. Keep the original sentence structure and meaning, only swapping in technical terms or hard skills where they fit naturally.")
         
         # Call OpenRouter API to improve resume
         client = OpenAI(
@@ -93,17 +94,16 @@ def improve_resume():
         messages = [
             {
                 "role": "system",
-                "content": "You are a resume writer. You improve the resume which will increase "
-                           "the chances for it to be picked for a given job description."
+                "content": "Act as a JSON Data Processor and ATS Optimization Specialist."
             },
             {
                 "role": "user",
-                "content": f"\nJob Description\n{job_description}\n\nResume Json\n{json.dumps(original_resume, indent=4)}\n\n{post_prompt}"
+                "content": f"\nTarget Job Description\n{job_description}\n\nResume in JSON format\n{json.dumps(original_resume, indent=4)}\n\n{post_prompt}"
             }
         ]
         
         response = client.chat.completions.create(
-            model="google/gemini-2.0-flash-001",
+            model="google/gemini-2.5-flash-lite",
             messages=messages
         )
         
@@ -143,7 +143,7 @@ def generate_pdf():
         
         # Create PDF in memory
         buffer = BytesIO()
-        generate_reduced_top_margin_resume(buffer, full_resume, "resume.pdf")
+        generate_reduced_top_margin_resume(buffer, full_resume)
         
         # Create company directory if it doesn't exist
         if not os.path.exists(company_name):
@@ -181,9 +181,11 @@ def gpt3_response():
 
     resume = json.dumps(resume_data, indent=4)
 
-    post_prompt = "Improve the resume. The resume should be better than the original. Don't change the Json format. " \
-                  "Only change highlights and skills section." \
-                  "9 highlights of capital one, 2 highlights for Datafabricx and 2 highlights for accenture." \
+    post_prompt = "Improve the resume by adding subtle details pertaining to the job description. The resume should be better than the original. Don't change the Json format. " \
+                  "Only change highlights,professional summary and skills section." \
+                  "14 highlights of capital one, 3 highlights for Datafabricx and 2 highlights for accenture." \
+                  "Keep the points as close to original as possible. Do not change too many points. Do not remove any points. Only modify the points pertaining to job description" \
+                  "For example if the job description requires java and the original resume has python try to add java to the resume modifying the context for python to java." \
                   " Keep the language simple. Just return the correct JSON " \
                   "format and nothing else. "
 
@@ -221,7 +223,7 @@ def gpt3_response():
 
     print(json.dumps(full_resume, indent=4))
 
-    generate_reduced_top_margin_resume(buffer, full_resume, "resume.pdf")
+    generate_reduced_top_margin_resume(buffer, full_resume)
 
     response = client.chat.completions.create(
         model="google/gemini-2.0-flash-001",

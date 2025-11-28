@@ -61,6 +61,7 @@ form.addEventListener('submit', async (e) => {
         improvedResumeData = data.improved;
 
         // Populate work experience and skills sections
+        populateProfessionalSummary(data.original.professional_summary, data.improved.professional_summary);
         populateWorkExperience(data.original.work, data.improved.work);
         populateSkills(data.original.skills, data.improved.skills);
 
@@ -109,6 +110,49 @@ function createDiffHtml(text1, text2, side) {
         }
     });
     return html;
+}
+function populateProfessionalSummary(originalSummary, improvedSummary) {
+    const container = document.getElementById('professionalSummary');
+    container.innerHTML = '';
+
+    originalSummary = originalSummary || '';
+    improvedSummary = improvedSummary || '';
+
+    const row = document.createElement('div');
+    row.className = 'diff-row';
+
+    // Original Column
+    const originalCol = document.createElement('div');
+    originalCol.className = 'diff-column original';
+    originalCol.innerHTML = `
+        <div class="diff-header">Original</div>
+        <div class="summary-card">
+            <div class="summary-text readonly">
+                ${createDiffHtml(originalSummary, improvedSummary, 'original')}
+            </div>
+        </div>
+    `;
+
+    // Improved Column
+    const improvedCol = document.createElement('div');
+    improvedCol.className = 'diff-column improved';
+
+    const diffHtml = createDiffHtml(originalSummary, improvedSummary, 'improved');
+
+    improvedCol.innerHTML = `
+        <div class="diff-header">Improved (Editable)</div>
+        <div class="summary-card">
+            <div class="highlight-wrapper">
+                <div class="summary-text diff-view" onclick="toggleEdit(this)">${diffHtml}</div>
+                <textarea class="summary-text edit-view hidden" 
+                          rows="6" onblur="toggleView(this, '${originalSummary.replace(/'/g, "\\'")}')">${improvedSummary}</textarea>
+            </div>
+        </div>
+    `;
+
+    row.appendChild(originalCol);
+    row.appendChild(improvedCol);
+    container.appendChild(row);
 }
 
 function populateWorkExperience(originalWork, improvedWork) {
@@ -302,7 +346,11 @@ function collectResumeData() {
         });
     });
 
-    return { work, skills };
+    return {
+        work,
+        skills,
+        professional_summary: document.querySelector('.diff-column.improved .summary-text.edit-view').value
+    };
 }
 
 

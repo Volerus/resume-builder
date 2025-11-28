@@ -25,7 +25,7 @@ work_sans_italic = "work_sans_italic"
 font_path = "/Users/mehulpadwal/Library/Fonts/WorkSans-Italic.ttf"  # Replace with the actual path
 pdfmetrics.registerFont(TTFont(work_sans_italic, font_path))
 
-def generate_reduced_top_margin_resume(buffer, resume, output_path):
+def generate_reduced_top_margin_resume(buffer, resume):
     # Load JSON data
 
     resume_data = resume
@@ -104,24 +104,13 @@ def generate_reduced_top_margin_resume(buffer, resume, output_path):
     content_elements[-1].style = centered_style
     content_elements.append(Spacer(1, 6))  # Reduced gap
 
-    # Education section
-    content_elements.append(Paragraph("Education", sub_header_style))
-    content_elements.append(line_separator)
-    for edu in resume_data["education"]:
-        edu_table_data = [
-            [Paragraph(edu["institution"], company_name_style),
-             Paragraph(f"{edu['startDate']} - {edu['endDate']}", right_align_content_style)],
-            [Paragraph(f"{edu['studyType']} {edu['area']} GPA: {edu['gpa']}", italic_style),
-             Paragraph(f"{edu['location']}", right_align_content_style)]
-        ]
-        edu_table = Table(edu_table_data, colWidths=[6*72, 2*72], hAlign='CENTER')
-        edu_table.setStyle(TableStyle([
-            ('LEFTPADDING', (0, 0), (-1, -1), 0),
-            ('RIGHTPADDING', (0, 0), (-1, -1), 0),
-            ('TOPPADDING', (0, 0), (-1, -1), 1),
-        ]))
-        content_elements.append(edu_table)
-        content_elements.append(Spacer(1, 2))  # Reduced gap
+    # Professional Summary
+    if "professional_summary" in resume_data:
+        content_elements.append(Paragraph("Professional Summary", sub_header_style))
+        content_elements.append(line_separator)
+        content_elements.append(Spacer(1, 4))
+        content_elements.append(Paragraph(resume_data["professional_summary"], content_style))
+        content_elements.append(Spacer(1, 10))
 
     # Skills section
     content_elements.append(Paragraph("Skills", sub_header_style))
@@ -142,10 +131,6 @@ def generate_reduced_top_margin_resume(buffer, resume, output_path):
             ('ALIGN', (0, 0), (-1, -1), 'LEFT')  # Ensure left alignment
         ]))
         content_elements.append(skill_table)
-
-
-        # content_elements.append(Paragraph(f"{skill['name']}",italic_style))
-        # content_elements.append(Paragraph(f"{' '.join(skill['keywords'])}", work_style))
 
     content_elements.append(Spacer(1, 6))  # Reduced gap
 
@@ -175,13 +160,38 @@ def generate_reduced_top_margin_resume(buffer, resume, output_path):
                     content_elements.append(Spacer(1, 2))
             content_elements.append(Spacer(1, 6))  # Reduced gap
 
+    # Education section
+    content_elements.append(Paragraph("Education", sub_header_style))
+    content_elements.append(line_separator)
+    for edu in resume_data["education"]:
+        edu_table_data = [
+            [Paragraph(edu["institution"], company_name_style),
+             Paragraph(f"{edu['startDate']} - {edu['endDate']}", right_align_content_style)],
+            [Paragraph(f"{edu['studyType']} {edu['area']} GPA: {edu['gpa']}", italic_style),
+             Paragraph(f"{edu['location']}", right_align_content_style)]
+        ]
+        edu_table = Table(edu_table_data, colWidths=[6*72, 2*72], hAlign='CENTER')
+        edu_table.setStyle(TableStyle([
+            ('LEFTPADDING', (0, 0), (-1, -1), 0),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 0),
+            ('TOPPADDING', (0, 0), (-1, -1), 1),
+        ]))
+        content_elements.append(edu_table)
+        content_elements.append(Spacer(1, 2))  # Reduced gap
+
 
     # Build the PDF with the content
     doc.build(content_elements)
 
 
 if __name__ == "__main__":
-    generate_reduced_top_margin_resume('resumemake.json', 'resume.pdf')
+    with open('resumemake.json', 'r') as f:
+        resume_data = json.load(f)
+    with open('info.json', 'r') as f:
+        info_data = json.load(f)
+    
+    full_resume = {**resume_data, **info_data}
+    generate_reduced_top_margin_resume('resume.pdf', full_resume)
 
 # Usage example:
 # generate_resume('resumemake.json', 'generated_resume.pdf')
