@@ -27,160 +27,264 @@ pdfmetrics.registerFont(TTFont(work_sans_italic, font_path))
 
 def generate_reduced_top_margin_resume(buffer, resume):
     # Load JSON data
-
     resume_data = resume
 
+    # Define colors
+    dark_blue = colors.HexColor('#2C3E50')
+    dark_gray = colors.HexColor('#555555')
+    
     # Define styles
     styles = getSampleStyleSheet()
+    
+    # Header Styles
     header_style = ParagraphStyle(
         'HeaderStyle',
         parent=styles['Heading1'],
         fontName=avenir,
-        fontSize=25,
-        textColor=colors.black
+        fontSize=24,
+        textColor=dark_blue,
+        alignment=1, # Center
+        spaceAfter=10
     )
 
-    sub_header_style = ParagraphStyle(
-        'SubHeaderStyle',
+    contact_style = ParagraphStyle(
+        'ContactStyle',
+        parent=styles['Normal'],
+        fontName=work_sans,
+        fontSize=10,
+        textColor=dark_gray,
+        alignment=1, # Center
+        spaceAfter=20
+    )
+
+    # Section Header Style
+    section_header_style = ParagraphStyle(
+        'SectionHeaderStyle',
         parent=styles['Heading2'],
         fontName=avenir,
-        fontSize=13,
+        fontSize=14,
+        textColor=dark_blue,
+        textTransform='uppercase',
+        spaceBefore=20,
+        spaceAfter=5,
+        borderPadding=5,
+        borderWidth=0,
+        borderColor=dark_blue
+    )
+
+    # Content Styles
+    body_style = ParagraphStyle(
+        'BodyText',
+        parent=styles['Normal'],
+        fontSize=11,
+        fontName=work_sans,
+        leading=14,
+        spaceAfter=2
+    )
+    
+    company_style = ParagraphStyle(
+        'CompanyStyle',
+        parent=body_style,
+        fontName=work_sans_bold,
+        fontSize=12,
+        textColor=colors.black
+    )
+    
+    position_style = ParagraphStyle(
+        'PositionStyle',
+        parent=body_style,
+        fontName=work_sans_italic,
+        fontSize=11,
+        textColor=colors.black
+    )
+    
+    date_location_style = ParagraphStyle(
+        'DateLocationStyle',
+        parent=body_style,
+        fontName=work_sans,
+        fontSize=11,
         textColor=colors.black,
-        padding = 0
+        alignment=TA_RIGHT
     )
-
-    content_style = ParagraphStyle(
-        'BodyText',
-        fontSize=11,
-        fontName=work_sans
-    )
-
-    right_align_content_style = ParagraphStyle(
-        'BodyText',
-        fontSize=11,
+    
+    bullet_style = ParagraphStyle(
+        'BulletStyle',
+        parent=body_style,
         fontName=work_sans,
-        alignment= TA_RIGHT
+        fontSize=11,
+        leftIndent=15,
+        firstLineIndent=0,
+        spaceAfter=3,
+        bulletIndent=5
     )
 
-    company_name_style = ParagraphStyle(
-        'BodyText',
-        fontSize=11,
-        fontName=work_sans_bold
+    skill_category_style = ParagraphStyle(
+        'SkillCategory',
+        parent=body_style,
+        fontName=work_sans_bold,
+        fontSize=11
     )
-
-    italic_style = ParagraphStyle(
-        'BodyText',
-        fontSize=11,
-        fontName=work_sans_italic
-    )
-
-    work_style = ParagraphStyle(
-        'BodyText',
-        fontSize=11,
+    
+    skill_keywords_style = ParagraphStyle(
+        'SkillKeywords',
+        parent=body_style,
         fontName=work_sans,
-        leftIndent=6, # This adds a 20-unit indentation
+        fontSize=11
     )
 
-    centered_style = ParagraphStyle(name='CenteredStyle', parent=styles['Normal'], alignment=1)
-
-    # Define line separator
-    line_separator = Table([[""]], colWidths=[8*72], rowHeights=[0.1*12])
+    # Define line separator for headers
+    line_separator = Table([[""]], colWidths=[7.5*72], rowHeights=[1])
     line_separator.setStyle(TableStyle([
-        ("BACKGROUND", (0, 0), (-1, -1), colors.gray),
-        ("BOX", (0, 0), (-1, -1), 0.5, colors.white),
-        ('TOPPADDING', (0, 0), (-1, -1), 0),
+        ("BACKGROUND", (0, 0), (-1, -1), dark_blue),
+        ("TOPPADDING", (0, 0), (-1, -1), 0),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
     ]))
 
-    # Create PDF document with reduced margins
-    doc = SimpleDocTemplate(buffer, pagesize=letter, rightMargin=12, leftMargin=12, topMargin=0.2*72, bottomMargin = 0.1*72)  # 30% of 1 inch
+    # Create PDF document with improved margins
+    doc = SimpleDocTemplate(
+        buffer, 
+        pagesize=letter, 
+        rightMargin=0.75*72, 
+        leftMargin=0.75*72, 
+        topMargin=0.5*72, 
+        bottomMargin=0.5*72
+    )
     content_elements = []
 
-    # Add name and basic info
-    basic_info_line = f"{resume_data['basics']['location']['address']} | {resume_data['basics']['email']} | {resume_data['basics']['phone']}"
+    # --- Header Section ---
     content_elements.append(Paragraph(resume_data["basics"]["name"], header_style))
-    content_elements[-1].style = centered_style
-    content_elements.append(Spacer(1, 15))
-    content_elements.append(Paragraph(basic_info_line, content_style))
-    content_elements[-1].style = centered_style
-    content_elements.append(Spacer(1, 6))  # Reduced gap
+    
+    # Construct contact info line
+    contact_parts = []
+    if resume_data['basics'].get('location', {}).get('address'):
+        contact_parts.append(resume_data['basics']['location']['address'])
+    if resume_data['basics'].get('email'):
+        contact_parts.append(resume_data['basics']['email'])
+    if resume_data['basics'].get('phone'):
+        contact_parts.append(resume_data['basics']['phone'])
+    if resume_data['basics'].get('url'): # Assuming website/portfolio might be in basics
+         contact_parts.append(resume_data['basics']['url'])
 
-    # Professional Summary
-    if "professional_summary" in resume_data:
-        content_elements.append(Paragraph("Professional Summary", sub_header_style))
+    contact_line = " | ".join(contact_parts)
+    content_elements.append(Paragraph(contact_line, contact_style))
+    
+    # Horizontal line below header
+    header_line = Table([[""]], colWidths=[7.5*72], rowHeights=[0.5])
+    header_line.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, -1), colors.lightgrey),
+    ]))
+    content_elements.append(header_line)
+    content_elements.append(Spacer(1, 10))
+
+    # --- Professional Summary ---
+    if "professional_summary" in resume_data and resume_data["professional_summary"]:
+        content_elements.append(Paragraph("Professional Summary", section_header_style))
         content_elements.append(line_separator)
-        content_elements.append(Spacer(1, 4))
-        content_elements.append(Paragraph(resume_data["professional_summary"], content_style))
-        content_elements.append(Spacer(1, 10))
+        content_elements.append(Spacer(1, 8))
+        content_elements.append(Paragraph(resume_data["professional_summary"], body_style))
 
-    # Skills section
-    content_elements.append(Paragraph("Skills", sub_header_style))
-    content_elements.append(line_separator)
-    for skill in resume_data["skills"]:
-        skill_table_data = [
-            [Paragraph(f"{skill['name']}:", company_name_style),
-             Paragraph(f"{', '.join(skill['keywords'])}", italic_style)]
-        ]
+    # --- Skills Section ---
+    if "skills" in resume_data and resume_data["skills"]:
+        content_elements.append(Paragraph("Skills", section_header_style))
+        content_elements.append(line_separator)
+        content_elements.append(Spacer(1, 8))
+        
+        for skill in resume_data["skills"]:
+            # Use a table for better alignment of category vs keywords
+            # Check if keywords is a list or string
+            keywords = skill.get('keywords', [])
+            if isinstance(keywords, list):
+                keywords_str = ", ".join(keywords)
+            else:
+                keywords_str = str(keywords)
 
-        skill_table = Table(skill_table_data, colWidths=[2 * 72, 6 * 72], hAlign='CENTER')
+            skill_data = [
+                [Paragraph(f"{skill.get('name', '')}:", skill_category_style),
+                 Paragraph(keywords_str, skill_keywords_style)]
+            ]
+            
+            skill_table = Table(skill_data, colWidths=[1.8*72, 5.2*72])
+            skill_table.setStyle(TableStyle([
+                ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+                ('LEFTPADDING', (0, 0), (-1, -1), 0),
+                ('RIGHTPADDING', (0, 0), (-1, -1), 0),
+                ('TOPPADDING', (0, 0), (-1, -1), 0),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 2),
+            ]))
+            content_elements.append(skill_table)
 
-        skill_table.setStyle(TableStyle([
-            ('LEFTPADDING', (0, 0), (-1, -1), 0),
-            ('RIGHTPADDING', (0, 0), (-1, -1), 0),
-            ('TOPPADDING', (0, 0), (-1, -1), 0),
-            ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-            ('ALIGN', (0, 0), (-1, -1), 'LEFT')  # Ensure left alignment
-        ]))
-        content_elements.append(skill_table)
+    # --- Experience Section ---
+    if "work" in resume_data and resume_data["work"]:
+        content_elements.append(Paragraph("Experience", section_header_style))
+        content_elements.append(line_separator)
+        content_elements.append(Spacer(1, 8))
 
-    content_elements.append(Spacer(1, 6))  # Reduced gap
+        for work in resume_data["work"]:
+            # Company and Location line
+            company_name = work.get("company", "")
+            location = work.get("location", "")
+            
+            # Position and Dates line
+            position = work.get("position", "")
+            dates = f"{work.get('startDate', '')} - {work.get('endDate', '')}"
 
-    # Experience section
-    content_elements.append(Paragraph("Experience", sub_header_style))
-    content_elements.append(line_separator)
-    for work in resume_data["work"]:
-        work_table_data = [
-            [Paragraph(work["company"], company_name_style),
-             Paragraph(f"{work.get('location', '')}", right_align_content_style)],
-            [Paragraph(work["position"], italic_style), Paragraph(f"{work['startDate']} - {work['endDate']}", right_align_content_style)]
-        ]
-        work_table = Table(work_table_data, colWidths=[6*72, 2*72], hAlign='CENTER')
-        work_table.setStyle(TableStyle([
-            ('LEFTPADDING', (0, 0), (-1, -1), 0),
-            ('RIGHTPADDING', (0, 0), (-1, -1), 0),
-            ('TOPPADDING', (0, 0), (-1, -1), 0),
-            ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-            ('ALIGN', (0, 0), (-1, -1), 'LEFT')  # Ensure left alignment
-        ]))
-        content_elements.append(work_table)
-        content_elements.append(Spacer(1, 6))  # Reduced gap
-        if work.get("highlights"):
-            for highlight in work["highlights"]:
-                if highlight:
-                    content_elements.append(Paragraph(f"• {highlight}", work_style))
-                    content_elements.append(Spacer(1, 2))
-            content_elements.append(Spacer(1, 6))  # Reduced gap
+            # Create a table for the header of each job entry to handle alignment
+            job_header_data = [
+                [Paragraph(company_name, company_style), Paragraph(location, date_location_style)],
+                [Paragraph(position, position_style), Paragraph(dates, date_location_style)]
+            ]
+            
+            job_header_table = Table(job_header_data, colWidths=[5*72, 2*72])
+            job_header_table.setStyle(TableStyle([
+                ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+                ('LEFTPADDING', (0, 0), (-1, -1), 0),
+                ('RIGHTPADDING', (0, 0), (-1, -1), 0),
+                ('TOPPADDING', (0, 0), (-1, -1), 0),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
+            ]))
+            content_elements.append(job_header_table)
+            content_elements.append(Spacer(1, 4))
 
-    # Education section
-    content_elements.append(Paragraph("Education", sub_header_style))
-    content_elements.append(line_separator)
-    for edu in resume_data["education"]:
-        edu_table_data = [
-            [Paragraph(edu["institution"], company_name_style),
-             Paragraph(f"{edu['startDate']} - {edu['endDate']}", right_align_content_style)],
-            [Paragraph(f"{edu['studyType']} {edu['area']} GPA: {edu['gpa']}", italic_style),
-             Paragraph(f"{edu['location']}", right_align_content_style)]
-        ]
-        edu_table = Table(edu_table_data, colWidths=[6*72, 2*72], hAlign='CENTER')
-        edu_table.setStyle(TableStyle([
-            ('LEFTPADDING', (0, 0), (-1, -1), 0),
-            ('RIGHTPADDING', (0, 0), (-1, -1), 0),
-            ('TOPPADDING', (0, 0), (-1, -1), 1),
-        ]))
-        content_elements.append(edu_table)
-        content_elements.append(Spacer(1, 2))  # Reduced gap
+            # Highlights
+            if work.get("highlights"):
+                for highlight in work["highlights"]:
+                    if highlight:
+                        # Use a bullet character
+                        content_elements.append(Paragraph(f"• {highlight}", bullet_style))
+            
+            content_elements.append(Spacer(1, 12)) # Space between jobs
 
+    # --- Education Section ---
+    if "education" in resume_data and resume_data["education"]:
+        content_elements.append(Paragraph("Education", section_header_style))
+        content_elements.append(line_separator)
+        content_elements.append(Spacer(1, 8))
+        
+        for edu in resume_data["education"]:
+            institution = edu.get("institution", "")
+            location = edu.get("location", "")
+            dates = f"{edu.get('startDate', '')} - {edu.get('endDate', '')}"
+            degree_info = f"{edu.get('studyType', '')} {edu.get('area', '')}"
+            if edu.get('gpa'):
+                degree_info += f" | GPA: {edu['gpa']}"
 
-    # Build the PDF with the content
+            edu_data = [
+                [Paragraph(institution, company_style), Paragraph(dates, date_location_style)],
+                [Paragraph(degree_info, position_style), Paragraph(location, date_location_style)]
+            ]
+            
+            edu_table = Table(edu_data, colWidths=[5.5*72, 1.5*72])
+            edu_table.setStyle(TableStyle([
+                ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+                ('LEFTPADDING', (0, 0), (-1, -1), 0),
+                ('RIGHTPADDING', (0, 0), (-1, -1), 0),
+                ('TOPPADDING', (0, 0), (-1, -1), 0),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 2),
+            ]))
+            content_elements.append(edu_table)
+            content_elements.append(Spacer(1, 6))
+
+    # Build the PDF
     doc.build(content_elements)
 
 
