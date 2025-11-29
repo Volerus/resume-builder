@@ -1,0 +1,59 @@
+{
+    "work": [
+        {
+            "company": "sdf",
+            "position": "sdf",
+            "startDate": "sdf",
+            "endDate": "",
+            "location": "sdf",
+            "highlights": [
+                "sdf"
+            ],
+            "website": "sdf"
+        },
+        {
+            "company": "Company_ATS_Optimized_1",
+            "position": "Position_ATS_Optimized_1",
+            "startDate": "StartDate_ATS_Optimized_1",
+            "endDate": "EndDate_ATS_Optimized_1",
+            "location": "Location_ATS_Optimized_1",
+            "highlights": [
+                "Highlight_1_ATS_Optimized",
+                "Highlight_2_ATS_Optimized",
+                "Highlight_3_ATS_Optimized",
+                "Highlight_4_ATS_Optimized",
+                "Highlight_5_ATS_Optimized"
+            ],
+            "website": "Website_ATS_Optimized_1"
+        }
+    ],
+    "skills": [
+        {
+            "name": "sdf",
+            "keywords": [
+                "dsf, ATS_Optimization, JSON_Processing"
+            ],
+            "level": ""
+        }
+    ],
+    "professional_summary": "sdfsd",
+    "basics": {
+        "name": "XYZ",
+        "email": "adsf",
+        "phone": "sdf",
+        "location": {
+            "address": "dsfgsd"
+        }
+    },
+    "education": [
+        {
+            "institution": "sdfsd",
+            "area": "sdfd",
+            "studyType": "sdfsd",
+            "gpa": "dsf",
+            "startDate": "dsf",
+            "endDate": "",
+            "location": "dsf"
+        }
+    ]
+}

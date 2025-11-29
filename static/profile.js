@@ -16,9 +16,76 @@ const diffDate = document.getElementById('diffDate');
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+    fetchProfiles();
     fetchProfileData();
     fetchHistory();
+
+    document.getElementById('profileSelector').addEventListener('change', (e) => {
+        switchProfile(e.target.value);
+    });
 });
+
+// Profile Management
+async function fetchProfiles() {
+    try {
+        const response = await fetch('/profiles');
+        const data = await response.json();
+
+        const selector = document.getElementById('profileSelector');
+        selector.innerHTML = data.profiles.map(p =>
+            `<option value="${p}" ${p === data.active ? 'selected' : ''}>${p}</option>`
+        ).join('');
+    } catch (error) {
+        console.error('Error fetching profiles:', error);
+    }
+}
+
+async function createNewProfile() {
+    const name = prompt("Enter new profile name:");
+    if (!name) return;
+
+    try {
+        const response = await fetch('/profiles', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            // Switch to new profile
+            await switchProfile(data.name);
+            fetchProfiles(); // Refresh list
+        } else {
+            const err = await response.json();
+            alert('Error creating profile: ' + err.error);
+        }
+    } catch (error) {
+        console.error('Error creating profile:', error);
+        alert('Failed to create profile');
+    }
+}
+
+async function switchProfile(name) {
+    try {
+        const response = await fetch('/profiles/switch', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name })
+        });
+
+        if (response.ok) {
+            // Reload data
+            fetchProfileData();
+            fetchHistory();
+            fetchProfiles(); // Update selector selection
+        } else {
+            alert('Failed to switch profile');
+        }
+    } catch (error) {
+        console.error('Error switching profile:', error);
+    }
+}
 
 // Fetch Data
 async function fetchProfileData() {

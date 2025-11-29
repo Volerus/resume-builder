@@ -551,3 +551,15 @@ refreshHistoryBtn.addEventListener('click', fetchHistory);
 
 // Initial load
 fetchHistory();
+fetchActiveProfile();
+
+async function fetchActiveProfile() {
+    try {
+        const response = await fetch('/profiles');
+        const data = await response.json();
+        document.getElementById('activeProfileName').textContent = data.active;
+    } catch (error) {
+        console.error('Error fetching active profile:', error);
+        document.getElementById('activeProfileName').textContent = 'Error';
+    }
+}

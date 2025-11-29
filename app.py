@@ -1,47 +1,87 @@
 import json
 import os
 import sys
-
-from flask import Flask, request, Response, render_template
-from flask import jsonify
-import requests
-from openai import OpenAI
-import yaml
-from pdf_generator import generate_reduced_top_margin_resume
+import shutil
 from io import BytesIO
 import uuid
 from datetime import datetime
-import shutil
+
+from flask import Flask, request, Response, render_template, jsonify
+from openai import OpenAI
+import yaml
+from pdf_generator import generate_reduced_top_margin_resume
 
 app = Flask(__name__)
 
-# Determine resume data file based on command-line argument
-if len(sys.argv) > 1 and sys.argv[1] != 'run' and not sys.argv[1].startswith('-'):
-    resume_name = sys.argv[1]
-    RESUME_DATA_FILE = f'resume_data_{resume_name}.json'
-else:
-    RESUME_DATA_FILE = 'resume_data.json'
+# Constants
+PROFILES_DIR = 'profiles'
+DEFAULT_PROFILE = 'default'
 
-STORAGE_DIR = 'generated'
-HISTORY_FILE = os.path.join(STORAGE_DIR, 'history.json')
-PROFILE_HISTORY_FILE = os.path.join(STORAGE_DIR, 'profile_history.json')
+# Global state
+active_profile = DEFAULT_PROFILE
 
-if not os.path.exists(STORAGE_DIR):
-    os.makedirs(STORAGE_DIR)
+# Ensure profiles directory exists
+if not os.path.exists(PROFILES_DIR):
+    os.makedirs(PROFILES_DIR)
 
-if not os.path.exists(HISTORY_FILE):
-    with open(HISTORY_FILE, 'w') as f:
-        json.dump([], f)
+def get_profile_dir(profile_name):
+    return os.path.join(PROFILES_DIR, profile_name)
 
-if not os.path.exists(PROFILE_HISTORY_FILE):
-    with open(PROFILE_HISTORY_FILE, 'w') as f:
-        json.dump([], f)
+def get_profile_paths(profile_name=None):
+    if profile_name is None:
+        profile_name = active_profile
+    
+    base_dir = get_profile_dir(profile_name)
+    storage_dir = os.path.join(base_dir, 'generated')
+    
+    return {
+        'base': base_dir,
+        'resume_data': os.path.join(base_dir, 'resume_data.json'),
+        'info': os.path.join(base_dir, 'info.json'),
+        'storage': storage_dir,
+        'history': os.path.join(storage_dir, 'history.json'),
+        'profile_history': os.path.join(storage_dir, 'profile_history.json')
+    }
 
+def migrate_to_profiles():
+    """Migrate existing files to default profile if they exist in root."""
+    default_dir = get_profile_dir(DEFAULT_PROFILE)
+    
+    # If default profile doesn't exist, create it
+    if not os.path.exists(default_dir):
+        os.makedirs(default_dir)
+        
+        # Files to migrate
+        files_to_move = [
+            ('resume_data.json', 'resume_data.json'),
+            ('info.json', 'info.json'),
+        ]
+        
+        # Move files
+        for src, dst in files_to_move:
+            if os.path.exists(src):
+                shutil.move(src, os.path.join(default_dir, dst))
+            elif dst == 'resume_data.json':
+                # Create empty resume data if it doesn't exist
+                with open(os.path.join(default_dir, dst), 'w') as f:
+                    json.dump({}, f)
+        
+        # Move generated directory
+        if os.path.exists('generated'):
+            if os.path.exists(os.path.join(default_dir, 'generated')):
+                shutil.rmtree(os.path.join(default_dir, 'generated'))
+            shutil.move('generated', os.path.join(default_dir, 'generated'))
+        else:
+            os.makedirs(os.path.join(default_dir, 'generated'))
+
+# Run migration on startup
+migrate_to_profiles()
+
+# Load secrets
 with open("secrets.yaml", "r") as file:
     secrets = yaml.safe_load(file)
 
 api_key = secrets["api_key"]
-
 os.environ["API_KEY"] = api_key
 
 
@@ -63,17 +103,35 @@ def extract_json_from_response(content):
     return json.loads(content)
 
 
+def ensure_profile_dirs(profile_name):
+    paths = get_profile_paths(profile_name)
+    if not os.path.exists(paths['storage']):
+        os.makedirs(paths['storage'])
+    
+    if not os.path.exists(paths['history']):
+        with open(paths['history'], 'w') as f:
+            json.dump([], f)
+            
+    if not os.path.exists(paths['profile_history']):
+        with open(paths['profile_history'], 'w') as f:
+            json.dump([], f)
+
+
 def load_history():
-    if os.path.exists(HISTORY_FILE):
-        with open(HISTORY_FILE, 'r') as f:
+    paths = get_profile_paths()
+    ensure_profile_dirs(active_profile)
+    if os.path.exists(paths['history']):
+        with open(paths['history'], 'r') as f:
             return json.load(f)
     return []
 
 
 def save_history_entry(entry):
+    paths = get_profile_paths()
+    ensure_profile_dirs(active_profile)
     history = load_history()
     history.append(entry)
-    with open(HISTORY_FILE, 'w') as f:
+    with open(paths['history'], 'w') as f:
         json.dump(history, f, indent=4)
 
 
@@ -104,15 +162,98 @@ def index():
     return render_template('index.html')
 
 
+# Profile Management Endpoints
+
+@app.route('/profiles', methods=['GET'])
+def list_profiles():
+    """List all available profiles."""
+    profiles = [d for d in os.listdir(PROFILES_DIR) if os.path.isdir(os.path.join(PROFILES_DIR, d))]
+    return jsonify({
+        'profiles': profiles,
+        'active': active_profile
+    })
+
+@app.route('/profiles', methods=['POST'])
+def create_profile():
+    """Create a new profile."""
+    try:
+        name = request.json.get('name')
+        if not name:
+            return jsonify({'error': 'Profile name is required'}), 400
+            
+        # Sanitize name (basic)
+        name = "".join(x for x in name if x.isalnum() or x in ('-', '_'))
+        
+        target_dir = get_profile_dir(name)
+        if os.path.exists(target_dir):
+            return jsonify({'error': 'Profile already exists'}), 400
+            
+        os.makedirs(target_dir)
+        
+        # Initialize empty files
+        with open(os.path.join(target_dir, 'resume_data.json'), 'w') as f:
+            json.dump({}, f)
+        with open(os.path.join(target_dir, 'info.json'), 'w') as f:
+            json.dump({}, f)
+            
+        ensure_profile_dirs(name)
+        
+        return jsonify({'status': 'success', 'name': name})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/profiles/switch', methods=['POST'])
+def switch_profile():
+    """Switch the active profile."""
+    global active_profile
+    try:
+        name = request.json.get('name')
+        if not name:
+            return jsonify({'error': 'Profile name is required'}), 400
+            
+        target_dir = get_profile_dir(name)
+        if not os.path.exists(target_dir):
+            return jsonify({'error': 'Profile does not exist'}), 404
+            
+        active_profile = name
+        return jsonify({'status': 'success', 'active': active_profile})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/profiles/<name>', methods=['DELETE'])
+def delete_profile(name):
+    """Delete a profile."""
+    global active_profile
+    try:
+        if name == 'default':
+            return jsonify({'error': 'Cannot delete default profile'}), 400
+            
+        if name == active_profile:
+            return jsonify({'error': 'Cannot delete active profile'}), 400
+            
+        target_dir = get_profile_dir(name)
+        if not os.path.exists(target_dir):
+            return jsonify({'error': 'Profile does not exist'}), 404
+            
+        shutil.rmtree(target_dir)
+        return jsonify({'status': 'success'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/improve-resume', methods=['POST'])
 def improve_resume():
     """Generate improved resume JSON and return comparison with original."""
     try:
         job_description = request.json['description']
+        paths = get_profile_paths()
         
         # Load original resume
-        with open(RESUME_DATA_FILE, 'r') as file:
-            original_resume = json.load(file)
+        if os.path.exists(paths['resume_data']):
+            with open(paths['resume_data'], 'r') as file:
+                original_resume = json.load(file)
+        else:
+            original_resume = {}
         
         # Prepare prompts
         pre_prompt = ("Act as a JSON Data Processor and ATS Optimization Specialist",
@@ -175,9 +316,15 @@ def generate_pdf():
         if not company_name:
             company_name = 'default_company'
         
+        paths = get_profile_paths()
+        ensure_profile_dirs(active_profile)
+        
         # Load personal info to merge with resume data
-        with open('info.json', 'r') as file:
-            info = json.load(file)
+        if os.path.exists(paths['info']):
+            with open(paths['info'], 'r') as file:
+                info = json.load(file)
+        else:
+            info = {}
         
         # Merge resume data with personal info
         full_resume = {**resume_data, **info}
@@ -191,7 +338,7 @@ def generate_pdf():
         timestamp = datetime.now().isoformat()
         
         # Create directory for this resume
-        resume_dir = os.path.join(STORAGE_DIR, resume_id)
+        resume_dir = os.path.join(paths['storage'], resume_id)
         os.makedirs(resume_dir)
         
         # Save PDF
@@ -216,10 +363,16 @@ def generate_pdf():
         save_history_entry(entry)
         
         # Also save to company directory for backward compatibility/organization
-        if not os.path.exists(company_name):
-            os.makedirs(company_name)
+        # Note: This still saves to root company dir, which might be desired or should be profile-scoped?
+        # For now, let's keep it in root to avoid breaking existing workflow too much, 
+        # or we could move it to profiles/<profile>/companies/<company>
+        # Let's keep it simple and put it in the profile directory
         
-        company_pdf_path = os.path.join(company_name, "resume.pdf")
+        company_dir = os.path.join(paths['base'], company_name)
+        if not os.path.exists(company_dir):
+            os.makedirs(company_dir)
+        
+        company_pdf_path = os.path.join(company_dir, "resume.pdf")
         shutil.copy(pdf_path, company_pdf_path)
         
         # Return PDF as response
@@ -266,11 +419,16 @@ def profile():
 def get_profile_data():
     """Get current resume data merged with personal info."""
     try:
-        with open(RESUME_DATA_FILE, 'r') as file:
-            resume_data = json.load(file)
+        paths = get_profile_paths()
+        
+        if os.path.exists(paths['resume_data']):
+            with open(paths['resume_data'], 'r') as file:
+                resume_data = json.load(file)
+        else:
+            resume_data = {}
             
-        if os.path.exists('info.json'):
-            with open('info.json', 'r') as file:
+        if os.path.exists(paths['info']):
+            with open(paths['info'], 'r') as file:
                 info_data = json.load(file)
         else:
             info_data = {}
@@ -287,13 +445,18 @@ def save_profile_data():
     """Save new profile data (resume + info) and add to history."""
     try:
         new_data = request.json
+        paths = get_profile_paths()
+        ensure_profile_dirs(active_profile)
         
         # Load current data to save to history
-        with open(RESUME_DATA_FILE, 'r') as file:
-            current_resume = json.load(file)
+        if os.path.exists(paths['resume_data']):
+            with open(paths['resume_data'], 'r') as file:
+                current_resume = json.load(file)
+        else:
+            current_resume = {}
             
-        if os.path.exists('info.json'):
-            with open('info.json', 'r') as file:
+        if os.path.exists(paths['info']):
+            with open(paths['info'], 'r') as file:
                 current_info = json.load(file)
         else:
             current_info = {}
@@ -301,8 +464,8 @@ def save_profile_data():
         current_full_data = {**current_resume, **current_info}
             
         # Load existing history
-        if os.path.exists(PROFILE_HISTORY_FILE):
-            with open(PROFILE_HISTORY_FILE, 'r') as f:
+        if os.path.exists(paths['profile_history']):
+            with open(paths['profile_history'], 'r') as f:
                 history = json.load(f)
         else:
             history = []
@@ -316,7 +479,7 @@ def save_profile_data():
         history.append(history_entry)
         
         # Save history
-        with open(PROFILE_HISTORY_FILE, 'w') as f:
+        with open(paths['profile_history'], 'w') as f:
             json.dump(history, f, indent=4)
             
         # Split and save new data
@@ -326,10 +489,10 @@ def save_profile_data():
         new_resume = {k: new_data.get(k) for k in resume_keys if k in new_data}
         new_info = {k: new_data.get(k) for k in info_keys if k in new_data}
         
-        with open(RESUME_DATA_FILE, 'w') as f:
+        with open(paths['resume_data'], 'w') as f:
             json.dump(new_resume, f, indent=4)
             
-        with open('info.json', 'w') as f:
+        with open(paths['info'], 'w') as f:
             json.dump(new_info, f, indent=4)
             
         return jsonify({'status': 'success', 'history_id': history_entry['id']})
@@ -342,8 +505,9 @@ def save_profile_data():
 def get_profile_history():
     """Get profile version history."""
     try:
-        if os.path.exists(PROFILE_HISTORY_FILE):
-            with open(PROFILE_HISTORY_FILE, 'r') as f:
+        paths = get_profile_paths()
+        if os.path.exists(paths['profile_history']):
+            with open(paths['profile_history'], 'r') as f:
                 history = json.load(f)
             return jsonify(history)
         return jsonify([])
@@ -356,8 +520,9 @@ def restore_profile_version():
     """Restore a specific version from history."""
     try:
         version_id = request.json['id']
+        paths = get_profile_paths()
         
-        with open(PROFILE_HISTORY_FILE, 'r') as f:
+        with open(paths['profile_history'], 'r') as f:
             history = json.load(f)
             
         version = next((item for item in history if item['id'] == version_id), None)
@@ -373,116 +538,17 @@ def restore_profile_version():
         new_resume = {k: data.get(k) for k in resume_keys if k in data}
         new_info = {k: data.get(k) for k in info_keys if k in data}
         
-        with open(RESUME_DATA_FILE, 'w') as f:
+        with open(paths['resume_data'], 'w') as f:
             json.dump(new_resume, f, indent=4)
             
         if new_info:
-            with open('info.json', 'w') as f:
+            with open(paths['info'], 'w') as f:
                 json.dump(new_info, f, indent=4)
             
         return jsonify({'status': 'success'})
         
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
-
-
-
-
-@app.route('/make', methods=['POST'])
-def gpt3_response():
-    # Get the input text from the request
-
-    buffer = BytesIO()
-
-    pre_prompt = "You are a resume writer.You improve the resume which will increase the " \
-                 "chances for it to be picked for a given job description. For a given job description and a resume " \
-                 "json "
-    job_description = request.json['description']
-    with open(RESUME_DATA_FILE, 'r') as file:
-        resume_data = json.load(file)
-
-    resume = json.dumps(resume_data, indent=4)
-
-    post_prompt = "Improve the resume by adding subtle details pertaining to the job description. The resume should be better than the original. Don't change the Json format. " \
-                  "Only change highlights,professional summary and skills section." \
-                  "14 highlights of capital one, 3 highlights for Datafabricx and 2 highlights for accenture." \
-                  "Keep the points as close to original as possible. Do not change too many points. Do not remove any points. Only modify the points pertaining to job description" \
-                  "For example if the job description requires java and the original resume has python try to add java to the resume modifying the context for python to java." \
-                  " Keep the language simple. Just return the correct JSON " \
-                  "format and nothing else. "
-
-    # print(input_text)
-
-    client = OpenAI(
-        base_url="https://openrouter.ai/api/v1",
-        api_key=os.getenv("API_KEY")
-    )
-
-    messages = [
-        {
-            "role": "system",
-            "content": "You are a resume writer.You improve the resume which will increase "
-                       "the chances for it to be picked for a given job description. "
-        },
-        {
-            "role": "user",
-            "content": "\nJob Description\n" + job_description + "\nResume Json\n" + str(resume) + "\n" + post_prompt
-        }
-    ]
-
-    response = client.chat.completions.create(
-        model="google/gemini-2.0-flash-001",
-        messages=messages
-    )
-
-    # print(response['choices'][0]['message']['content'])
-    data = extract_json_from_response(response.choices[0].message.content)
-
-    with open('info.json', 'r') as file:
-        info = json.load(file)
-
-    full_resume = {**data, **info}
-
-    print(json.dumps(full_resume, indent=4))
-
-    generate_reduced_top_margin_resume(buffer, full_resume)
-
-    response = client.chat.completions.create(
-        model="google/gemini-2.0-flash-001",
-        messages=[
-            {
-                "role": "user",
-                "content": "\nJob Description\n" + job_description + "Just give me name of the company and nothing "
-                                                                     "else based of job description.Nothing else. If "
-                                                                     "the company has two words append using _ "
-            }]
-    )
-
-    company_name = response.choices[0].message.content
-
-    print("----------------")
-    print(company_name)
-    print("----------------")
-
-    if not os.path.exists(company_name):
-        os.makedirs(company_name)
-
-    # Full path to the output file
-    full_path = os.path.join(company_name, "resume.pdf")
-
-    # Write the buffer contents to the file
-    with open(full_path, 'wb') as output_file:
-        buffer.seek(0)
-        output_file.write(buffer.read())
-
-    buffer.seek(0)
-
-    return Response(buffer, content_type='application/pdf')
-
-    # return {
-    #     'response_text': response.to_dict()["choices"][0]["text"]
-    # }
 
 
 @app.route('/health', methods=['GET'])

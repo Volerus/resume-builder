@@ -1183,7 +1183,8 @@ del {
     transform: translateY(-2px);
 }
 
-.loading-history, .empty-history {
+.loading-history,
+.empty-history {
     text-align: center;
     color: var(--text-secondary);
     padding: 2rem;
@@ -1212,7 +1213,8 @@ del {
     height: 90vh;
     display: flex;
     flex-direction: column;
-    background: #1e293b; /* Solid background for modal */
+    background: #1e293b;
+    /* Solid background for modal */
 }
 
 .modal-header {
@@ -1249,6 +1251,70 @@ del {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Profile Header Info */
+.profile-header-info {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--glass-bg);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+}
+
+.active-profile-display {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.profile-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.profile-name {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.profile-manage-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: rgba(102, 126, 234, 0.1);
+    color: var(--primary);
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.profile-manage-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.profile-manage-btn:active {
+    transform: translateY(0);
 }
