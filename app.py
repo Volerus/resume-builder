@@ -16,7 +16,7 @@ import shutil
 app = Flask(__name__)
 
 # Determine resume data file based on command-line argument
-if len(sys.argv) > 1:
+if len(sys.argv) > 1 and sys.argv[1] != 'run' and not sys.argv[1].startswith('-'):
     resume_name = sys.argv[1]
     RESUME_DATA_FILE = f'resume_data_{resume_name}.json'
 else:
@@ -24,12 +24,17 @@ else:
 
 STORAGE_DIR = 'generated'
 HISTORY_FILE = os.path.join(STORAGE_DIR, 'history.json')
+PROFILE_HISTORY_FILE = os.path.join(STORAGE_DIR, 'profile_history.json')
 
 if not os.path.exists(STORAGE_DIR):
     os.makedirs(STORAGE_DIR)
 
 if not os.path.exists(HISTORY_FILE):
     with open(HISTORY_FILE, 'w') as f:
+        json.dump([], f)
+
+if not os.path.exists(PROFILE_HISTORY_FILE):
+    with open(PROFILE_HISTORY_FILE, 'w') as f:
         json.dump([], f)
 
 with open("secrets.yaml", "r") as file:
@@ -248,6 +253,135 @@ def download_file(resume_id, file_type):
         else:
             return jsonify({'error': 'Invalid file type'}), 400
             
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/profile', methods=['GET'])
+def profile():
+    return render_template('profile.html')
+
+
+@app.route('/get-profile-data', methods=['GET'])
+def get_profile_data():
+    """Get current resume data merged with personal info."""
+    try:
+        with open(RESUME_DATA_FILE, 'r') as file:
+            resume_data = json.load(file)
+            
+        if os.path.exists('info.json'):
+            with open('info.json', 'r') as file:
+                info_data = json.load(file)
+        else:
+            info_data = {}
+            
+        # Merge data
+        data = {**resume_data, **info_data}
+        return jsonify(data)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/save-profile-data', methods=['POST'])
+def save_profile_data():
+    """Save new profile data (resume + info) and add to history."""
+    try:
+        new_data = request.json
+        
+        # Load current data to save to history
+        with open(RESUME_DATA_FILE, 'r') as file:
+            current_resume = json.load(file)
+            
+        if os.path.exists('info.json'):
+            with open('info.json', 'r') as file:
+                current_info = json.load(file)
+        else:
+            current_info = {}
+            
+        current_full_data = {**current_resume, **current_info}
+            
+        # Load existing history
+        if os.path.exists(PROFILE_HISTORY_FILE):
+            with open(PROFILE_HISTORY_FILE, 'r') as f:
+                history = json.load(f)
+        else:
+            history = []
+            
+        # Add current version to history
+        history_entry = {
+            'id': str(uuid.uuid4()),
+            'timestamp': datetime.now().isoformat(),
+            'data': current_full_data
+        }
+        history.append(history_entry)
+        
+        # Save history
+        with open(PROFILE_HISTORY_FILE, 'w') as f:
+            json.dump(history, f, indent=4)
+            
+        # Split and save new data
+        resume_keys = ['work', 'skills', 'professional_summary']
+        info_keys = ['basics', 'education']
+        
+        new_resume = {k: new_data.get(k) for k in resume_keys if k in new_data}
+        new_info = {k: new_data.get(k) for k in info_keys if k in new_data}
+        
+        with open(RESUME_DATA_FILE, 'w') as f:
+            json.dump(new_resume, f, indent=4)
+            
+        with open('info.json', 'w') as f:
+            json.dump(new_info, f, indent=4)
+            
+        return jsonify({'status': 'success', 'history_id': history_entry['id']})
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/get-profile-history', methods=['GET'])
+def get_profile_history():
+    """Get profile version history."""
+    try:
+        if os.path.exists(PROFILE_HISTORY_FILE):
+            with open(PROFILE_HISTORY_FILE, 'r') as f:
+                history = json.load(f)
+            return jsonify(history)
+        return jsonify([])
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/restore-profile-version', methods=['POST'])
+def restore_profile_version():
+    """Restore a specific version from history."""
+    try:
+        version_id = request.json['id']
+        
+        with open(PROFILE_HISTORY_FILE, 'r') as f:
+            history = json.load(f)
+            
+        version = next((item for item in history if item['id'] == version_id), None)
+        
+        if not version:
+            return jsonify({'error': 'Version not found'}), 404
+            
+        data = version['data']
+        
+        resume_keys = ['work', 'skills', 'professional_summary']
+        info_keys = ['basics', 'education']
+        
+        new_resume = {k: data.get(k) for k in resume_keys if k in data}
+        new_info = {k: data.get(k) for k in info_keys if k in data}
+        
+        with open(RESUME_DATA_FILE, 'w') as f:
+            json.dump(new_resume, f, indent=4)
+            
+        if new_info:
+            with open('info.json', 'w') as f:
+                json.dump(new_info, f, indent=4)
+            
+        return jsonify({'status': 'success'})
+        
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

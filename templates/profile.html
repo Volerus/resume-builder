@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Editor - ResumeAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/diff_match_patch/20121119/diff_match_patch.js"></script>
+    <style>
+        /* Profile specific styles */
+        .profile-container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .editor-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .history-sidebar {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            height: fit-content;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--secondary);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .save-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .save-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(118, 75, 162, 0.3);
+        }
+
+        .history-item {
+            padding: 1rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .history-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .history-item.active {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--success);
+        }
+
+        .history-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .history-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .restore-btn {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .restore-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--text-primary);
+        }
+
+        /* Diff styles override */
+        .diff-view {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            min-height: 100px;
+            color: var(--text-primary);
+        }
+
+        ins {
+            background-color: rgba(16, 185, 129, 0.2);
+            text-decoration: none;
+            color: #4ade80;
+        }
+
+        del {
+            background-color: rgba(239, 68, 68, 0.2);
+            text-decoration: none;
+            color: #f87171;
+        }
+
+        .diff-mode .editor-input {
+            display: none;
+        }
+
+        .edit-mode .diff-output {
+            display: none;
+        }
+
+        .add-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed var(--glass-border);
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            color: var(--text-muted);
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.2s;
+        }
+
+        .add-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+
+        .remove-btn {
+            color: var(--error);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.25rem;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .remove-btn:hover {
+            opacity: 1;
+        }
+
+        .icon-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Form inputs */
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--text-primary);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            min-height: 100px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            resize: vertical;
+            transition: all 0.2s ease;
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-overlay"></div>
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <div class="profile-container">
+        <!-- Main Editor Area -->
+        <main class="editor-section">
+            <div class="nav-header">
+                <a href="/" class="back-link">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 15L7 10L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    Back to Generator
+                </a>
+                <div class="logo">
+                    <span style="font-weight: 700; font-size: 1.25rem; color: var(--text-primary);">Profile
+                        Editor</span>
+                </div>
+                <button id="saveBtn" class="save-btn">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M3 17V7L8 2H16C16.5304 2 17.0391 2.21071 17.4142 2.58579C17.7893 2.96086 18 3.46957 18 4V17C18 17.5304 17.7893 18.0391 17.4142 18.4142C17.0391 18.7893 16.5304 19 16 19H4C3.46957 19 2.96086 18.7893 2.58579 18.4142C2.21071 18.0391 2 17.5304 2 17Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M12 19V13H7V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M7 2V7H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    Save Changes
+                </button>
+            </div>
+
+            <div id="diffAlert" class="hidden"
+                style="background: rgba(102, 126, 234, 0.1); border: 1px solid var(--primary); color: var(--text-primary); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+                <span>Viewing comparison with version from <strong id="diffDate"></strong></span>
+                <button onclick="exitDiffMode()"
+                    style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--primary); color: var(--text-primary); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Exit
+                    Comparison</button>
+            </div>
+
+            <!-- Personal Details -->
+            <div class="resume-section">
+                <h3 class="section-title">Personal Details</h3>
+                <div id="basicsContainer">
+                    <div class="editor-input">
+                        <input type="text" id="basicsName" class="form-input" placeholder="Full Name">
+                        <input type="email" id="basicsEmail" class="form-input" placeholder="Email">
+                        <input type="text" id="basicsPhone" class="form-input" placeholder="Phone">
+                        <input type="text" id="basicsLocation" class="form-input" placeholder="Location (City, State)">
+                    </div>
+                    <div id="basicsDiff" class="diff-output hidden diff-view"></div>
+                </div>
+            </div>
+
+            <!-- Professional Summary -->
+            <div class="resume-section">
+                <h3 class="section-title">Professional Summary</h3>
+                <div id="summaryContainer">
+                    <textarea id="professionalSummary" class="form-textarea editor-input" rows="6"></textarea>
+                    <div id="summaryDiff" class="diff-output hidden diff-view"></div>
+                </div>
+            </div>
+
+            <!-- Work Experience -->
+            <div class="resume-section">
+                <div class="section-header">
+                    <h3 class="section-title">Work Experience</h3>
+                    <button onclick="addWorkItem()" class="icon-btn editor-input" title="Add Job">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 4V16M4 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+                <div id="workContainer">
+                    <!-- Work items populated by JS -->
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="resume-section">
+                <div class="section-header">
+                    <h3 class="section-title">Education</h3>
+                    <button onclick="addEducationItem()" class="icon-btn editor-input" title="Add Education">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 4V16M4 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+                <div id="educationContainer">
+                    <!-- Education items populated by JS -->
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="resume-section">
+                <div class="section-header">
+                    <h3 class="section-title">Skills</h3>
+                    <button onclick="addSkillCategory()" class="icon-btn editor-input" title="Add Category">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 4V16M4 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+                <div id="skillsContainer">
+                    <!-- Skills populated by JS -->
+                </div>
+            </div>
+        </main>
+
+        <!-- History Sidebar -->
+        <aside class="history-sidebar">
+            <h3 class="section-title" style="margin-bottom: 1rem;">Version History</h3>
+            <div id="historyList">
+                <div style="text-align: center; color: var(--text-muted); padding: 1rem;">Loading history...</div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="/static/profile.js"></script>
+</body>
+
+</html>
