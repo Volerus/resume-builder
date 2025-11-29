@@ -1,180 +1,40 @@
-import json
-import os
-import sys
-import shutil
-from io import BytesIO
-import uuid
-from datetime import datetime
-
-from flask import Flask, request, Response, render_template, jsonify
+from flask import Blueprint, request, Response, render_template, jsonify
 from openai import OpenAI
-import yaml
-from pdf_generator import generate_reduced_top_margin_resume
+import os
+import json
+import uuid
+from io import BytesIO
+from datetime import datetime
+import shutil
 
-app = Flask(__name__)
+from .services import (
+    get_profile_paths, ensure_profile_dirs, load_history, save_history_entry,
+    extract_json_from_response, extract_company_name,
+    get_active_profile, set_active_profile, get_profile_dir, PROFILES_DIR, DEFAULT_PROFILE
+)
+from .pdf_generator import generate_reduced_top_margin_resume
 
-# Constants
-PROFILES_DIR = 'profiles'
-DEFAULT_PROFILE = 'default'
+main = Blueprint('main', __name__)
 
-# Global state
-active_profile = DEFAULT_PROFILE
-
-# Ensure profiles directory exists
-if not os.path.exists(PROFILES_DIR):
-    os.makedirs(PROFILES_DIR)
-
-def get_profile_dir(profile_name):
-    return os.path.join(PROFILES_DIR, profile_name)
-
-def get_profile_paths(profile_name=None):
-    if profile_name is None:
-        profile_name = active_profile
-    
-    base_dir = get_profile_dir(profile_name)
-    storage_dir = os.path.join(base_dir, 'generated')
-    
-    return {
-        'base': base_dir,
-        'resume_data': os.path.join(base_dir, 'resume_data.json'),
-        'info': os.path.join(base_dir, 'info.json'),
-        'storage': storage_dir,
-        'history': os.path.join(storage_dir, 'history.json'),
-        'profile_history': os.path.join(storage_dir, 'profile_history.json'),
-        'prompts': os.path.join(base_dir, 'prompts.json')
-    }
-
-def migrate_to_profiles():
-    """Migrate existing files to default profile if they exist in root."""
-    default_dir = get_profile_dir(DEFAULT_PROFILE)
-    
-    # If default profile doesn't exist, create it
-    if not os.path.exists(default_dir):
-        os.makedirs(default_dir)
-        
-        # Files to migrate
-        files_to_move = [
-            ('resume_data.json', 'resume_data.json'),
-            ('info.json', 'info.json'),
-        ]
-        
-        # Move files
-        for src, dst in files_to_move:
-            if os.path.exists(src):
-                shutil.move(src, os.path.join(default_dir, dst))
-            elif dst == 'resume_data.json':
-                # Create empty resume data if it doesn't exist
-                with open(os.path.join(default_dir, dst), 'w') as f:
-                    json.dump({}, f)
-        
-        # Move generated directory
-        if os.path.exists('generated'):
-            if os.path.exists(os.path.join(default_dir, 'generated')):
-                shutil.rmtree(os.path.join(default_dir, 'generated'))
-            shutil.move('generated', os.path.join(default_dir, 'generated'))
-        else:
-            os.makedirs(os.path.join(default_dir, 'generated'))
-
-# Run migration on startup
-migrate_to_profiles()
-
-# Load secrets
-with open("secrets.yaml", "r") as file:
-    secrets = yaml.safe_load(file)
-
-api_key = secrets["api_key"]
-os.environ["API_KEY"] = api_key
-
-
-def extract_json_from_response(content):
-    """Extract JSON from AI response, handling markdown code blocks."""
-    content = content.strip()
-    
-    # Check if content is wrapped in markdown code blocks
-    if content.startswith('```'):
-        # Remove opening ```json or ```
-        lines = content.split('\n')
-        # Remove first line (```json or ```)
-        lines = lines[1:]
-        # Remove last line if it's ```
-        if lines and lines[-1].strip() == '```':
-            lines = lines[:-1]
-        content = '\n'.join(lines)
-    
-    return json.loads(content)
-
-
-def ensure_profile_dirs(profile_name):
-    paths = get_profile_paths(profile_name)
-    if not os.path.exists(paths['storage']):
-        os.makedirs(paths['storage'])
-    
-    if not os.path.exists(paths['history']):
-        with open(paths['history'], 'w') as f:
-            json.dump([], f)
-            
-    if not os.path.exists(paths['profile_history']):
-        with open(paths['profile_history'], 'w') as f:
-            json.dump([], f)
-
-
-def load_history():
-    paths = get_profile_paths()
-    ensure_profile_dirs(active_profile)
-    if os.path.exists(paths['history']):
-        with open(paths['history'], 'r') as f:
-            return json.load(f)
-    return []
-
-
-def save_history_entry(entry):
-    paths = get_profile_paths()
-    ensure_profile_dirs(active_profile)
-    history = load_history()
-    history.append(entry)
-    with open(paths['history'], 'w') as f:
-        json.dump(history, f, indent=4)
-
-
-def extract_company_name(job_description):
-    """Extract company name from job description using OpenRouter API."""
-    client = OpenAI(
-        base_url="https://openrouter.ai/api/v1",
-        api_key=os.getenv("API_KEY")
-    )
-    
-    response = client.chat.completions.create(
-        model="google/gemini-2.0-flash-001",
-        messages=[
-            {
-                "role": "user",
-                "content": f"\nJob Description\n{job_description}\nJust give me name of the company and nothing "
-                          "else based of job description. Nothing else. If "
-                          "the company has two words append using _ "
-            }
-        ]
-    )
-    
-    return response.choices[0].message.content.strip()
-
-
-@app.route('/', methods=['GET'])
+@main.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
 
 
 # Profile Management Endpoints
 
-@app.route('/profiles', methods=['GET'])
+@main.route('/profiles', methods=['GET'])
 def list_profiles():
     """List all available profiles."""
+    if not os.path.exists(PROFILES_DIR):
+        os.makedirs(PROFILES_DIR)
     profiles = [d for d in os.listdir(PROFILES_DIR) if os.path.isdir(os.path.join(PROFILES_DIR, d))]
     return jsonify({
         'profiles': profiles,
-        'active': active_profile
+        'active': get_active_profile()
     })
 
-@app.route('/profiles', methods=['POST'])
+@main.route('/profiles', methods=['POST'])
 def create_profile():
     """Create a new profile."""
     try:
@@ -203,10 +63,9 @@ def create_profile():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@app.route('/profiles/switch', methods=['POST'])
+@main.route('/profiles/switch', methods=['POST'])
 def switch_profile():
     """Switch the active profile."""
-    global active_profile
     try:
         name = request.json.get('name')
         if not name:
@@ -216,20 +75,19 @@ def switch_profile():
         if not os.path.exists(target_dir):
             return jsonify({'error': 'Profile does not exist'}), 404
             
-        active_profile = name
-        return jsonify({'status': 'success', 'active': active_profile})
+        set_active_profile(name)
+        return jsonify({'status': 'success', 'active': name})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@app.route('/profiles/<name>', methods=['DELETE'])
+@main.route('/profiles/<name>', methods=['DELETE'])
 def delete_profile(name):
     """Delete a profile."""
-    global active_profile
     try:
         if name == 'default':
             return jsonify({'error': 'Cannot delete default profile'}), 400
             
-        if name == active_profile:
+        if name == get_active_profile():
             return jsonify({'error': 'Cannot delete active profile'}), 400
             
         target_dir = get_profile_dir(name)
@@ -242,7 +100,7 @@ def delete_profile(name):
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/improve-resume', methods=['POST'])
+@main.route('/improve-resume', methods=['POST'])
 def improve_resume():
     """Generate improved resume JSON and return comparison with original."""
     try:
@@ -317,7 +175,7 @@ def improve_resume():
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/ai-edit-resume', methods=['POST'])
+@main.route('/ai-edit-resume', methods=['POST'])
 def ai_edit_resume():
     """Update resume data based on natural language instruction."""
     try:
@@ -368,7 +226,7 @@ Instruction:
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/generate-pdf', methods=['POST'])
+@main.route('/generate-pdf', methods=['POST'])
 def generate_pdf():
     """Generate PDF from resume JSON data."""
     try:
@@ -379,7 +237,7 @@ def generate_pdf():
             company_name = 'default_company'
         
         paths = get_profile_paths()
-        ensure_profile_dirs(active_profile)
+        ensure_profile_dirs(get_active_profile())
         
         # Load personal info to merge with resume data
         if os.path.exists(paths['info']):
@@ -425,11 +283,6 @@ def generate_pdf():
         save_history_entry(entry)
         
         # Also save to company directory for backward compatibility/organization
-        # Note: This still saves to root company dir, which might be desired or should be profile-scoped?
-        # For now, let's keep it in root to avoid breaking existing workflow too much, 
-        # or we could move it to profiles/<profile>/companies/<company>
-        # Let's keep it simple and put it in the profile directory
-        
         company_dir = os.path.join(paths['base'], company_name)
         if not os.path.exists(company_dir):
             os.makedirs(company_dir)
@@ -445,13 +298,13 @@ def generate_pdf():
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/history', methods=['GET'])
+@main.route('/history', methods=['GET'])
 def get_history():
     """Get list of generated resumes."""
     return jsonify(load_history())
 
 
-@app.route('/download/<resume_id>/<file_type>', methods=['GET'])
+@main.route('/download/<resume_id>/<file_type>', methods=['GET'])
 def download_file(resume_id, file_type):
     """Download PDF or JSON for a specific resume."""
     try:
@@ -472,12 +325,12 @@ def download_file(resume_id, file_type):
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/profile', methods=['GET'])
+@main.route('/profile', methods=['GET'])
 def profile():
     return render_template('profile.html')
 
 
-@app.route('/get-profile-data', methods=['GET'])
+@main.route('/get-profile-data', methods=['GET'])
 def get_profile_data():
     """Get current resume data merged with personal info."""
     try:
@@ -502,13 +355,13 @@ def get_profile_data():
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/save-profile-data', methods=['POST'])
+@main.route('/save-profile-data', methods=['POST'])
 def save_profile_data():
     """Save new profile data (resume + info) and add to history."""
     try:
         new_data = request.json
         paths = get_profile_paths()
-        ensure_profile_dirs(active_profile)
+        ensure_profile_dirs(get_active_profile())
         
         # Load current data to save to history
         if os.path.exists(paths['resume_data']):
@@ -563,7 +416,7 @@ def save_profile_data():
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/get-profile-history', methods=['GET'])
+@main.route('/get-profile-history', methods=['GET'])
 def get_profile_history():
     """Get profile version history."""
     try:
@@ -577,7 +430,7 @@ def get_profile_history():
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/restore-profile-version', methods=['POST'])
+@main.route('/restore-profile-version', methods=['POST'])
 def restore_profile_version():
     """Restore a specific version from history."""
     try:
@@ -613,7 +466,7 @@ def restore_profile_version():
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/get-prompts', methods=['GET'])
+@main.route('/get-prompts', methods=['GET'])
 def get_prompts():
     """Get saved prompts for the active profile."""
     try:
@@ -626,13 +479,13 @@ def get_prompts():
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/save-prompts', methods=['POST'])
+@main.route('/save-prompts', methods=['POST'])
 def save_prompts():
     """Save prompts for the active profile."""
     try:
         data = request.json
         paths = get_profile_paths()
-        ensure_profile_dirs(active_profile)
+        ensure_profile_dirs(get_active_profile())
         
         with open(paths['prompts'], 'w') as f:
             json.dump(data, f, indent=4)
@@ -642,12 +495,8 @@ def save_prompts():
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/health', methods=['GET'])
+@main.route('/health', methods=['GET'])
 def health_check():
     return {
         'status': 'healthy'
     }
-
-
-if __name__ == '__main__':
-    app.run()
