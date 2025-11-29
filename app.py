@@ -181,22 +181,21 @@ def gpt3_response():
 
     buffer = BytesIO()
 
-    pre_prompt = "You are a resume writer.You improve the resume which will increase the " \
-                 "chances for it to be picked for a given job description. For a given job description and a resume " \
-                 "json "
+    pre_prompt = ("Act as a JSON Data Processor and ATS Optimization Specialist",
+                        "I am going to provide you with a **Resume in JSON format** and a **Target Job Description**.",
+                        "Your task is to update the values inside the `work`, `professional_summary`, and `skills` arrays within the JSON to better match the Job Description.")
     job_description = request.json['description']
     with open(RESUME_DATA_FILE, 'r') as file:
         resume_data = json.load(file)
 
     resume = json.dumps(resume_data, indent=4)
 
-    post_prompt = "Improve the resume by adding subtle details pertaining to the job description. The resume should be better than the original. Don't change the Json format. " \
-                  "Only change highlights,professional summary and skills section." \
-                  "14 highlights of capital one, 3 highlights for Datafabricx and 2 highlights for accenture." \
-                  "Keep the points as close to original as possible. Do not change too many points. Do not remove any points. Only modify the points pertaining to job description" \
-                  "For example if the job description requires java and the original resume has python try to add java to the resume modifying the context for python to java." \
-                  " Keep the language simple. Just return the correct JSON " \
-                  "format and nothing else. "
+    post_prompt = ("**Strict Technical Constraints:**",
+        "1.  **Output Format:** You must return **ONLY** valid, raw JSON. Do not include markdown formatting (like ```json), conversational filler, or explanations. Just the JSON object.",
+        "2.  **Structure Integrity:** Do not change keys, variable names, or the overall structure of the JSON object.",
+        "3.  **Minimal Edits:** You are allowed to change or insert a maximum of **3-4 specific keywords** to match the Job Description if necessary."
+        "4.  **Preserve Context:** Do not rewrite the sentences. Keep the original sentence structure and meaning, only swapping in technical terms or hard skills where they fit naturally.",
+        "5. **Pick and Choose:** Based on the Job Description, pick and choose the most relevant 5 `highlights`  per `company`. When possible combine multiple highlights into just 5 highlights concising")
 
     # print(input_text)
 
