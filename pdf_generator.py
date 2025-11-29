@@ -5,25 +5,13 @@ from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
 
-avenir = "Avenir"
-font_path = "/System/Library/Fonts/Avenir Next.ttc"  # Replace with the actual path
-pdfmetrics.registerFont(TTFont(avenir, font_path))
+# Use built-in Helvetica fonts for cross-platform compatibility
+avenir = "Helvetica-Bold"
+work_sans = "Helvetica"
+work_sans_bold = "Helvetica-Bold"
+work_sans_italic = "Helvetica-Oblique"
 
-
-work_sans = "work_sans"
-font_path = "/Users/mehulpadwal/Library/Fonts/WorkSans-Regular.ttf"  # Replace with the actual path
-pdfmetrics.registerFont(TTFont(work_sans, font_path))
-
-work_sans_bold = "work_sans_bold"
-font_path = "/Users/mehulpadwal/Library/Fonts/WorkSans-Bold.ttf"  # Replace with the actual path
-pdfmetrics.registerFont(TTFont(work_sans_bold, font_path))
-
-work_sans_italic = "work_sans_italic"
-font_path = "/Users/mehulpadwal/Library/Fonts/WorkSans-Italic.ttf"  # Replace with the actual path
-pdfmetrics.registerFont(TTFont(work_sans_italic, font_path))
 
 def generate_reduced_top_margin_resume(buffer, resume):
     # Load JSON data
@@ -289,7 +277,15 @@ def generate_reduced_top_margin_resume(buffer, resume):
 
 
 if __name__ == "__main__":
-    with open('resume_data.json', 'r') as f:
+    # Determine resume data file
+    resume_name = None
+    if len(sys.argv) > 1:
+        resume_name = sys.argv[1]
+
+    RESUME_DATA_FILE = f'resume_data_{resume_name}.json' if resume_name else 'resume_data.json'
+
+    print("Using resume file:", RESUME_DATA_FILE)  # Debug print
+    with open(RESUME_DATA_FILE, 'r') as f:
         resume_data = json.load(f)
     with open('info.json', 'r') as f:
         info_data = json.load(f)
