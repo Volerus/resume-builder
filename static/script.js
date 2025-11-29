@@ -15,6 +15,10 @@ const errorMessage = document.getElementById('errorMessage');
 const downloadBtn = document.getElementById('downloadBtn');
 const diffEditor = document.getElementById('diffEditor');
 const generatePdfBtn = document.getElementById('generatePdfBtn');
+const historyList = document.getElementById('historyList');
+const refreshHistoryBtn = document.getElementById('refreshHistoryBtn');
+const pdfModal = document.getElementById('pdfModal');
+const pdfViewer = document.getElementById('pdfViewer');
 
 // Store data for PDF generation
 let currentCompanyName = '';
@@ -467,4 +471,83 @@ window.addEventListener('load', () => {
         document.body.style.transition = 'opacity 0.5s ease';
         document.body.style.opacity = '1';
     }, 100);
+
 });
+
+// History Functions
+async function fetchHistory() {
+    try {
+        historyList.innerHTML = '<div class="loading-history">Loading history...</div>';
+        const response = await fetch('/history');
+        if (!response.ok) throw new Error('Failed to fetch history');
+
+        const history = await response.json();
+        renderHistory(history);
+    } catch (error) {
+        console.error('Error fetching history:', error);
+        historyList.innerHTML = '<div class="error-message">Failed to load history</div>';
+    }
+}
+
+function renderHistory(history) {
+    if (history.length === 0) {
+        historyList.innerHTML = '<div class="empty-history">No generated resumes yet.</div>';
+        return;
+    }
+
+    // Sort by timestamp descending
+    history.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+    historyList.innerHTML = history.map(item => `
+        <div class="history-item">
+            <div class="history-info">
+                <div class="history-company">${item.company_name}</div>
+                <div class="history-date">${new Date(item.timestamp).toLocaleString()}</div>
+            </div>
+            <div class="history-actions">
+                <button class="icon-btn" onclick="viewPdf('${item.id}')" title="View PDF">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <a href="/download/${item.id}/pdf" class="icon-btn" title="Download PDF" download>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="/download/${item.id}/json" class="icon-btn" title="View JSON" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    `).join('');
+}
+
+// PDF Viewer Functions
+window.viewPdf = function (id) {
+    pdfViewer.src = `/download/${id}/pdf`;
+    pdfModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+};
+
+window.closePdfModal = function () {
+    pdfModal.classList.add('hidden');
+    pdfViewer.src = '';
+    document.body.style.overflow = ''; // Restore scrolling
+};
+
+// Close modal on outside click
+pdfModal.addEventListener('click', (e) => {
+    if (e.target === pdfModal) {
+        closePdfModal();
+    }
+});
+
+// Event Listeners
+refreshHistoryBtn.addEventListener('click', fetchHistory);
+
+// Initial load
+fetchHistory();

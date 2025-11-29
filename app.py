@@ -9,6 +9,9 @@ from openai import OpenAI
 import yaml
 from pdf_generator import generate_reduced_top_margin_resume
 from io import BytesIO
+import uuid
+from datetime import datetime
+import shutil
 
 app = Flask(__name__)
 
@@ -18,6 +21,16 @@ if len(sys.argv) > 1:
     RESUME_DATA_FILE = f'resume_data_{resume_name}.json'
 else:
     RESUME_DATA_FILE = 'resume_data.json'
+
+STORAGE_DIR = 'generated'
+HISTORY_FILE = os.path.join(STORAGE_DIR, 'history.json')
+
+if not os.path.exists(STORAGE_DIR):
+    os.makedirs(STORAGE_DIR)
+
+if not os.path.exists(HISTORY_FILE):
+    with open(HISTORY_FILE, 'w') as f:
+        json.dump([], f)
 
 with open("secrets.yaml", "r") as file:
     secrets = yaml.safe_load(file)
@@ -43,6 +56,20 @@ def extract_json_from_response(content):
         content = '\n'.join(lines)
     
     return json.loads(content)
+
+
+def load_history():
+    if os.path.exists(HISTORY_FILE):
+        with open(HISTORY_FILE, 'r') as f:
+            return json.load(f)
+    return []
+
+
+def save_history_entry(entry):
+    history = load_history()
+    history.append(entry)
+    with open(HISTORY_FILE, 'w') as f:
+        json.dump(history, f, indent=4)
 
 
 def extract_company_name(job_description):
@@ -154,20 +181,73 @@ def generate_pdf():
         buffer = BytesIO()
         generate_reduced_top_margin_resume(buffer, full_resume)
         
-        # Create company directory if it doesn't exist
+        # Generate unique ID for this resume
+        resume_id = str(uuid.uuid4())
+        timestamp = datetime.now().isoformat()
+        
+        # Create directory for this resume
+        resume_dir = os.path.join(STORAGE_DIR, resume_id)
+        os.makedirs(resume_dir)
+        
+        # Save PDF
+        pdf_path = os.path.join(resume_dir, "resume.pdf")
+        with open(pdf_path, 'wb') as output_file:
+            buffer.seek(0)
+            output_file.write(buffer.read())
+            
+        # Save JSON
+        json_path = os.path.join(resume_dir, "resume.json")
+        with open(json_path, 'w') as f:
+            json.dump(full_resume, f, indent=4)
+            
+        # Update history
+        entry = {
+            'id': resume_id,
+            'company_name': company_name,
+            'timestamp': timestamp,
+            'pdf_path': pdf_path,
+            'json_path': json_path
+        }
+        save_history_entry(entry)
+        
+        # Also save to company directory for backward compatibility/organization
         if not os.path.exists(company_name):
             os.makedirs(company_name)
         
-        # Save PDF to company directory
-        full_path = os.path.join(company_name, "resume.pdf")
-        with open(full_path, 'wb') as output_file:
-            buffer.seek(0)
-            output_file.write(buffer.read())
+        company_pdf_path = os.path.join(company_name, "resume.pdf")
+        shutil.copy(pdf_path, company_pdf_path)
         
         # Return PDF as response
         buffer.seek(0)
         return Response(buffer, content_type='application/pdf')
     
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/history', methods=['GET'])
+def get_history():
+    """Get list of generated resumes."""
+    return jsonify(load_history())
+
+
+@app.route('/download/<resume_id>/<file_type>', methods=['GET'])
+def download_file(resume_id, file_type):
+    """Download PDF or JSON for a specific resume."""
+    try:
+        history = load_history()
+        entry = next((item for item in history if item['id'] == resume_id), None)
+        
+        if not entry:
+            return jsonify({'error': 'Resume not found'}), 404
+            
+        if file_type == 'pdf':
+            return Response(open(entry['pdf_path'], 'rb'), content_type='application/pdf')
+        elif file_type == 'json':
+            return jsonify(json.load(open(entry['json_path'], 'r')))
+        else:
+            return jsonify({'error': 'Invalid file type'}), 400
+            
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

@@ -1,0 +1,101 @@
+{
+    "work": [
+        {
+            "company": "Cognizant - Capital One (Python, Angular, AWS)",
+            "position": "Sr. Full Stack Developer",
+            "startDate": "10/2021",
+            "endDate": "Present",
+            "location": "New York, NY",
+            "highlights": [
+                "Led the design of a full-stack REST API generation tool using Python, defining backend architecture and data models to accelerate model deployment from 6 months to 1 month.",
+                "Created an automated test generation tool (Python, Jenkins) to validate model performance, cutting manual testing time from a month to a week",
+                "Engineered an interactive sandbox platform in Angular and TypeScript that enabled underwriters to simulate credit risk rating models, significantly reducing the risk of errors in live lending decision.",
+                "Managed deployment of various services on CI/CD pipelines (Jenkins, Kubernetes, AWS), ensuring continuous delivery by automating the process and reducing production release time to one week.",
+                "Leveraged AI-assisted development to accelerate the generation of comprehensive unit tests, reducing associated task completion time by 50% (from two days to one) and consistently achieving the 80% code coverage standard for all new features."
+            ],
+            "website": ""
+        },
+        {
+            "company": "DatafabricX (Java, Angular, Spring Boot)",
+            "position": "Full Stack Java Developer",
+            "startDate": "Sep 2020",
+            "endDate": "Sep 2021",
+            "location": "Jamesburg, NJ",
+            "highlights": [
+                "Designed and implemented scalable RESTful APIs using Spring Boot, leveraging ORM principles with Spring Data JPA to structure relational data access. Ensured API consistency and code quality by implementing automated testing with Postman, JUnit, and Mockito.",
+                "Designed responsive user interfaces in Angular and Bootstrap, implementing client-side data caching and lazy loading to significantly optimize page load times and enhance user experience."
+            ],
+            "website": ""
+        },
+        {
+            "company": "Accenture - Dell EMC (Java, Selenium)",
+            "position": "Software Engineer",
+            "startDate": "Jun 2016",
+            "endDate": "Dec 2017",
+            "location": "Mumbai, India",
+            "highlights": [
+                "Developed and tested REST API endpoints using the Spring framework and built a unit testing infrastructure with Selenium, which reduced defects found during development."
+            ],
+            "website": ""
+        }
+    ],
+    "skills": [
+        {
+            "name": "Programming Languages",
+            "keywords": [
+                "Python, Java, SQL, Shell"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Frameworks",
+            "keywords": [
+                "Flask, Angular, Spring Boot"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Tools & Platforms",
+            "keywords": [
+                "Git, Jenkins, Docker, Kubernetes, AWS"
+            ],
+            "level": ""
+        },
+        {
+            "name": "AI",
+            "keywords": [
+                "AI assisted development, Model Context Protocol"
+            ],
+            "level": ""
+        }
+    ],
+    "professional_summary": "Senior Full Stack Developer with 6 years of experience building and scaling high-performance financial applications. Expert in Python (Flask), Java (Spring Boot), and Angular, with a proven track record of engineering robust REST APIs and scalable ETL solutions. Adept at leveraging AI-assisted development tools to accelerate testing cycles and streamline code generation, deploying solutions in cloud-native (AWS, Kubernetes) environments.",
+    "basics": {
+        "name": "Satyen Amonkar",
+        "phone": "3154034538",
+        "location": {
+            "address": "Seattle, Washington"
+        },
+        "email": "95satyen@gmail.com"
+    },
+    "education": [
+        {
+            "institution": "Syracuse University",
+            "area": "Information Management",
+            "startDate": "Aug 2018",
+            "endDate": "May 2020",
+            "gpa": "3.8",
+            "location": "Syracuse, New York",
+            "studyType": "MS"
+        },
+        {
+            "institution": "University of Mumbai",
+            "area": "Computer Science",
+            "startDate": "Aug 2012",
+            "endDate": "May 2016",
+            "gpa": "3.6",
+            "location": "Mumbai, India",
+            "studyType": "BS"
+        }
+    ]
+}
