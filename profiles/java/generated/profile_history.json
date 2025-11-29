@@ -3,5 +3,152 @@
         "id": "070c7797-c25c-4b26-be2a-3849a78a1f42",
         "timestamp": "2025-11-29T02:25:02.113538",
         "data": {}
+    },
+    {
+        "id": "878fe7ed-6bca-4bb5-b8f9-af7c4b1e703a",
+        "timestamp": "2025-11-29T02:46:09.143929",
+        "data": {
+            "work": [
+                {
+                    "company": "sdf",
+                    "position": "sdf",
+                    "website": "sdf",
+                    "startDate": "sdf",
+                    "endDate": "",
+                    "location": "sdf",
+                    "highlights": [
+                        "sdf"
+                    ]
+                }
+            ],
+            "skills": [
+                {
+                    "name": "sdf",
+                    "keywords": [
+                        "dsf"
+                    ]
+                }
+            ],
+            "professional_summary": "sdfsd",
+            "basics": {
+                "name": "XYZ",
+                "email": "adsf",
+                "phone": "sdf",
+                "location": {
+                    "address": "dsfgsd"
+                }
+            },
+            "education": [
+                {
+                    "institution": "sdfsd",
+                    "area": "sdfd",
+                    "studyType": "sdfsd",
+                    "gpa": "dsf",
+                    "startDate": "dsf",
+                    "endDate": "",
+                    "location": "dsf"
+                }
+            ]
+        }
+    },
+    {
+        "id": "ac60e5d1-9c1e-495f-b8da-b230e9f55b44",
+        "timestamp": "2025-11-29T02:47:21.357865",
+        "data": {
+            "work": [
+                {
+                    "company": "Cognizant - Capital One",
+                    "position": "Sr. Full Stack Developer",
+                    "website": "",
+                    "startDate": "10/2021",
+                    "endDate": "Present",
+                    "location": "New York, NY",
+                    "highlights": [
+                        "Designed and developed features for a credit risk platform with optimized risk rating models to enhance decision-making accuracy for commercial loan applications.",
+                        "Led the design of a full-stack REST API generation tool using Python, defining backend architecture and data models to accelerate model deployment from 6 months to 1 month.",
+                        "Created an automated test generation tool (Python, Jenkins) to validate model performance, cutting manual testing time from a month to a week",
+                        "Engineered an interactive sandbox platform in Angular and TypeScript that enabled underwriters to simulate credit risk rating models, significantly reducing the risk of errors in live lending decision.",
+                        "Integrated dynamic UI components in Angular to pre-populate previous ratings for underwriters based on specific conditions, thereby reducing the time required for re-rating models in monthly reports by 90%.",
+                        "Designed a flexible ETL solution in Java, enabling seamless integration of model- generated data with legacy systems and facilitating the data pipelines and data- driven analytics.",
+                        "Managed deployment of various services on CI/CD pipelines (Jenkins, Kubernetes,AWS), ensuring continuous delivery by automating the process and reducing production release time to one week.",
+                        "Collaborated with cross-functional teams to promote tool adoption, migrating two models per quarter.",
+                        "Mentored and onboarded developers, ensuring e\ufb03cient adoption and modification of existing services.",
+                        "Oversaw repository maintenance, addressing vulnerabilities, infrastructure updates, and ensuring optimal codebase health.",
+                        "Proficient in Agile methodologies,Test driven development, applying Git for version control, and activelyparticipating in sprint planning and refinement processes.",
+                        "Employed AI-powered coding assistants to streamline the sca\ufb00olding of new REST APIs and data models, cutting initial setup time and enhancing adherence to design patterns.",
+                        "Leveraged AI-assisted development to accelerate the generation of comprehensive unit tests, reducing associated task completion time by 50% (from two days to one) and consistently achieving the 80% code coverage standard for all new features."
+                    ]
+                },
+                {
+                    "company": "DatafabricX",
+                    "position": "Full Stack Java Developer",
+                    "website": "",
+                    "startDate": "Sep 2020",
+                    "endDate": "Sep 2021",
+                    "location": "Jamesburg, NJ",
+                    "highlights": [
+                        "Designed and implemented scalable RESTful APIs using Spring Boot, leveraging ORM principles with Spring Data JPA to structure relational data access. Ensured API consistency and code quality by implementing automated testing with Postman, JUnit, and Mockito.",
+                        "Designed responsive user interfaces in Angular and Bootstrap , implementing client- side data caching and lazy loading to significantly optimize page load times and enhance user experience."
+                    ]
+                },
+                {
+                    "company": "Accenture - Dell EMC",
+                    "position": "Software Engineer",
+                    "website": "",
+                    "startDate": "Jun 2016",
+                    "endDate": "Dec 2017",
+                    "location": "Mumbai, India",
+                    "highlights": [
+                        "Developed and tested REST API endpoints using the Spring framework and built a unit testing infrastructure with Selenium, which reduced defects found during development."
+                    ]
+                }
+            ],
+            "skills": [
+                {
+                    "name": "Misc",
+                    "keywords": [
+                        "Python, Typescript, Java, SQL, Shell"
+                    ]
+                },
+                {
+                    "name": "Frameworks",
+                    "keywords": [
+                        "Flask, Angular, Spring Boot, Spring Data JPA"
+                    ]
+                },
+                {
+                    "name": "Tools & Platforms",
+                    "keywords": [
+                        "Git, Jenkins, Docker, Kubernetes, AWS(EC2, S3, Lambda), Copilot"
+                    ]
+                },
+                {
+                    "name": "AI",
+                    "keywords": [
+                        "AI Assisted Development, Model Context Protocol, Retrieval-Augmented Generation"
+                    ]
+                }
+            ],
+            "professional_summary": "Senior Full Stack Developer with 6 years of experience building and scaling high-performance financial\napplications. Expert in Python (Flask), Java (Spring Boot), and Angular, with a proven track record of\nengineering robust REST APIs and scalable ETL solutions. Adept at leveraging AI-assisted development\ntools to accelerate testing cycles and streamline code generation, deploying solutions in cloud-native (AWS,\nKubernetes) environments.",
+            "basics": {
+                "name": "Mehul Padwal",
+                "email": "mdpadwal1@gmail.com",
+                "phone": "3158829930",
+                "location": {
+                    "address": "New York, NY"
+                }
+            },
+            "education": [
+                {
+                    "institution": "sdfsd",
+                    "area": "sdfd",
+                    "studyType": "sdfsd",
+                    "gpa": "dsf",
+                    "startDate": "dsf",
+                    "endDate": "",
+                    "location": "dsf"
+                }
+            ]
+        }
     }
 ]

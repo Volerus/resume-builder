@@ -326,6 +326,33 @@
                     Comparison</button>
             </div>
 
+            <!-- AI Assistant -->
+            <div class="resume-section"
+                style="border: 1px solid var(--primary); background: rgba(102, 126, 234, 0.05);">
+                <h3 class="section-title" style="display: flex; align-items: center; gap: 0.5rem;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    AI Assistant
+                </h3>
+                <div style="margin-bottom: 1rem;">
+                    <textarea id="aiInstruction" class="form-textarea" rows="3"
+                        placeholder="Enter instructions to update your resume (e.g., 'Add a skill for React', 'Change my title to Senior Engineer')..."></textarea>
+                </div>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <button id="aiUpdateBtn" onclick="updateWithAI()" class="save-btn"
+                        style="background: var(--primary);">
+                        Update with AI
+                    </button>
+                    <button id="revertAiBtn" onclick="revertAiChanges()" class="restore-btn hidden"
+                        style="padding: 0.75rem 1.5rem; font-size: 0.9rem;">
+                        Revert AI Changes
+                    </button>
+                </div>
+            </div>
+
             <!-- Personal Details -->
             <div class="resume-section">
                 <h3 class="section-title">Personal Details</h3>

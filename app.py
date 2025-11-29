@@ -306,6 +306,57 @@ def improve_resume():
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/ai-edit-resume', methods=['POST'])
+def ai_edit_resume():
+    """Update resume data based on natural language instruction."""
+    try:
+        data = request.json
+        instruction = data.get('instruction')
+        current_data = data.get('current_data')
+        
+        if not instruction or not current_data:
+            return jsonify({'error': 'Instruction and current data are required'}), 400
+            
+        # Prepare prompt
+        system_prompt = "Act as a JSON Data Processor. Your task is to update the provided Resume JSON data based on the user's natural language instruction."
+        
+        user_prompt = f"""
+Current Resume JSON:
+{json.dumps(current_data, indent=2)}
+
+Instruction:
+{instruction}
+
+**Strict Rules:**
+1. Return ONLY the updated JSON object. No markdown, no explanations.
+2. Maintain the exact same structure as the input JSON.
+3. Only modify fields relevant to the instruction.
+4. If the instruction implies adding a new item (like a job or skill), generate a reasonable structure for it matching existing items.
+"""
+
+        # Call OpenRouter API
+        client = OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=os.getenv("API_KEY")
+        )
+        
+        response = client.chat.completions.create(
+            model="google/gemini-2.0-flash-001",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ]
+        )
+        
+        # Extract and parse JSON
+        updated_data = extract_json_from_response(response.choices[0].message.content)
+        
+        return jsonify(updated_data)
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/generate-pdf', methods=['POST'])
 def generate_pdf():
     """Generate PDF from resume JSON data."""

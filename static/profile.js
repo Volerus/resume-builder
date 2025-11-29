@@ -254,12 +254,47 @@ function removeSkillCategory(btn) {
 }
 
 // Save Data
+// Save Data
 saveBtn.addEventListener('click', async () => {
     if (diffMode) return;
 
     saveBtn.disabled = true;
     saveBtn.textContent = 'Saving...';
 
+    const newData = collectFormData();
+
+    try {
+        const response = await fetch('/save-profile-data', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newData)
+        });
+
+        if (response.ok) {
+            // Update local state
+            currentData = newData;
+            fetchHistory(); // Refresh history list
+            alert('Profile saved successfully!');
+        } else {
+            throw new Error('Server returned error');
+        }
+    } catch (error) {
+        console.error('Error saving:', error);
+        alert('Failed to save profile');
+    } finally {
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 17V7L8 2H16C16.5304 2 17.0391 2.21071 17.4142 2.58579C17.7893 2.96086 18 3.46957 18 4V17C18 17.5304 17.7893 18.0391 17.4142 18.4142C17.0391 18.7893 16.5304 19 16 19H4C3.46957 19 2.96086 18.7893 2.58579 18.4142C2.21071 18.0391 2 17.5304 2 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 19V13H7V19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7 2V7H12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Save Changes
+        `;
+    }
+});
+
+function collectFormData() {
     const newData = {
         basics: {
             name: document.getElementById('basicsName').value,
@@ -308,18 +343,7 @@ saveBtn.addEventListener('click', async () => {
     // Collect Skills
     document.querySelectorAll('.skill-card').forEach(card => {
         const keywords = card.querySelector('.skill-keywords').value.split(',').map(s => s.trim()).filter(s => s);
-        if (keywords.length > 0) { // Only save if keywords exist? Or keep empty categories? Let's keep structure.
-            // Actually, the original format has keywords as array of strings, but sometimes it's just one string with commas?
-            // Looking at resume_data.json, keywords is an array of strings.
-            // "keywords": ["Python, Typescript, Java, SQL, Shell"] -> Wait, that's one string in array?
-            // Let's check resume_data.json again.
-            // "keywords": [ "Python, Typescript, Java, SQL, Shell" ] -> It seems it's an array with a SINGLE string containing commas.
-            // But "Frameworks" has ["Flask, Angular..."]
-            // Let's preserve that weird format for now to be safe, or just split them.
-            // The prompt said "parse it in a simalarly to how we parse it in resume review".
-            // In script.js: const keywords = [keywordsText]; // Keep as array with single string
-            // So I should follow that pattern.
-
+        if (keywords.length > 0) {
             newData.skills.push({
                 name: card.querySelector('.skill-name').value,
                 keywords: [card.querySelector('.skill-keywords').value]
@@ -327,36 +351,80 @@ saveBtn.addEventListener('click', async () => {
         }
     });
 
+    return newData;
+}
+
+// AI Assistant Logic
+let preAiData = null;
+
+async function updateWithAI() {
+    const instruction = document.getElementById('aiInstruction').value;
+    if (!instruction) {
+        alert('Please enter an instruction');
+        return;
+    }
+
+    const btn = document.getElementById('aiUpdateBtn');
+    const originalText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Updating...';
+
     try {
-        const response = await fetch('/save-profile-data', {
+        // Capture current state before update
+        preAiData = collectFormData();
+
+        const response = await fetch('/ai-edit-resume', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newData)
+            body: JSON.stringify({
+                instruction: instruction,
+                current_data: preAiData
+            })
         });
 
-        if (response.ok) {
-            // Update local state
-            currentData = newData;
-            fetchHistory(); // Refresh history list
-            alert('Profile saved successfully!');
-        } else {
-            throw new Error('Server returned error');
+        if (!response.ok) {
+            throw new Error('AI update failed');
         }
+
+        const updatedData = await response.json();
+
+        // Update UI with new data
+        renderEditor(updatedData);
+
+        // Enter diff mode comparing against pre-AI data
+        // We mock a history version object
+        const mockVersion = {
+            id: 'ai-preview',
+            timestamp: new Date().toISOString(),
+            data: preAiData
+        };
+
+        enterDiffMode(mockVersion);
+
+        // Show revert button
+        document.getElementById('revertAiBtn').classList.remove('hidden');
+        document.getElementById('diffAlert').querySelector('span').innerHTML = 'Viewing <strong>AI Suggested Changes</strong>';
+
     } catch (error) {
-        console.error('Error saving:', error);
-        alert('Failed to save profile');
+        console.error('Error updating with AI:', error);
+        alert('Failed to update with AI: ' + error.message);
     } finally {
-        saveBtn.disabled = false;
-        saveBtn.innerHTML = `
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 17V7L8 2H16C16.5304 2 17.0391 2.21071 17.4142 2.58579C17.7893 2.96086 18 3.46957 18 4V17C18 17.5304 17.7893 18.0391 17.4142 18.4142C17.0391 18.7893 16.5304 19 16 19H4C3.46957 19 2.96086 18.7893 2.58579 18.4142C2.21071 18.0391 2 17.5304 2 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 19V13H7V19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M7 2V7H12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Save Changes
-        `;
+        btn.disabled = false;
+        btn.textContent = originalText;
     }
-});
+}
+
+function revertAiChanges() {
+    if (!preAiData) return;
+
+    if (confirm('Discard AI changes and revert to previous state?')) {
+        renderEditor(preAiData);
+        exitDiffMode();
+        document.getElementById('revertAiBtn').classList.add('hidden');
+        document.getElementById('aiInstruction').value = '';
+        preAiData = null;
+    }
+}
 
 // Render History
 function renderHistory(history) {

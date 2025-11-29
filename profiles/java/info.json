@@ -1,21 +1,21 @@
 {
     "basics": {
-        "name": "XYZ",
-        "email": "adsf",
-        "phone": "sdf",
+        "name": "Mehul Padwal",
+        "email": "mdpadwal1@gmail.com",
+        "phone": "3158829930",
         "location": {
-            "address": "dsfgsd"
+            "address": "New York, NY"
         }
     },
     "education": [
         {
-            "institution": "sdfsd",
-            "area": "sdfd",
-            "studyType": "sdfsd",
-            "gpa": "dsf",
-            "startDate": "dsf",
-            "endDate": "",
-            "location": "dsf"
+            "institution": "Syracuse University",
+            "area": "Computer Science",
+            "studyType": "MS",
+            "gpa": "3.6",
+            "startDate": "Jan 2018",
+            "endDate": "Jan 2020",
+            "location": "Syracuse, NY"
         }
     ]
 }
