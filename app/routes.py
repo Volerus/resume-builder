@@ -16,6 +16,15 @@ from .pdf_generator import generate_reduced_top_margin_resume
 
 main = Blueprint('main', __name__)
 
+# Available AI models
+AVAILABLE_MODELS = [
+    {"id": "google/gemini-2.5-flash-lite-preview-09-2025", "name": "Gemini 2.5 Flash (Recommended)"},
+    {"id": "google/gemini-2.5-flash-lite", "name": "Gemini 2.5 Flash Lite"},
+    {"id": "google/gemini-3-pro-preview", "name": "Gemini 3 Pro Preview"},
+    {"id": "google/gemini-3-flash-preview", "name": "Gemini 3 Flash Preview"},
+    {"id": "anthropic/claude-sonnet-4.5", "name": "Claude Sonnet 4.5"}
+]
+
 @main.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
@@ -108,6 +117,7 @@ def improve_resume():
         pre_prompt = request.json.get('pre_prompt')
         post_prompt = request.json.get('post_prompt')
         additional_context = request.json.get('additional_context')
+        model = request.json.get('model', 'google/gemini-2.5-flash-lite-preview-09-2025')
         
         paths = get_profile_paths()
         
@@ -154,7 +164,7 @@ def improve_resume():
         ]
         
         response = client.chat.completions.create(
-            model="google/gemini-2.5-flash-lite-preview-09-2025",
+            model=model,
             messages=messages
         )
         
@@ -162,7 +172,7 @@ def improve_resume():
         improved_resume = extract_json_from_response(response.choices[0].message.content)
         
         # Extract company name
-        company_name = extract_company_name(job_description)
+        company_name = extract_company_name(job_description, model)
         
         # Return both original and improved for comparison
         return jsonify({
@@ -182,6 +192,7 @@ def ai_edit_resume():
         data = request.json
         instruction = data.get('instruction')
         current_data = data.get('current_data')
+        model = data.get('model', 'google/gemini-2.0-flash-001')
         
         if not instruction or not current_data:
             return jsonify({'error': 'Instruction and current data are required'}), 400
@@ -210,7 +221,7 @@ Instruction:
         )
         
         response = client.chat.completions.create(
-            model="google/gemini-2.0-flash-001",
+            model=model,
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
@@ -500,3 +511,9 @@ def health_check():
     return {
         'status': 'healthy'
     }
+
+
+@main.route('/get-models', methods=['GET'])
+def get_models():
+    """Get list of available AI models."""
+    return jsonify(AVAILABLE_MODELS)

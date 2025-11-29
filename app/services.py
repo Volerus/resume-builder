@@ -84,7 +84,7 @@ def extract_json_from_response(content):
     
     return json.loads(content)
 
-def extract_company_name(job_description):
+def extract_company_name(job_description, model='google/gemini-2.0-flash-001'):
     """Extract company name from job description using OpenRouter API."""
     client = OpenAI(
         base_url="https://openrouter.ai/api/v1",
@@ -92,7 +92,7 @@ def extract_company_name(job_description):
     )
     
     response = client.chat.completions.create(
-        model="google/gemini-2.0-flash-001",
+        model=model,
         messages=[
             {
                 "role": "user",

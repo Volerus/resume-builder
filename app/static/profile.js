@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchProfiles();
     fetchProfileData();
     fetchHistory();
+    loadAiModels();
 
     document.getElementById('profileSelector').addEventListener('change', (e) => {
         switchProfile(e.target.value);
@@ -108,6 +109,25 @@ async function fetchHistory() {
         renderHistory(data);
     } catch (error) {
         console.error('Error fetching history:', error);
+    }
+}
+
+// Load AI models
+async function loadAiModels() {
+    try {
+        const response = await fetch('/get-models');
+        if (response.ok) {
+            const models = await response.json();
+            const selector = document.getElementById('aiModelSelector');
+            selector.innerHTML = models.map(model =>
+                `<option value="${model.id}">${model.name}</option>`
+            ).join('');
+        }
+    } catch (error) {
+        console.error('Error loading AI models:', error);
+        // Fallback
+        document.getElementById('aiModelSelector').innerHTML =
+            '<option value="google/gemini-2.0-flash-001">Gemini 2.0 Flash (Default)</option>';
     }
 }
 
@@ -378,7 +398,8 @@ async function updateWithAI() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 instruction: instruction,
-                current_data: preAiData
+                current_data: preAiData,
+                model: document.getElementById('aiModelSelector').value
             })
         });
 

@@ -1,6 +1,7 @@
 // Character counter
 const jobDescription = document.getElementById('jobDescription');
 const charCount = document.getElementById('charCount');
+const modelSelector = document.getElementById('modelSelector');
 
 jobDescription.addEventListener('input', () => {
     charCount.textContent = jobDescription.value.length;
@@ -33,6 +34,24 @@ async function loadPrompts() {
     }
 }
 loadPrompts();
+
+// Load and populate model selector
+async function loadModels() {
+    try {
+        const response = await fetch('/get-models');
+        if (response.ok) {
+            const models = await response.json();
+            modelSelector.innerHTML = models.map(model =>
+                `<option value="${model.id}">${model.name}</option>`
+            ).join('');
+        }
+    } catch (error) {
+        console.error('Error loading models:', error);
+        // Fallback model if fetch fails
+        modelSelector.innerHTML = '<option value="google/gemini-2.5-flash-lite-preview-09-2025">Gemini 2.5 Flash (Default)</option>';
+    }
+}
+loadModels();
 
 // Save defaults
 document.getElementById('saveDefaultsBtn').addEventListener('click', async () => {
@@ -123,7 +142,8 @@ form.addEventListener('submit', async (e) => {
                 description,
                 pre_prompt: prePrompt,
                 post_prompt: postPrompt,
-                additional_context: additionalContext
+                additional_context: additionalContext,
+                model: modelSelector.value
             })
         });
 
