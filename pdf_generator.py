@@ -8,22 +8,34 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, Tabl
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
-avenir = "Avenir"
-font_path = "/System/Library/Fonts/Avenir Next.ttc"  # Replace with the actual path
-pdfmetrics.registerFont(TTFont(avenir, font_path))
+import os
 
+# Define font paths relative to the script location
+base_dir = os.path.dirname(os.path.abspath(__file__))
+fonts_dir = os.path.join(base_dir, "fonts")
+
+avenir = "Avenir"
+avenir_path = os.path.join(fonts_dir, "Avenir Next.ttc")
+if os.path.exists(avenir_path):
+    pdfmetrics.registerFont(TTFont(avenir, avenir_path))
+else:
+    # Fallback or warning
+    print(f"Warning: Font not found at {avenir_path}")
 
 work_sans = "work_sans"
-font_path = "/Users/mehulpadwal/Library/Fonts/WorkSans-Regular.ttf"  # Replace with the actual path
-pdfmetrics.registerFont(TTFont(work_sans, font_path))
+work_sans_path = os.path.join(fonts_dir, "WorkSans-Regular.ttf")
+if os.path.exists(work_sans_path):
+    pdfmetrics.registerFont(TTFont(work_sans, work_sans_path))
 
 work_sans_bold = "work_sans_bold"
-font_path = "/Users/mehulpadwal/Library/Fonts/WorkSans-Bold.ttf"  # Replace with the actual path
-pdfmetrics.registerFont(TTFont(work_sans_bold, font_path))
+work_sans_bold_path = os.path.join(fonts_dir, "WorkSans-Bold.ttf")
+if os.path.exists(work_sans_bold_path):
+    pdfmetrics.registerFont(TTFont(work_sans_bold, work_sans_bold_path))
 
 work_sans_italic = "work_sans_italic"
-font_path = "/Users/mehulpadwal/Library/Fonts/WorkSans-Italic.ttf"  # Replace with the actual path
-pdfmetrics.registerFont(TTFont(work_sans_italic, font_path))
+work_sans_italic_path = os.path.join(fonts_dir, "WorkSans-Italic.ttf")
+if os.path.exists(work_sans_italic_path):
+    pdfmetrics.registerFont(TTFont(work_sans_italic, work_sans_italic_path))
 
 def generate_reduced_top_margin_resume(buffer, resume):
     # Load JSON data
