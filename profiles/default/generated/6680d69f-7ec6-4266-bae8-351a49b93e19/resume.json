@@ -1,0 +1,110 @@
+{
+    "work": [
+        {
+            "company": "Cognizant - Capital One (Python, Angular, AWS)",
+            "position": "Sr. Full Stack Developer",
+            "startDate": "10/2021",
+            "endDate": "Present",
+            "location": "New York, NY",
+            "highlights": [
+                "Designed and developed features for a credit risk platform with optimized risk rating models to enhance decision-making accuracy for commercial loan applications.",
+                "Led the design of a full-stack REST API generation tool using Python, defining backend architecture and data models to accelerate model deployment from 6 months to 1 month.",
+                "Created an automated test generation tool (Python, Jenkins) to validate model performance, cutting manual testing time from a month to a week",
+                "Engineered an interactive sandbox platform in Angular and TypeScript that enabled underwriters to simulate credit risk rating models, significantly reducing the risk of errors in live lending decision.",
+                "Integrated dynamic UI components in Angular to pre-populate previous ratings for underwriters based on specific conditions, thereby reducing the time required for re-rating models in monthly reports by 90%.",
+                "Designed a flexible ETL solution in **Java** for data pipelines, enabling seamless integration of model-generated data with legacy systems and facilitating data-driven analytics.",
+                "Managed deployment of various services on CI/CD pipelines (Jenkins, Kubernetes, AWS), ensuring continuous delivery by automating the process and reducing production release time to one week.",
+                "Collaborated effectively with product managers, program managers and other engineering teams to promote tool adoption, migrating two models per quarter.",
+                "Mentored and onboarded developers, ensuring efficient adoption and modification of existing services.",
+                "Oversaw repository maintenance, addressing vulnerabilities, infrastructure updates, and ensuring optimal codebase health.",
+                "Proficient in Agile methodologies, Test driven development, applying Git for version control, and actively participating in sprint planning and refinement processes.",
+                "Employed AI-powered coding assistants to streamline the scaffolding of new REST APIs and data models, cutting initial setup time and enhancing adherence to design patterns.",
+                "Leveraged AI-assisted development to accelerate the generation of comprehensive unit tests, reducing associated task completion time by 50% (from two days to one) and consistently achieving the 80% code coverage standard for all new features."
+            ],
+            "website": ""
+        },
+        {
+            "company": "DatafabricX (Java, Angular, Spring Boot)",
+            "position": "Full Stack Java Developer",
+            "startDate": "Sep 2020",
+            "endDate": "Sep 2021",
+            "location": "Jamesburg, NJ",
+            "highlights": [
+                "Designed and implemented scalable RESTful APIs using Spring Boot, leveraging ORM principles with Spring Data JPA to structure relational data access. Ensured API consistency and code quality by implementing automated testing with Postman, JUnit, and Mockito.",
+                "Designed responsive user interfaces in Angular and Bootstrap, implementing client-side data caching and lazy loading to significantly optimize page load times and enhance user experience."
+            ],
+            "website": ""
+        },
+        {
+            "company": "Accenture - Dell EMC (Java, Selenium)",
+            "position": "Software Engineer",
+            "startDate": "Jun 2016",
+            "endDate": "Dec 2017",
+            "location": "Mumbai, India",
+            "highlights": [
+                "Developed and tested REST API endpoints using the Spring framework and built a unit testing infrastructure with Selenium, which reduced defects found during development.",
+                "Contributed positively to the engineering culture by participating in code reviews and knowledge sharing sessions."
+            ],
+            "website": ""
+        }
+    ],
+    "skills": [
+        {
+            "name": "Programming Languages",
+            "keywords": [
+                "Python, Typescript, Java, SQL, Shell"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Frameworks",
+            "keywords": [
+                "Flask, Angular, Spring Boot, Spring Data JPA"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Tools & Platforms",
+            "keywords": [
+                "Git, Jenkins, Docker, Kubernetes, AWS(EC2, S3, Lambda), **Streaming Technologies**"
+            ],
+            "level": ""
+        },
+        {
+            "name": "AI",
+            "keywords": [
+                "AI assisted development, Model Context Protocol, Retrieval-Augmented Generation"
+            ],
+            "level": ""
+        }
+    ],
+    "professional_summary": "Senior Software Development Engineer with 6 years of experience building and scaling high-performance **video platform** services. Expert in Python (Flask), Java (Spring Boot), and Angular, with a proven track record of engineering robust REST APIs and scalable data solutions. Adept at collaborating with cross-functional teams (Product Managers, TPMs) and deploying solutions in cloud-native (AWS, Kubernetes) environments.",
+    "basics": {
+        "name": "Satyen P",
+        "email": "95satyen@gmail.com",
+        "phone": "3154034538",
+        "location": {
+            "address": "Seattle, Washington"
+        }
+    },
+    "education": [
+        {
+            "institution": "Syracuse University",
+            "area": "Information Management",
+            "studyType": "MS",
+            "gpa": "3.8",
+            "startDate": "Aug 2018",
+            "endDate": "May 2020",
+            "location": "Syracuse, New York"
+        },
+        {
+            "institution": "University of Mumbai",
+            "area": "Computer Science",
+            "studyType": "BS",
+            "gpa": "3.6",
+            "startDate": "Aug 2012",
+            "endDate": "May 2016",
+            "location": "Mumbai, India"
+        }
+    ]
+}

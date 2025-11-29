@@ -19,6 +19,60 @@ const DEFAULT_POST_PROMPT = "**Strict Technical Constraints:**\n1.  **Output For
 prePromptInput.value = DEFAULT_PRE_PROMPT;
 postPromptInput.value = DEFAULT_POST_PROMPT;
 
+// Load saved prompts
+async function loadPrompts() {
+    try {
+        const response = await fetch('/get-prompts');
+        if (response.ok) {
+            const data = await response.json();
+            if (data.pre_prompt) prePromptInput.value = data.pre_prompt;
+            if (data.post_prompt) postPromptInput.value = data.post_prompt;
+        }
+    } catch (error) {
+        console.error('Error loading prompts:', error);
+    }
+}
+loadPrompts();
+
+// Save defaults
+document.getElementById('saveDefaultsBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('saveDefaultsBtn');
+    const originalText = btn.textContent;
+
+    try {
+        btn.textContent = 'Saving...';
+        btn.disabled = true;
+
+        const response = await fetch('/save-prompts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                pre_prompt: prePromptInput.value,
+                post_prompt: postPromptInput.value
+            })
+        });
+
+        if (response.ok) {
+            btn.textContent = 'Saved!';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }, 2000);
+        } else {
+            throw new Error('Failed to save');
+        }
+    } catch (error) {
+        console.error('Error saving prompts:', error);
+        btn.textContent = 'Error';
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }, 2000);
+    }
+});
+
 // Form submission
 const form = document.getElementById('resumeForm');
 const submitBtn = document.getElementById('submitBtn');

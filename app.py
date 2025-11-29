@@ -40,7 +40,8 @@ def get_profile_paths(profile_name=None):
         'info': os.path.join(base_dir, 'info.json'),
         'storage': storage_dir,
         'history': os.path.join(storage_dir, 'history.json'),
-        'profile_history': os.path.join(storage_dir, 'profile_history.json')
+        'profile_history': os.path.join(storage_dir, 'profile_history.json'),
+        'prompts': os.path.join(base_dir, 'prompts.json')
     }
 
 def migrate_to_profiles():
@@ -270,8 +271,7 @@ def improve_resume():
             "1.  **Output Format:** You must return **ONLY** valid, raw JSON. Do not include markdown formatting (like ```json), conversational filler, or explanations. Just the JSON object.\n"
             "2.  **Structure Integrity:** Do not change keys, variable names, or the overall structure of the JSON object.\n"
             "3.  **Minimal Edits:** You are allowed to change or insert a maximum of **3-4 specific keywords** to match the Job Description if necessary.\n"
-            "4.  **Preserve Context:** Do not rewrite the sentences. Keep the original sentence structure and meaning, only swapping in technical terms or hard skills where they fit naturally.\n"
-            "5. **Pick and Choose:** Based on the Job Description, pick and choose the most relevant 5 `highlights`  per `company`. When possible combine multiple highlights into just 5 highlights concising")
+            "4.  **Preserve Context:** Do not rewrite the sentences. Keep the original sentence structure and meaning, only swapping in technical terms or hard skills where they fit naturally.\n")
         
         # Call OpenRouter API to improve resume
         client = OpenAI(
@@ -609,6 +609,35 @@ def restore_profile_version():
             
         return jsonify({'status': 'success'})
         
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/get-prompts', methods=['GET'])
+def get_prompts():
+    """Get saved prompts for the active profile."""
+    try:
+        paths = get_profile_paths()
+        if os.path.exists(paths['prompts']):
+            with open(paths['prompts'], 'r') as f:
+                return jsonify(json.load(f))
+        return jsonify({})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/save-prompts', methods=['POST'])
+def save_prompts():
+    """Save prompts for the active profile."""
+    try:
+        data = request.json
+        paths = get_profile_paths()
+        ensure_profile_dirs(active_profile)
+        
+        with open(paths['prompts'], 'w') as f:
+            json.dump(data, f, indent=4)
+            
+        return jsonify({'status': 'success'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
