@@ -5,5 +5,12 @@
         "timestamp": "2025-11-28T23:13:57.853917",
         "pdf_path": "generated/fa8a0ac7-ffde-40bb-9437-55a9fe18bacd/resume.pdf",
         "json_path": "generated/fa8a0ac7-ffde-40bb-9437-55a9fe18bacd/resume.json"
+    },
+    {
+        "id": "72fe9e61-50ea-4d07-b68a-23e3854c1dd1",
+        "company_name": "Twitch",
+        "timestamp": "2025-11-29T02:58:28.499409",
+        "pdf_path": "profiles/default/generated/72fe9e61-50ea-4d07-b68a-23e3854c1dd1/resume.pdf",
+        "json_path": "profiles/default/generated/72fe9e61-50ea-4d07-b68a-23e3854c1dd1/resume.json"
     }
 ]

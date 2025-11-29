@@ -1318,3 +1318,66 @@ del {
 .profile-manage-btn:active {
     transform: translateY(0);
 }
+
+/* Advanced Options */
+.advanced-options {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.advanced-options summary {
+    padding: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-secondary);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.advanced-options summary:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.advanced-options summary::before {
+    content: '▶';
+    font-size: 0.75rem;
+    transition: transform 0.3s ease;
+}
+
+.advanced-options[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.advanced-inputs {
+    padding: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+    background: rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group:last-child {
+    margin-bottom: 0;
+}

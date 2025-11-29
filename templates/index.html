@@ -75,6 +75,30 @@
                         </div>
                     </div>
 
+                    <!-- Advanced Options -->
+                    <div class="form-group">
+                        <details class="advanced-options">
+                            <summary>Advanced Options</summary>
+                            <div class="advanced-inputs">
+                                <div class="input-group">
+                                    <label for="prePrompt" class="form-label">Pre-Prompt (System Role)</label>
+                                    <textarea id="prePrompt" name="prePrompt" rows="3"
+                                        placeholder="Enter system role and context..."></textarea>
+                                </div>
+                                <div class="input-group">
+                                    <label for="postPrompt" class="form-label">Post-Prompt (Constraints)</label>
+                                    <textarea id="postPrompt" name="postPrompt" rows="5"
+                                        placeholder="Enter technical constraints..."></textarea>
+                                </div>
+                                <div class="input-group">
+                                    <label for="additionalContext" class="form-label">Additional Context</label>
+                                    <textarea id="additionalContext" name="additionalContext" rows="3"
+                                        placeholder="Any extra instructions or context..."></textarea>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+
                     <button type="submit" class="submit-btn" id="submitBtn">
                         <span class="btn-text">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"

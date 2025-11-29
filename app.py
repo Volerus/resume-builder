@@ -246,6 +246,10 @@ def improve_resume():
     """Generate improved resume JSON and return comparison with original."""
     try:
         job_description = request.json['description']
+        pre_prompt = request.json.get('pre_prompt')
+        post_prompt = request.json.get('post_prompt')
+        additional_context = request.json.get('additional_context')
+        
         paths = get_profile_paths()
         
         # Load original resume
@@ -256,16 +260,18 @@ def improve_resume():
             original_resume = {}
         
         # Prepare prompts
-        pre_prompt = ("Act as a JSON Data Processor and ATS Optimization Specialist",
-                        "I am going to provide you with a **Resume in JSON format** and a **Target Job Description**.",
-                        "Your task is to update the values inside the `work`, `professional_summary`, and `skills` arrays within the JSON to better match the Job Description.")
+        if not pre_prompt:
+            pre_prompt = ("Act as a JSON Data Processor and ATS Optimization Specialist\n"
+                            "I am going to provide you with a **Resume in JSON format** and a **Target Job Description**.\n"
+                            "Your task is to update the values inside the `work`, `professional_summary`, and `skills` arrays within the JSON to better match the Job Description.")
         
-        post_prompt = ("**Strict Technical Constraints:**",
-        "1.  **Output Format:** You must return **ONLY** valid, raw JSON. Do not include markdown formatting (like ```json), conversational filler, or explanations. Just the JSON object.",
-        "2.  **Structure Integrity:** Do not change keys, variable names, or the overall structure of the JSON object.",
-        "3.  **Minimal Edits:** You are allowed to change or insert a maximum of **3-4 specific keywords** to match the Job Description if necessary."
-        "4.  **Preserve Context:** Do not rewrite the sentences. Keep the original sentence structure and meaning, only swapping in technical terms or hard skills where they fit naturally.",
-        "5. **Pick and Choose:** Based on the Job Description, pick and choose the most relevant 5 `highlights`  per `company`. When possible combine multiple highlights into just 5 highlights concising")
+        if not post_prompt:
+            post_prompt = ("**Strict Technical Constraints:**\n"
+            "1.  **Output Format:** You must return **ONLY** valid, raw JSON. Do not include markdown formatting (like ```json), conversational filler, or explanations. Just the JSON object.\n"
+            "2.  **Structure Integrity:** Do not change keys, variable names, or the overall structure of the JSON object.\n"
+            "3.  **Minimal Edits:** You are allowed to change or insert a maximum of **3-4 specific keywords** to match the Job Description if necessary.\n"
+            "4.  **Preserve Context:** Do not rewrite the sentences. Keep the original sentence structure and meaning, only swapping in technical terms or hard skills where they fit naturally.\n"
+            "5. **Pick and Choose:** Based on the Job Description, pick and choose the most relevant 5 `highlights`  per `company`. When possible combine multiple highlights into just 5 highlights concising")
         
         # Call OpenRouter API to improve resume
         client = OpenAI(
@@ -273,14 +279,19 @@ def improve_resume():
             api_key=os.getenv("API_KEY")
         )
         
+        user_content = f"\nTarget Job Description\n{job_description}\n\nResume in JSON format\n{json.dumps(original_resume, indent=4)}\n\n{post_prompt}"
+        
+        if additional_context:
+            user_content += f"\n\n**Additional Context/Instructions:**\n{additional_context}"
+        
         messages = [
             {
                 "role": "system",
-                "content": "Act as a JSON Data Processor and ATS Optimization Specialist."
+                "content": pre_prompt
             },
             {
                 "role": "user",
-                "content": f"\nTarget Job Description\n{job_description}\n\nResume in JSON format\n{json.dumps(original_resume, indent=4)}\n\n{post_prompt}"
+                "content": user_content
             }
         ]
         

@@ -6,6 +6,19 @@ jobDescription.addEventListener('input', () => {
     charCount.textContent = jobDescription.value.length;
 });
 
+const prePromptInput = document.getElementById('prePrompt');
+const postPromptInput = document.getElementById('postPrompt');
+const additionalContextInput = document.getElementById('additionalContext');
+
+// Default Prompts
+const DEFAULT_PRE_PROMPT = "Act as a JSON Data Processor and ATS Optimization Specialist\nI am going to provide you with a **Resume in JSON format** and a **Target Job Description**.\nYour task is to update the values inside the `work`, `professional_summary`, and `skills` arrays within the JSON to better match the Job Description.";
+
+const DEFAULT_POST_PROMPT = "**Strict Technical Constraints:**\n1.  **Output Format:** You must return **ONLY** valid, raw JSON. Do not include markdown formatting (like ```json), conversational filler, or explanations. Just the JSON object.\n2.  **Structure Integrity:** Do not change keys, variable names, or the overall structure of the JSON object.\n3.  **Minimal Edits:** You are allowed to change or insert a maximum of **3-4 specific keywords** to match the Job Description if necessary.\n4.  **Preserve Context:** Do not rewrite the sentences. Keep the original sentence structure and meaning, only swapping in technical terms or hard skills where they fit naturally.\n5. **Pick and Choose:** Based on the Job Description, pick and choose the most relevant 5 `highlights`  per `company`. When possible combine multiple highlights into just 5 highlights concising";
+
+// Populate defaults
+prePromptInput.value = DEFAULT_PRE_PROMPT;
+postPromptInput.value = DEFAULT_POST_PROMPT;
+
 // Form submission
 const form = document.getElementById('resumeForm');
 const submitBtn = document.getElementById('submitBtn');
@@ -37,6 +50,9 @@ form.addEventListener('submit', async (e) => {
     submitBtn.disabled = true;
 
     const description = jobDescription.value.trim();
+    const prePrompt = prePromptInput.value.trim();
+    const postPrompt = postPromptInput.value.trim();
+    const additionalContext = additionalContextInput.value.trim();
 
     if (!description) {
         showError('Please enter a job description');
@@ -49,7 +65,12 @@ form.addEventListener('submit', async (e) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ description })
+            body: JSON.stringify({
+                description,
+                pre_prompt: prePrompt,
+                post_prompt: postPrompt,
+                additional_context: additionalContext
+            })
         });
 
         if (!response.ok) {
