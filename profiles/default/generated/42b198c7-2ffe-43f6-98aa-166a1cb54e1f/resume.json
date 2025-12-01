@@ -1,0 +1,151 @@
+{
+    "work": [
+        {
+            "company": "Amazon",
+            "position": "Senior Data Engineer",
+            "startDate": "06/2021",
+            "endDate": "Present",
+            "location": "Seattle, WA",
+            "highlights": [
+                "Automated quarterly ingestion of 11M+ records by building end-to-end vendor data pipelines using Airflow, Spark, and Delta Lake, ensuring timely availability for business reporting and analytics.",
+                "Design, develop, and implement large scale, high volume, high performance data models and pipelines using Spark, Iceberg, and AWS Step Functions for the entire owned channel ecosystem.",
+                "Built scalable ETL processes using DBT, Glue, and Redshift, improving efficiency and reliability of data workflows for reporting and analytics use cases.",
+                "Achieved a 3.5x performance boost and 50% cost reduction by optimizing worker usage and migrating to efficient storage formats (Iceberg/Parquet) within the distributed data ecosystem.",
+                "Defined and implemented data quality standards and built robust monitoring routines across data products to ensure high-quality, trustworthy data delivery to stakeholders."
+            ],
+            "website": ""
+        },
+        {
+            "company": "Amazon",
+            "position": "Software Development Engineer",
+            "startDate": "08/2020",
+            "endDate": "06/2021",
+            "location": "Seattle, WA",
+            "highlights": [
+                "Utilized Python, Redshift, S3, and Fargate to craft dynamic Amazon detail page dashboards, facilitating comprehensive insights for product analytics.",
+                "Worked with engineering and product teams to collect required data for building machine learning-driven recommendation systems.",
+                "Developed data structures and backend services leveraging Java and SQL.",
+                "Engaged with stakeholders to understand data requirements for dashboard reporting.",
+                "Improved reliability of data ingestion services supporting customer engagement tracking."
+            ],
+            "website": ""
+        },
+        {
+            "company": "Arkadium",
+            "position": "Data Science Intern",
+            "startDate": "05/2019",
+            "endDate": "05/2020",
+            "location": "New York City, NY",
+            "highlights": [
+                "Identified factors contributing to critical game errors using Root Cause Analysis.",
+                "Leveraged Microsoft Azure Data Lake and Python to conduct Error Cluster Analysis.",
+                "Analyzed datasets to understand trends in customer engagement.",
+                "Visualized KPIs like visits and revenue using Power BI Dashboard for stakeholders.",
+                "Gained initial experience working with business partners to understand reporting needs."
+            ],
+            "website": ""
+        },
+        {
+            "company": "Accenture Financial Services",
+            "position": "Application Development Associate",
+            "startDate": "11/2016",
+            "endDate": "07/2018",
+            "location": "India",
+            "highlights": [
+                "Spearheaded the development of core Extract, Transform, Load (ETL) functionalities using Java and PL/SQL for a financial services client.",
+                "Engineered and implemented a Blocking Queue within a multithreaded framework, optimizing system performance.",
+                "Gained experience with complex data processing requirements in a regulated environment.",
+                "Collaborated with development teams using version control for code reviews.",
+                "Focused on building reliable data processing components."
+            ],
+            "website": ""
+        }
+    ],
+    "skills": [
+        {
+            "name": "Programming Languages",
+            "keywords": [
+                "Python, Java, SQL, PySpark"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Data Engineering & ETL",
+            "keywords": [
+                "Apache Spark, Apache Airflow, DBT, AWS Glue, ETL orchestration, Data Warehouse, Data Models, Kafka"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Cloud & Infrastructure",
+            "keywords": [
+                "AWS (S3, Lake Formation, IAM), GCP, Git, Unix"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Data Analytics & Visualization",
+            "keywords": [
+                "Tableau, Superset, Looker, Data Quality Checks, Monitoring Routines"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Distributed Computing & DBMS",
+            "keywords": [
+                "Spark, Hive, Presto, Snowflake, Redshift, PostgreSQL, Streaming (Kafka/Flink)"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Databases & Storage",
+            "keywords": [
+                "Snowflake, Redshift, PostgreSQL, Parquet, Iceberg, Delta Lake"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Core Competencies",
+            "keywords": [
+                "Data Infrastructure Scalability, Stakeholder Collaboration, Self Starter, Analytical Thinking, Performance Optimization"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Other Technologies & Methodologies",
+            "keywords": [
+                "Dimensional Modeling, Multithreaded Development, Teamwork, Communication, Root Cause Analysis"
+            ],
+            "level": ""
+        }
+    ],
+    "professional_summary": "Senior Data Engineer with 6+ years of experience designing, developing, and implementing large scale, high volume data models and ETL pipelines to serve critical business needs in reporting, product analytics, and financial reporting. Expert in distributed computing (Spark, Presto), ETL orchestration (Airflow), and modern data warehouse platforms (Snowflake/Redshift). Proven ability to improve reliability and scalability of data infrastructure, manage a portfolio of data products, and collaborate effectively with technical and non-technical stakeholders.",
+    "basics": {
+        "name": "Satyen Amonkar",
+        "email": "95satyen@gmail.com",
+        "phone": "3154034538",
+        "location": {
+            "address": "Seattle, Washington"
+        }
+    },
+    "education": [
+        {
+            "institution": "Syracuse University",
+            "area": "Information Management",
+            "studyType": "MS",
+            "gpa": "3.8",
+            "startDate": "Aug 2018",
+            "endDate": "May 2020",
+            "location": "Syracuse, New York"
+        },
+        {
+            "institution": "University of Mumbai",
+            "area": "Computer Science",
+            "studyType": "BS",
+            "gpa": "3.6",
+            "startDate": "Aug 2012",
+            "endDate": "May 2016",
+            "location": "Mumbai, India"
+        }
+    ]
+}

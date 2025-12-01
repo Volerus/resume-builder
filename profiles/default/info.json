@@ -1,0 +1,30 @@
+{
+    "basics": {
+        "name": "Satyen Amonkar",
+        "email": "95satyen@gmail.com",
+        "phone": "3154034538",
+        "location": {
+            "address": "Seattle, Washington"
+        }
+    },
+    "education": [
+        {
+            "institution": "Syracuse University",
+            "area": "Information Management",
+            "studyType": "MS",
+            "gpa": "3.9",
+            "startDate": "Aug 2018",
+            "endDate": "May 2020",
+            "location": "Syracuse, New York"
+        },
+        {
+            "institution": "University of Mumbai",
+            "area": "Computer Science",
+            "studyType": "BS",
+            "gpa": "3.6",
+            "startDate": "Aug 2012",
+            "endDate": "May 2016",
+            "location": "Mumbai, India"
+        }
+    ]
+}

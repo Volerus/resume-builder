@@ -1,0 +1,138 @@
+{
+    "work": [
+        {
+            "company": "Amazon",
+            "position": "Data Engineer 2",
+            "startDate": "06/2021",
+            "endDate": "Present",
+            "location": "Seattle, WA",
+            "highlights": [
+                "Automated complex ETL workflows ingesting over 11M+ records using Airflow, Spark, and Delta Lake, ensuring timely data delivery for critical decision-making.",
+                "Engineered secure data processing environments by enforcing Zero Trust access controls via Lake Formation and IAM, maintaining compliance with enterprise security and privacy policies.",
+                "Built scalable centralized data foundation using Step Functions, Spark, and Iceberg, processing over 1B+ data points and delivering 400+ high-quality metrics for customer segmentation and analytics.",
+                "Achieved a 3.5x performance boost and 50% cost reduction by optimizing Spark tuning (skew joins, salting) and migrating large historical datasets (3.5 TB) to Iceberg/Parquet formats.",
+                "Delivered significant business impact ($25.64MM) by architecting real-time infrastructure for operational analytics and leading the migration of 213 legacy ETL pipelines to a modern CDK architecture."
+            ],
+            "website": ""
+        },
+        {
+            "company": "Amazon",
+            "position": "Software Development Engineer",
+            "startDate": "08/2020",
+            "endDate": "06/2021",
+            "location": "Seattle, WA",
+            "highlights": [
+                "Architected an end-to-end analytics pipeline using AWS Fargate, Redshift, and QuickSight for live experiment monitoring, supporting A/B testing infrastructure.",
+                "Built a scalable ECS/Fargate application processing high-volume impression logs with 99.9% reliability, suitable for platform enablement.",
+                "Implemented automated impression logging capturing 6+ key interaction metrics, providing foundational data for iterative feature experimentation.",
+                "Resolved complex Timber permissions and cross-account security challenges, ensuring data access compliance for shared services.",
+                "Enabled customer segmentation based on device affinity, contributing data insights for product optimization across different environments (web, desktop)."
+            ],
+            "website": ""
+        },
+        {
+            "company": "Arkadium",
+            "position": "Data Science Intern",
+            "startDate": "05/2019",
+            "endDate": "05/2020",
+            "location": "New York City, NY",
+            "highlights": [
+                "Processed and analyzed over 4 Million+ JSON records of clickstream data from Microsoft Azure Data Lake using Python and distributed processing frameworks.",
+                "Optimized real-time data thresholds using Time Series Forecasting (TBATS, ARIMA), driving profit uplift and demonstrating understanding of performance tuning.",
+                "Conducted Error Cluster Analysis using K-Means Clustering on operational data to pinpoint root causes, supporting robust system performance.",
+                "Developed Game Recommender Systems, aligning with the 'AI-enabled experiences' focus by preparing data for machine learning applications.",
+                "Designed interactive Power BI Dashboards to visualize critical KPIs (Visits, Revenue, CTR), enabling stakeholder self-service analytics."
+            ],
+            "website": ""
+        },
+        {
+            "company": "Syracuse University",
+            "position": "Data Analyst",
+            "startDate": "10/2018",
+            "endDate": "05/2019",
+            "location": "Syracuse, NY",
+            "highlights": [
+                "Conducted quantitative analysis using descriptive statistics in R, supporting foundational data modeling and analysis skills.",
+                "Executed qualitative analysis via Text Mining and Sentiment Analysis in R, applicable to unstructured data insights.",
+                "Visualized survey results using Tableau, demonstrating capability in data presentation for stakeholders.",
+                "Performed analysis on a Nationwide Survey to gather data for academic research.",
+                "Collaborated with faculty to derive actionable insights from complex datasets."
+            ],
+            "website": ""
+        },
+        {
+            "company": "Accenture Financial Services",
+            "position": "Associate Software Engineer",
+            "startDate": "11/2016",
+            "endDate": "07/2018",
+            "location": "India",
+            "highlights": [
+                "Engineered a multithreaded ETL framework, boosting system load capacity by 75% and performance by 50%, reflecting strong background in pipeline development.",
+                "Developed core ETL pipelines using Java/PLSQL for high-volume credit risk data processing, demonstrating ETL/ELT workflow experience.",
+                "Improved system efficiency by 16% through impact analysis and optimization of over 15 critical data components.",
+                "Designed technical specifications for 8 new wealth management components, translating business requirements into scalable system solutions.",
+                "Collaborated with 120+ global developers using Git, ensuring successful deployments and adherence to regulatory frameworks."
+            ],
+            "website": ""
+        }
+    ],
+    "skills": [
+        {
+            "name": "Core Data Engineering & Cloud",
+            "keywords": [
+                "Spark, Azure Data Lake, Synapse, ETL/ELT, ETL Pipelines, Data Lake Architecture, Azure Data Lake, Data Quality, Data Lineage, Deployment Pipelines"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Programming & Data Processing",
+            "keywords": [
+                "Python, PySpark, SQL, Java, R, Spark SQL, Shell Scripting, Delta Lake, Iceberg, Parquet"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Microsoft/Low-Code Enablement",
+            "keywords": [
+                "Power BI, Power Platform, Data-driven apps, Experimentation Infrastructure, Cosmos Streams, Monitoring, Telemetry Instrumentation"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Data Governance & Optimization",
+            "keywords": [
+                "Data Security, Privacy Compliance, Governance Frameworks, Performance Optimization, Cost Optimization, Distributed Systems, Troubleshooting, A/B Testing Support"
+            ],
+            "level": ""
+        }
+    ],
+    "professional_summary": "Senior Data Engineer with 6+ years experience (including relevant Data Science/Engineering roles) designing, building, and optimizing scalable distributed data processing systems, with recent focus on large-scale data platforms at Amazon. Proven expertise in building robust ETL/ELT workflows leveraging Spark, Azure Data Lake, and modern data lakehouse technologies (Delta Lake, Iceberg). Highly proficient in performance tuning, cost optimization, establishing data quality standards, and supporting platform infrastructure required for advanced analytics and AI solutions. Adept at cross-functional collaboration to deliver high-performance, secure, and scalable data systems critical for Copilot ecosystem innovation.",
+    "basics": {
+        "name": "Satyen Amonkar",
+        "email": "95satyen@gmail.com",
+        "phone": "3154034538",
+        "location": {
+            "address": "Seattle, Washington"
+        }
+    },
+    "education": [
+        {
+            "institution": "Syracuse University",
+            "area": "Information Management",
+            "studyType": "MS",
+            "gpa": "3.8",
+            "startDate": "Aug 2018",
+            "endDate": "May 2020",
+            "location": "Syracuse, New York"
+        },
+        {
+            "institution": "University of Mumbai",
+            "area": "Computer Science",
+            "studyType": "BS",
+            "gpa": "3.6",
+            "startDate": "Aug 2012",
+            "endDate": "May 2016",
+            "location": "Mumbai, India"
+        }
+    ]
+}

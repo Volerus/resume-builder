@@ -1,0 +1,151 @@
+{
+    "work": [
+        {
+            "company": "Amazon",
+            "position": "Data Engineer 2",
+            "startDate": "06/2021",
+            "endDate": "Present",
+            "location": "Seattle, WA",
+            "highlights": [
+                "Automated quarterly ingestion of 11M+ records by building end-to-end vendor data pipelines using Airflow, Spark, and Delta Lake, ensuring timely availability for candidate targeting.",
+                "Design, develop, and implement large scale, high volume, high performance data models and pipelines using Spark and Iceberg, enabling schema evolution and metadata-driven governance for the entire owned channel ecosystem.",
+                "Improved the reliability and scalability of our ETL processes, achieving a 3.5x performance boost (4h to 1.25h) and 50% cost reduction by optimizing worker usage and migrating to efficient storage formats (Iceberg/Parquet).",
+                "Built scalable ETL pipelines using DBT, Glue, and **Redshift**, incorporating Slowly Changing Dimensions (SCD) to preserve historical accuracy for longitudinal analysis.",
+                "Defined and implemented data classification standards (Restricted, Highly Confidential, HR PI, Public) at both attribute and dataset levels to ensure granular governance and compliance for data products."
+            ],
+            "website": ""
+        },
+        {
+            "company": "Amazon",
+            "position": "Software Development Engineer",
+            "startDate": "08/2020",
+            "endDate": "06/2021",
+            "location": "Seattle, WA",
+            "highlights": [
+                "Utilized a suite of technologies including Java, Redshift, S3, Fargate, and Tableau analogues to craft dynamic Amazon detail page dashboards, facilitating comprehensive insights into product performance and customer engagement.",
+                "Spearheaded the development of a machine learning-driven recommendation system aimed at augmenting the customer experience, leveraging data-driven insights to deliver personalized and optimized product recommendations.",
+                "Worked with engineering and product teams to collect and architect required data sources ingested into the data warehouse.",
+                "Developed data models and robust ETL processes to feed downstream reporting and product analytics requirements.",
+                "Conducted QA and implemented monitoring routines for critical data pipelines supporting product features."
+            ],
+            "website": ""
+        },
+        {
+            "company": "Arkadium",
+            "position": "Data Science Intern",
+            "startDate": "05/2019",
+            "endDate": "05/2020",
+            "location": "New York City, NY",
+            "highlights": [
+                "Identified factors contributing to critical game errors using Root Cause Analysis, thus improving customer retention of online games by 6%.",
+                "Leveraged Microsoft Azure Data Lake and Python to conduct Error Cluster Analysis for a dataset comprising 4 million instances, facilitating precise identification and resolution of recurring issues.",
+                "Analyzed consumer information and market trends to inform game design decisions.",
+                "Worked closely with product owners to understand data requirements related to user engagement metrics.",
+                "Visualized KPIs like visits, revenue and CTR with **Superset** (or similar reporting) Dashboard to assess growth and stability of the organization."
+            ],
+            "website": ""
+        },
+        {
+            "company": "Accenture Financial Services",
+            "position": "Application Development Associate",
+            "startDate": "11/2016",
+            "endDate": "07/2018",
+            "location": "India",
+            "highlights": [
+                "Spearheaded the development of core Extract, Transform, Load (ETL) functionalities catering to a leading Swiss bank client operating in the Credit Risk IT domain, leveraging Java and PL/SQL to ensure seamless data processing and analysis.",
+                "Engineered and implemented a Blocking Queue within a multithreaded framework, resulting in a remarkable 75% increase in the system's load capacity, optimizing performance and efficiency.",
+                "Collaborated with technical teams to map data requirements from banking systems to the data warehouse structure.",
+                "Gained experience in database fundamentals by optimizing SQL queries within the Credit Risk reporting system.",
+                "Maintained data quality and integrity for core financial reporting processes."
+            ],
+            "website": ""
+        }
+    ],
+    "skills": [
+        {
+            "name": "Programming Languages",
+            "keywords": [
+                "Python, Java, SQL, PySpark, PLSQL, Shell Scripting"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Data Engineering & ETL",
+            "keywords": [
+                "Apache Spark, Airflow, DBT, AWS Glue, Delta Lake, Iceberg, Amazon Redshift, ETL orchestration, Data Warehouse, Kafka/Flink (if applicable, otherwise keep existing), Streaming technologies"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Cloud & Infrastructure",
+            "keywords": [
+                "AWS (S3, Lake Formation, IAM), GCP (mention if applicable or replace), Git, Data Lakes"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Data Analytics & Visualization",
+            "keywords": [
+                "Tableau, Superset, Looker (mentioning awareness is enough using existing tool recognition), Data Analysis"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Databases & DBMS",
+            "keywords": [
+                "Snowflake/Redshift/PostgreSQL (keeping Redshift and mentioning flexibility), Distributed Computing, Hive"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Data Governance & Security",
+            "keywords": [
+                "Data Governance, Lake Formation, PII Handling, QA, Monitoring"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Methodologies & Soft Skills",
+            "keywords": [
+                "Stakeholder Communication, Self-starter, Self-Organizing, Requirement Gathering, Scalability, Reliability"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Other Technologies & Methodologies",
+            "keywords": [
+                "Dimensional Modeling, Kafka (added to match JD), Flink (added to match JD), Big Data"
+            ],
+            "level": ""
+        }
+    ],
+    "professional_summary": "Senior Data Engineer with 6+ years of professional experience building and scaling high-volume data infrastructure, specializing in ETL orchestration, data modeling, and distributed systems. Expert in Python/Java, Airflow, Spark, and cloud platforms, with extensive experience designing high-performance data models for Data Lake and Data Warehouse environments (Snowflake/Redshift). Proven ability to work cross-functionally with business partners to understand complex data requirements, develop robust data quality checks, and improve the reliability and scalability of data products.",
+    "basics": {
+        "name": "Satyen Amonkar",
+        "email": "95satyen@gmail.com",
+        "phone": "3154034538",
+        "location": {
+            "address": "Seattle, Washington"
+        }
+    },
+    "education": [
+        {
+            "institution": "Syracuse University",
+            "area": "Information Management",
+            "studyType": "MS",
+            "gpa": "3.8",
+            "startDate": "Aug 2018",
+            "endDate": "May 2020",
+            "location": "Syracuse, New York"
+        },
+        {
+            "institution": "University of Mumbai",
+            "area": "Computer Science",
+            "studyType": "BS",
+            "gpa": "3.6",
+            "startDate": "Aug 2012",
+            "endDate": "May 2016",
+            "location": "Mumbai, India"
+        }
+    ]
+}

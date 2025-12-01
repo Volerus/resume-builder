@@ -1,0 +1,119 @@
+{
+    "work": [
+        {
+            "company": "Amazon (Contractor)",
+            "position": "Software Dev Engineer II",
+            "website": "",
+            "startDate": "Feb 2025",
+            "endDate": "Present",
+            "location": "Bellevue, USA",
+            "highlights": [
+                "Developed scalable and resilient backend services at Amazon for shipment tracking and delivery experience.",
+                "Implemented monitoring, alerting, and resiliency automation for production systems.",
+                "Automated manual support workflows to improve operational efficiency.",
+                "Enhanced operational tooling, increasing developer efficiency by 30%.",
+                "Technologies: Amazon EC2, CDK, Java, Spring Boot, SQL"
+            ]
+        },
+        {
+            "company": "Amazon Web Services",
+            "position": "Software Dev Engineer Intern",
+            "website": "",
+            "startDate": "Jun 2024",
+            "endDate": "Aug 2024",
+            "location": "Seattle, USA",
+            "highlights": [
+                "Designed and implemented API for relational database engine, focusing on distributed data and transaction management solutions.",
+                "Developed a command-line utility to analyze network traffic and cluster load efficiency, reducing debugging time by 40%.",
+                "Collaborated with cross-functional teams to enhance tools and processes, improving on-call efficiency.",
+                "Technologies: Amazon EC2, CDK, Amazon S3, Rust"
+            ]
+        },
+        {
+            "company": "Western Digital",
+            "position": "Senior Software Engineer",
+            "website": "",
+            "startDate": "Aug 2020",
+            "endDate": "Apr 2023",
+            "location": "India",
+            "highlights": [
+                "Developed and maintained two cloud-native applications using a microservices architecture to handle terabytes of data efficiently.",
+                "Improved system performance by 20% through feature enhancements and bug fixes for Memory Product Solutions.",
+                "Achieved 40% reduction in testing time during manufacturing by optimizing workflows, receiving company-wide recognition.",
+                "Designed dynamic, reusable UI components using React.js, Jest, and Material UI to improve user experience across multiple applications.",
+                "Technologies: Spring Boot, Java, React.js, MySQL, Google Cloud Platform, Microsoft Azure"
+            ]
+        },
+        {
+            "company": "Western Digital",
+            "position": "Software Development Intern",
+            "website": "",
+            "startDate": "Jan 2020",
+            "endDate": "July 2020",
+            "location": "India",
+            "highlights": [
+                "Streamlined checkout processes by implementing three CI/CD pipelines using DevOps tools and improved test coverage by 70%.",
+                "Technologies: Python, Jenkins, Spinnaker, Kubernetes, Docker, Amazon S3"
+            ]
+        },
+        {
+            "company": "Accenture",
+            "position": "Associate Software Engineer",
+            "website": "",
+            "startDate": "Nov 2016",
+            "endDate": "Aug 2018",
+            "location": "India",
+            "highlights": [
+                "Built multi-threaded components for Credit Risk platform, improving performance and ensuring data integrity.",
+                "Designed 4 big data pipelines processing 90TB+ of investment data for analytics and compliance reporting.",
+                "Improved performance by 20% with PL/SQL query fine tuning and achieved reduction in bugs by 30%.",
+                "Technologies: Java, Spring Boot, PostgreSQL, PL/SQL, Shell scripting"
+            ]
+        }
+    ],
+    "skills": [
+        {
+            "name": "Programming Languages",
+            "keywords": [
+                "Java, Python, C, C++, R, Rust, PL/SQL, C#, PHP"
+            ]
+        },
+        {
+            "name": "Frontend Technologies",
+            "keywords": [
+                "React.js, HTML, CSS, JavaScript, Material UI, Jest"
+            ]
+        },
+        {
+            "name": "Cloud Platforms",
+            "keywords": [
+                "Google Cloud Platform, Amazon Web Services, Microsoft Azure"
+            ]
+        },
+        {
+            "name": "Databases",
+            "keywords": [
+                "MySQL, Redshift, Redis, MongoDB, PostgreSQL, Amazon S3"
+            ]
+        },
+        {
+            "name": "DevOps Tools",
+            "keywords": [
+                "Git, Docker, Kubernetes, Spinnaker, Jenkins, Shell scripting, Artifactory, Grafana, Prometheus"
+            ]
+        },
+        {
+            "name": "Application Frameworks",
+            "keywords": [
+                "Spring Boot, Apache Spark, Elasticsearch, Logstash, Kibana, Kafka, Splunk, Tableau, RabbitMQ"
+            ]
+        },
+        {
+            "name": "Unit Testing",
+            "keywords": [
+                "Junit, Mockito, Cucumber, Pytest, Selenium, SonarQube"
+            ]
+        }
+    ],
+    "professional_summary": "Results-driven software engineer with 5+ years of experience in full-stack development, cloud-native applications, and distributed systems with a strong focus on scalability, reliability, and security. Proficient in Java, Spring Boot, and Python with hands-on expertise in cloud infrastructure and AI/automation."
+}

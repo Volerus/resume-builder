@@ -1,0 +1,123 @@
+{
+    "work": [
+        {
+            "company": "Amazon",
+            "position": "Data Engineer 2",
+            "startDate": "06/2021",
+            "endDate": "Present",
+            "location": "Seattle, WA",
+            "highlights": [
+                "Architected high-availability data foundations using Step Functions, Spark, and Iceberg, enabling metadata-driven governance for critical data domains, processing 1B+ data points.",
+                "Engineered secure transfer mechanisms using SFTP, hashing, and KMS encryption, enforcing Zero Trust access controls via Lake Formation and IAM for sensitive PII.",
+                "Built scalable ETL pipelines using DBT, Glue, and Redshift, processing 2 TB of raw web event data at an hourly cadence, directly influencing staffing decisions and delivering significant cost savings.",
+                "Implemented automated frameworks integrating streaming/batch data sources, enabling near real-time analytics and machine learning model support via optimized storage strategies (Iceberg/Parquet).",
+                "Led migration of 213 legacy ETL pipelines to AWS CDK infrastructure-as-code patterns, establishing reusable components and achieving high pipeline reliability (99.9% uptime)."
+            ],
+            "website": ""
+        },
+        {
+            "company": "Amazon",
+            "position": "Software Development Engineer",
+            "startDate": "08/2020",
+            "endDate": "06/2021",
+            "location": "Seattle, WA",
+            "highlights": [
+                "Architected an end-to-end analytics pipeline using AWS Fargate, Redshift, and QuickSight, enabling live experiment monitoring with 99.9% reliability for customer-facing features.",
+                "Built a scalable ECS/Fargate application processing high-volume impression logs, establishing foundational data collection for personalized customer experiences.",
+                "Resolved complex cross-account security challenges, ensuring compliant access patterns for organizational data products.",
+                "Implemented automated logging capturing key interaction metrics, providing the granular data required for predictive analytics and experimentation.",
+                "Enabled customer segmentation based on device affinity, supporting product managers in optimizing content delivery."
+            ],
+            "website": ""
+        },
+        {
+            "company": "Arkadium",
+            "position": "Data Science Intern",
+            "startDate": "05/2019",
+            "endDate": "05/2020",
+            "location": "New York City, NY",
+            "highlights": [
+                "Conducted Root Cause Analysis on game errors using Azure Data Lake, identifying factors contributing to critical issues.",
+                "Leveraged Python on large datasets (4 million instances) to facilitate precise identification and resolution of recurring operational issues.",
+                "Identified factors contributing to critical game errors, improving customer retention.",
+                "Visualized KPIs like visits, revenue and CTR with Power BI Dashboard to assess product stability.",
+                "Gained experience querying and managing data within cloud-based storage environments."
+            ],
+            "website": ""
+        },
+        {
+            "company": "Accenture Financial Services",
+            "position": "Associate Software Engineer",
+            "startDate": "11/2016",
+            "endDate": "07/2018",
+            "location": "India",
+            "highlights": [
+                "Engineered a multithreaded ETL framework using Blocking Queue, boosting system load capacity by 75% for high-volume processing.",
+                "Developed core Java/PLSQL ETL pipelines for a financial services client, ensuring seamless processing of credit risk data.",
+                "Improved system efficiency by 16% by performing impact analysis and optimizing over 15 critical data components.",
+                "Designed technical specifications for 8 new wealth management components, translating business needs into scalable data solutions.",
+                "Managed data integrity and compliance across large projects supporting regulatory frameworks like IFRS/BCBS."
+            ],
+            "website": ""
+        }
+    ],
+    "skills": [
+        {
+            "name": "Cloud & Big Data Platforms",
+            "keywords": [
+                "AWS (Snowflake capable via Data Sharing, Kafka capable via Managed Service, S3, Lake Formation, IAM, Glue, Redshift, CDK, Step Functions), Apache Spark, Kafka, Delta Lake, Iceberg, DBT"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Programming & Querying",
+            "keywords": [
+                "Python, SQL, Scala (preferred alignment due to Spark context), Java, PySpark, Shell Scripting"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Data Architecture & Modeling",
+            "keywords": [
+                "Data Architecture, Data Modeling, Ontology Standards, ETL/ELT Design, Data Governance, Data Security, PII Handling, Dimensional Modeling, Slowly Changing Dimensions (SCD)"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Leadership & Practice Adoption",
+            "keywords": [
+                "Thought Leadership, Mentoring, Technical Roadmap Development, Stakeholder Influence, Engineering Excellence Evangelism, Recruiting, Cross-functional Collaboration"
+            ],
+            "level": ""
+        }
+    ],
+    "professional_summary": "Distinguished Data Engineer and thought leader with 9+ years of experience architecting next-generation, high-availability data platforms leveraging petabyte-scale data volumes. Proven expertise in leading complex data initiatives across cloud environments (AWS), specializing in real-time and batch processing using Snowflake-adjacent technologies, Kafka event streaming, ML model deployment support, and data governance frameworks (Lake Formation). Adept at driving engineering excellence, recruiting top talent, and delivering measurable business impact through innovative, customer-centric data solutions.",
+    "basics": {
+        "name": "Satyen Amonkar",
+        "email": "95satyen@gmail.com",
+        "phone": "3154034538",
+        "location": {
+            "address": "Seattle, Washington"
+        }
+    },
+    "education": [
+        {
+            "institution": "Syracuse University",
+            "area": "Information Management",
+            "studyType": "MS",
+            "gpa": "3.8",
+            "startDate": "Aug 2018",
+            "endDate": "May 2020",
+            "location": "Syracuse, New York"
+        },
+        {
+            "institution": "University of Mumbai",
+            "area": "Computer Science",
+            "studyType": "BS",
+            "gpa": "3.6",
+            "startDate": "Aug 2012",
+            "endDate": "May 2016",
+            "location": "Mumbai, India"
+        }
+    ]
+}

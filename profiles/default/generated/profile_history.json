@@ -1,0 +1,1154 @@
+[
+    {
+        "id": "d28a9cc8-68c1-4dcf-84cc-ae78d1ea942c",
+        "timestamp": "2025-11-29T01:51:06.866012",
+        "data": {
+            "work": [
+                {
+                    "company": "Cognizant - Capital One (Python, Angular, AWS)",
+                    "position": "Sr. Full Stack Developer",
+                    "website": "",
+                    "startDate": "10/2021",
+                    "endDate": "Present",
+                    "highlights": [
+                        "Designed and developed features for a credit risk platform with optimized risk rating models to enhance decision-making accuracy for commercial loan applications.",
+                        "Led the design of a full-stack REST API generation tool using Python, defining backend architecture and data models to accelerate model deployment from 6 months to 1 month.",
+                        "Created an automated test generation tool (Python, Jenkins) to validate model performance, cutting manual testing time from a month to a week",
+                        "Engineered an interactive sandbox platform in Angular and TypeScript that enabled underwriters to simulate credit risk rating models, significantly reducing the risk of errors in live lending decision.",
+                        "Integrated dynamic UI components in Angular to pre-populate previous ratings for underwriters based on specific conditions, thereby reducing the time required for re-rating models in monthly reports by 90%.",
+                        "Designed a flexible ETL solution in Java, enabling seamless integration of model-generated data with legacy systems and facilitating the data pipelines and data-driven analytics.",
+                        "Managed deployment of various services on CI/CD pipelines (Jenkins, Kubernetes, AWS), ensuring continuous delivery by automating the process and reducing production release time to one week.",
+                        "Collaborated with cross-functional teams to promote tool adoption, migrating two models per quarter.",
+                        "Mentored and onboarded developers, ensuring efficient adoption and modification of existing services.",
+                        "Oversaw repository maintenance, addressing vulnerabilities, infrastructure updates, and ensuring optimal codebase health.",
+                        "Proficient in Agile methodologies, Test driven development, applying Git for version control, and actively participating in sprint planning and refinement processes.",
+                        "Employed AI-powered coding assistants to streamline the scaffolding of new REST APIs and data models, cutting initial setup time and enhancing adherence to design patterns.",
+                        "Leveraged AI-assisted development to accelerate the generation of comprehensive unit tests, reducing associated task completion time by 50% (from two days to one) and consistently achieving the 80% code coverage standard for all new features."
+                    ],
+                    "location": "New York, NY"
+                },
+                {
+                    "highlights": [
+                        "Designed and implemented scalable RESTful APIs using Spring Boot, leveraging ORM principles with Spring Data JPA to structure relational data access. Ensured API consistency and code quality by implementing automated testing with Postman, JUnit, and Mockito.",
+                        "Designed responsive user interfaces in Angular and Bootstrap, implementing client-side data caching and lazy loading to significantly optimize page load times and enhance user experience."
+                    ],
+                    "company": "DatafabricX (Java, Angular, Spring Boot)",
+                    "position": "Full Stack Java Developer",
+                    "location": "Jamesburg, NJ",
+                    "startDate": "Sep 2020",
+                    "endDate": "Sep 2021"
+                },
+                {
+                    "highlights": [
+                        "Developed and tested REST API endpoints using the Spring framework and built a unit testing infrastructure with Selenium, which reduced defects found during development."
+                    ],
+                    "company": "Accenture - Dell EMC (Java, Selenium)",
+                    "position": "Software Engineer",
+                    "location": "Mumbai, India",
+                    "startDate": "Jun 2016",
+                    "endDate": "Dec 2017"
+                }
+            ],
+            "skills": [
+                {
+                    "name": "Programming Languages",
+                    "keywords": [
+                        "Python, Typescript, Java, SQL, Shell"
+                    ]
+                },
+                {
+                    "keywords": [
+                        "Flask, Angular, Spring Boot, Spring Data JPA"
+                    ],
+                    "name": "Frameworks"
+                },
+                {
+                    "keywords": [
+                        "Git, Jenkins, Docker, Kubernetes, AWS(EC2, S3, Lambda), Copilot"
+                    ],
+                    "name": "Tools & Platforms"
+                },
+                {
+                    "keywords": [
+                        "AI assisted development, Model Context Protocol, Retrieval-Augmented Generation"
+                    ],
+                    "name": "AI"
+                }
+            ],
+            "professional_summary": "Senior Full Stack Developer with 6 years of experience building and scaling high-performance financial applications. Expert in Python (Flask), Java (Spring Boot), and Angular, with a proven track record of engineering robust REST APIs and scalable ETL solutions. Adept at leveraging AI-assisted development tools to accelerate testing cycles and streamline code generation, deploying solutions in cloud-native (AWS, Kubernetes) environments."
+        }
+    },
+    {
+        "id": "076df658-a177-44a1-b6b7-b685741a8c62",
+        "timestamp": "2025-11-29T01:51:19.500854",
+        "data": {
+            "work": [
+                {
+                    "company": "Cognizant - Capital One (Python, Angular, AWS)",
+                    "position": "Sr. Full Stack Developer",
+                    "website": "",
+                    "startDate": "10/2021",
+                    "endDate": "Present",
+                    "highlights": [
+                        "Designed and developed features for a credit risk platform with optimized risk rating models to enhance decision-making accuracy for commercial loan applications.",
+                        "Led the design of a full-stack REST API generation tool using Python, defining backend architecture and data models to accelerate model deployment from 6 months to 1 month.",
+                        "Created an automated test generation tool (Python, Jenkins) to validate model performance, cutting manual testing time from a month to a week",
+                        "Engineered an interactive sandbox platform in Angular and TypeScript that enabled underwriters to simulate credit risk rating models, significantly reducing the risk of errors in live lending decision.",
+                        "Integrated dynamic UI components in Angular to pre-populate previous ratings for underwriters based on specific conditions, thereby reducing the time required for re-rating models in monthly reports by 90%.",
+                        "Designed a flexible ETL solution in Java, enabling seamless integration of model-generated data with legacy systems and facilitating the data pipelines and data-driven analytics.",
+                        "Managed deployment of various services on CI/CD pipelines (Jenkins, Kubernetes, AWS), ensuring continuous delivery by automating the process and reducing production release time to one week.",
+                        "Collaborated with cross-functional teams to promote tool adoption, migrating two models per quarter.",
+                        "Mentored and onboarded developers, ensuring efficient adoption and modification of existing services.",
+                        "Oversaw repository maintenance, addressing vulnerabilities, infrastructure updates, and ensuring optimal codebase health.",
+                        "Proficient in Agile methodologies, Test driven development, applying Git for version control, and actively participating in sprint planning and refinement processes.",
+                        "Employed AI-powered coding assistants to streamline the scaffolding of new REST APIs and data models, cutting initial setup time and enhancing adherence to design patterns.",
+                        "Leveraged AI-assisted development to accelerate the generation of comprehensive unit tests, reducing associated task completion time by 50% (from two days to one) and consistently achieving the 80% code coverage standard for all new features."
+                    ],
+                    "location": "New York, NY"
+                },
+                {
+                    "highlights": [
+                        "Designed and implemented scalable RESTful APIs using Spring Boot, leveraging ORM principles with Spring Data JPA to structure relational data access. Ensured API consistency and code quality by implementing automated testing with Postman, JUnit, and Mockito.",
+                        "Designed responsive user interfaces in Angular and Bootstrap, implementing client-side data caching and lazy loading to significantly optimize page load times and enhance user experience."
+                    ],
+                    "company": "DatafabricX (Java, Angular, Spring Boot)",
+                    "position": "Full Stack Java Developer",
+                    "location": "Jamesburg, NJ",
+                    "startDate": "Sep 2020",
+                    "endDate": "Sep 2021"
+                },
+                {
+                    "highlights": [
+                        "Developed and tested REST API endpoints using the Spring framework and built a unit testing infrastructure with Selenium, which reduced defects found during development."
+                    ],
+                    "company": "Accenture - Dell EMC (Java, Selenium)",
+                    "position": "Software Engineer",
+                    "location": "Mumbai, India",
+                    "startDate": "Jun 2016",
+                    "endDate": "Dec 2017"
+                }
+            ],
+            "skills": [
+                {
+                    "name": "Programming Languages",
+                    "keywords": [
+                        "Python, Typescript, Java, SQL, Shell"
+                    ]
+                },
+                {
+                    "keywords": [
+                        "Flask, Angular, Spring Boot, Spring Data JPA"
+                    ],
+                    "name": "Frameworks"
+                },
+                {
+                    "keywords": [
+                        "Git, Jenkins, Docker, Kubernetes, AWS(EC2, S3, Lambda), Copilot"
+                    ],
+                    "name": "Tools & Platforms"
+                },
+                {
+                    "keywords": [
+                        "AI assisted development, Model Context Protocol, Retrieval-Augmented Generation"
+                    ],
+                    "name": "AI"
+                }
+            ],
+            "professional_summary": "Senior Full Stack Developer with 6 years of experience building and scaling high-performance financial applications. Expert in Python (Flask), Java (Spring Boot), and Angular, with a proven track record of engineering robust REST APIs and scalable ETL solutions. Adept at leveraging AI-assisted development tools to accelerate testing cycles and streamline code generation, deploying solutions in cloud-native (AWS, Kubernetes) environments."
+        }
+    },
+    {
+        "id": "c3135869-d013-4615-b09a-5660ae816099",
+        "timestamp": "2025-11-29T01:51:21.819199",
+        "data": {
+            "professional_summary": "Senior Full Stack Developer with 6 years of experience building and scaling high-performance financial applications. Expert in Python (Flask), Java (Spring Boot), and Angular, with a proven track record of engineering robust REST APIs and scalable ETL solutions. Adept at leveraging AI-assisted development tools to accelerate testing cycles and streamline code generation, deploying solutions in cloud-native (AWS, Kubernetes) environments.",
+            "work": [
+                {
+                    "company": "Cognizant - Capital One (Python, Angular, AWS)",
+                    "position": "Sr. Full Stack Developer",
+                    "website": "",
+                    "startDate": "10/2021",
+                    "endDate": "Present",
+                    "location": "New York, NY",
+                    "highlights": [
+                        "Designed and developed features for a credit risk platform with optimized risk rating models to enhance decision-making accuracy for commercial loan applications.",
+                        "Led the design of a full-stack REST API generation tool using Python, defining backend architecture and data models to accelerate model deployment from 6 months to 1 month.",
+                        "Created an automated test generation tool (Python, Jenkins) to validate model performance, cutting manual testing time from a month to a week",
+                        "Engineered an interactive sandbox platform in Angular and TypeScript that enabled underwriters to simulate credit risk rating models, significantly reducing the risk of errors in live lending decision.",
+                        "Integrated dynamic UI components in Angular to pre-populate previous ratings for underwriters based on specific conditions, thereby reducing the time required for re-rating models in monthly reports by 90%.",
+                        "Designed a flexible ETL solution in Java, enabling seamless integration of model-generated data with legacy systems and facilitating the data pipelines and data-driven analytics.",
+                        "Managed deployment of various services on CI/CD pipelines (Jenkins, Kubernetes, AWS), ensuring continuous delivery by automating the process and reducing production release time to one week.",
+                        "Collaborated with cross-functional teams to promote tool adoption, migrating two models per quarter.",
+                        "Mentored and onboarded developers, ensuring efficient adoption and modification of existing services.",
+                        "Oversaw repository maintenance, addressing vulnerabilities, infrastructure updates, and ensuring optimal codebase health.",
+                        "Proficient in Agile methodologies, Test driven development, applying Git for version control, and actively participating in sprint planning and refinement processes.",
+                        "Employed AI-powered coding assistants to streamline the scaffolding of new REST APIs and data models, cutting initial setup time and enhancing adherence to design patterns.",
+                        "Leveraged AI-assisted development to accelerate the generation of comprehensive unit tests, reducing associated task completion time by 50% (from two days to one) and consistently achieving the 80% code coverage standard for all new features."
+                    ]
+                },
+                {
+                    "company": "DatafabricX (Java, Angular, Spring Boot)",
+                    "position": "Full Stack Java Developer",
+                    "website": "",
+                    "startDate": "Sep 2020",
+                    "endDate": "Sep 2021",
+                    "location": "Jamesburg, NJ",
+                    "highlights": [
+                        "Designed and implemented scalable RESTful APIs using Spring Boot, leveraging ORM principles with Spring Data JPA to structure relational data access. Ensured API consistency and code quality by implementing automated testing with Postman, JUnit, and Mockito.",
+                        "Designed responsive user interfaces in Angular and Bootstrap, implementing client-side data caching and lazy loading to significantly optimize page load times and enhance user experience."
+                    ]
+                },
+                {
+                    "company": "Accenture - Dell EMC (Java, Selenium)",
+                    "position": "Software Engineer",
+                    "website": "",
+                    "startDate": "Jun 2016",
+                    "endDate": "Dec 2017",
+                    "location": "Mumbai, India",
+                    "highlights": [
+                        "Developed and tested REST API endpoints using the Spring framework and built a unit testing infrastructure with Selenium, which reduced defects found during development."
+                    ]
+                }
+            ],
+            "skills": [
+                {
+                    "name": "Programming Languages",
+                    "keywords": [
+                        "Python, Typescript, Java, SQL, Shell"
+                    ]
+                },
+                {
+                    "name": "Frameworks",
+                    "keywords": [
+                        "Flask, Angular, Spring Boot, Spring Data JPA"
+                    ]
+                },
+                {
+                    "name": "Tools & Platforms",
+                    "keywords": [
+                        "Git, Jenkins, Docker, Kubernetes, AWS(EC2, S3, Lambda), Copilot"
+                    ]
+                },
+                {
+                    "name": "AI",
+                    "keywords": [
+                        "AI assisted development, Model Context Protocol, Retrieval-Augmented Generation"
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "86fe4379-18d3-41e2-801c-08d9eb099b6a",
+        "timestamp": "2025-11-29T02:06:03.551028",
+        "data": {
+            "work": [
+                {
+                    "company": "Cognizant - Capital One (Python, Angular, AWS)",
+                    "position": "Sr. Full Stack Developer",
+                    "website": "",
+                    "startDate": "10/2021",
+                    "endDate": "Present",
+                    "highlights": [
+                        "Designed and developed features for a credit risk platform with optimized risk rating models to enhance decision-making accuracy for commercial loan applications.",
+                        "Led the design of a full-stack REST API generation tool using Python, defining backend architecture and data models to accelerate model deployment from 6 months to 1 month.",
+                        "Created an automated test generation tool (Python, Jenkins) to validate model performance, cutting manual testing time from a month to a week",
+                        "Engineered an interactive sandbox platform in Angular and TypeScript that enabled underwriters to simulate credit risk rating models, significantly reducing the risk of errors in live lending decision.",
+                        "Integrated dynamic UI components in Angular to pre-populate previous ratings for underwriters based on specific conditions, thereby reducing the time required for re-rating models in monthly reports by 90%.",
+                        "Designed a flexible ETL solution in Java, enabling seamless integration of model-generated data with legacy systems and facilitating the data pipelines and data-driven analytics.",
+                        "Managed deployment of various services on CI/CD pipelines (Jenkins, Kubernetes, AWS), ensuring continuous delivery by automating the process and reducing production release time to one week.",
+                        "Collaborated with cross-functional teams to promote tool adoption, migrating two models per quarter.",
+                        "Mentored and onboarded developers, ensuring efficient adoption and modification of existing services.",
+                        "Oversaw repository maintenance, addressing vulnerabilities, infrastructure updates, and ensuring optimal codebase health.",
+                        "Proficient in Agile methodologies, Test driven development, applying Git for version control, and actively participating in sprint planning and refinement processes.",
+                        "Employed AI-powered coding assistants to streamline the scaffolding of new REST APIs and data models, cutting initial setup time and enhancing adherence to design patterns.",
+                        "Leveraged AI-assisted development to accelerate the generation of comprehensive unit tests, reducing associated task completion time by 50% (from two days to one) and consistently achieving the 80% code coverage standard for all new features."
+                    ],
+                    "location": "New York, NY"
+                },
+                {
+                    "highlights": [
+                        "Designed and implemented scalable RESTful APIs using Spring Boot, leveraging ORM principles with Spring Data JPA to structure relational data access. Ensured API consistency and code quality by implementing automated testing with Postman, JUnit, and Mockito.",
+                        "Designed responsive user interfaces in Angular and Bootstrap, implementing client-side data caching and lazy loading to significantly optimize page load times and enhance user experience."
+                    ],
+                    "company": "DatafabricX (Java, Angular, Spring Boot)",
+                    "position": "Full Stack Java Developer",
+                    "location": "Jamesburg, NJ",
+                    "startDate": "Sep 2020",
+                    "endDate": "Sep 2021"
+                },
+                {
+                    "highlights": [
+                        "Developed and tested REST API endpoints using the Spring framework and built a unit testing infrastructure with Selenium, which reduced defects found during development."
+                    ],
+                    "company": "Accenture - Dell EMC (Java, Selenium)",
+                    "position": "Software Engineer",
+                    "location": "Mumbai, India",
+                    "startDate": "Jun 2016",
+                    "endDate": "Dec 2017"
+                }
+            ],
+            "skills": [
+                {
+                    "name": "Programming Languages",
+                    "keywords": [
+                        "Python, Typescript, Java, SQL, Shell"
+                    ]
+                },
+                {
+                    "keywords": [
+                        "Flask, Angular, Spring Boot, Spring Data JPA"
+                    ],
+                    "name": "Frameworks"
+                },
+                {
+                    "keywords": [
+                        "Git, Jenkins, Docker, Kubernetes, AWS(EC2, S3, Lambda), Copilot"
+                    ],
+                    "name": "Tools & Platforms"
+                },
+                {
+                    "keywords": [
+                        "AI assisted development, Model Context Protocol, Retrieval-Augmented Generation"
+                    ],
+                    "name": "AI"
+                }
+            ],
+            "professional_summary": "Senior Full Stack Developer with 6 years of experience building and scaling high-performance financial applications. Expert in Python (Flask), Java (Spring Boot), and Angular, with a proven track record of engineering robust REST APIs and scalable ETL solutions. Adept at leveraging AI-assisted development tools to accelerate testing cycles and streamline code generation, deploying solutions in cloud-native (AWS, Kubernetes) environments."
+        }
+    },
+    {
+        "id": "6a33b35d-995d-464d-9579-d08345b2eb3f",
+        "timestamp": "2025-11-29T02:12:15.951794",
+        "data": {
+            "work": [
+                {
+                    "company": "Cognizant - Capital One (Python, Angular, AWS)",
+                    "position": "Sr. Full Stack Developer",
+                    "website": "",
+                    "startDate": "10/2021",
+                    "endDate": "Present",
+                    "highlights": [
+                        "Designed and developed features for a credit risk platform with optimized risk rating models to enhance decision-making accuracy for commercial loan applications.",
+                        "Led the design of a full-stack REST API generation tool using Python, defining backend architecture and data models to accelerate model deployment from 6 months to 1 month.",
+                        "Created an automated test generation tool (Python, Jenkins) to validate model performance, cutting manual testing time from a month to a week",
+                        "Engineered an interactive sandbox platform in Angular and TypeScript that enabled underwriters to simulate credit risk rating models, significantly reducing the risk of errors in live lending decision.",
+                        "Integrated dynamic UI components in Angular to pre-populate previous ratings for underwriters based on specific conditions, thereby reducing the time required for re-rating models in monthly reports by 90%.",
+                        "Designed a flexible ETL solution in Java, enabling seamless integration of model-generated data with legacy systems and facilitating the data pipelines and data-driven analytics.",
+                        "Managed deployment of various services on CI/CD pipelines (Jenkins, Kubernetes, AWS), ensuring continuous delivery by automating the process and reducing production release time to one week.",
+                        "Collaborated with cross-functional teams to promote tool adoption, migrating two models per quarter.",
+                        "Mentored and onboarded developers, ensuring efficient adoption and modification of existing services.",
+                        "Oversaw repository maintenance, addressing vulnerabilities, infrastructure updates, and ensuring optimal codebase health.",
+                        "Proficient in Agile methodologies, Test driven development, applying Git for version control, and actively participating in sprint planning and refinement processes.",
+                        "Employed AI-powered coding assistants to streamline the scaffolding of new REST APIs and data models, cutting initial setup time and enhancing adherence to design patterns.",
+                        "Leveraged AI-assisted development to accelerate the generation of comprehensive unit tests, reducing associated task completion time by 50% (from two days to one) and consistently achieving the 80% code coverage standard for all new features."
+                    ],
+                    "location": "New York, NY"
+                },
+                {
+                    "highlights": [
+                        "Designed and implemented scalable RESTful APIs using Spring Boot, leveraging ORM principles with Spring Data JPA to structure relational data access. Ensured API consistency and code quality by implementing automated testing with Postman, JUnit, and Mockito.",
+                        "Designed responsive user interfaces in Angular and Bootstrap, implementing client-side data caching and lazy loading to significantly optimize page load times and enhance user experience."
+                    ],
+                    "company": "DatafabricX (Java, Angular, Spring Boot)",
+                    "position": "Full Stack Java Developer",
+                    "location": "Jamesburg, NJ",
+                    "startDate": "Sep 2020",
+                    "endDate": "Sep 2021"
+                },
+                {
+                    "highlights": [
+                        "Developed and tested REST API endpoints using the Spring framework and built a unit testing infrastructure with Selenium, which reduced defects found during development."
+                    ],
+                    "company": "Accenture - Dell EMC (Java, Selenium)",
+                    "position": "Software Engineer",
+                    "location": "Mumbai, India",
+                    "startDate": "Jun 2016",
+                    "endDate": "Dec 2017"
+                }
+            ],
+            "skills": [
+                {
+                    "name": "Programming Languages",
+                    "keywords": [
+                        "Python, Typescript, Java, SQL, Shell"
+                    ]
+                },
+                {
+                    "keywords": [
+                        "Flask, Angular, Spring Boot, Spring Data JPA"
+                    ],
+                    "name": "Frameworks"
+                },
+                {
+                    "keywords": [
+                        "Git, Jenkins, Docker, Kubernetes, AWS(EC2, S3, Lambda), Copilot"
+                    ],
+                    "name": "Tools & Platforms"
+                },
+                {
+                    "keywords": [
+                        "AI assisted development, Model Context Protocol, Retrieval-Augmented Generation"
+                    ],
+                    "name": "AI"
+                }
+            ],
+            "professional_summary": "Senior Full Stack Developer with 6 years of experience building and scaling high-performance financial applications. Expert in Python (Flask), Java (Spring Boot), and Angular, with a proven track record of engineering robust REST APIs and scalable ETL solutions. Adept at leveraging AI-assisted development tools to accelerate testing cycles and streamline code generation, deploying solutions in cloud-native (AWS, Kubernetes) environments.",
+            "basics": {
+                "name": "Satyen Amonkar",
+                "phone": "3154034538",
+                "location": {
+                    "address": "Seattle, Washington"
+                },
+                "email": "95satyen@gmail.com"
+            },
+            "education": [
+                {
+                    "institution": "Syracuse University",
+                    "area": "Information Management",
+                    "startDate": "Aug 2018",
+                    "endDate": "May 2020",
+                    "gpa": "3.8",
+                    "location": "Syracuse, New York",
+                    "studyType": "MS"
+                },
+                {
+                    "institution": "University of Mumbai",
+                    "area": "Computer Science",
+                    "startDate": "Aug 2012",
+                    "endDate": "May 2016",
+                    "gpa": "3.6",
+                    "location": "Mumbai, India",
+                    "studyType": "BS"
+                }
+            ]
+        }
+    },
+    {
+        "id": "144ddbc0-6414-475c-aaa1-776527b7c26f",
+        "timestamp": "2025-11-29T02:12:31.757255",
+        "data": {
+            "work": [
+                {
+                    "company": "Cognizant - Capital One (Python, Angular, AWS)",
+                    "position": "Sr. Full Stack Developer",
+                    "website": "",
+                    "startDate": "10/2021",
+                    "endDate": "Present",
+                    "location": "New York, NY",
+                    "highlights": [
+                        "Designed and developed features for a credit risk platform with optimized risk rating models to enhance decision-making accuracy for commercial loan applications.",
+                        "Led the design of a full-stack REST API generation tool using Python, defining backend architecture and data models to accelerate model deployment from 6 months to 1 month.",
+                        "Created an automated test generation tool (Python, Jenkins) to validate model performance, cutting manual testing time from a month to a week",
+                        "Engineered an interactive sandbox platform in Angular and TypeScript that enabled underwriters to simulate credit risk rating models, significantly reducing the risk of errors in live lending decision.",
+                        "Integrated dynamic UI components in Angular to pre-populate previous ratings for underwriters based on specific conditions, thereby reducing the time required for re-rating models in monthly reports by 90%.",
+                        "Designed a flexible ETL solution in Java, enabling seamless integration of model-generated data with legacy systems and facilitating the data pipelines and data-driven analytics.",
+                        "Managed deployment of various services on CI/CD pipelines (Jenkins, Kubernetes, AWS), ensuring continuous delivery by automating the process and reducing production release time to one week.",
+                        "Collaborated with cross-functional teams to promote tool adoption, migrating two models per quarter.",
+                        "Mentored and onboarded developers, ensuring efficient adoption and modification of existing services.",
+                        "Oversaw repository maintenance, addressing vulnerabilities, infrastructure updates, and ensuring optimal codebase health.",
+                        "Proficient in Agile methodologies, Test driven development, applying Git for version control, and actively participating in sprint planning and refinement processes.",
+                        "Employed AI-powered coding assistants to streamline the scaffolding of new REST APIs and data models, cutting initial setup time and enhancing adherence to design patterns.",
+                        "Leveraged AI-assisted development to accelerate the generation of comprehensive unit tests, reducing associated task completion time by 50% (from two days to one) and consistently achieving the 80% code coverage standard for all new features."
+                    ]
+                },
+                {
+                    "company": "DatafabricX (Java, Angular, Spring Boot)",
+                    "position": "Full Stack Java Developer",
+                    "website": "",
+                    "startDate": "Sep 2020",
+                    "endDate": "Sep 2021",
+                    "location": "Jamesburg, NJ",
+                    "highlights": [
+                        "Designed and implemented scalable RESTful APIs using Spring Boot, leveraging ORM principles with Spring Data JPA to structure relational data access. Ensured API consistency and code quality by implementing automated testing with Postman, JUnit, and Mockito.",
+                        "Designed responsive user interfaces in Angular and Bootstrap, implementing client-side data caching and lazy loading to significantly optimize page load times and enhance user experience."
+                    ]
+                },
+                {
+                    "company": "Accenture - Dell EMC (Java, Selenium)",
+                    "position": "Software Engineer",
+                    "website": "",
+                    "startDate": "Jun 2016",
+                    "endDate": "Dec 2017",
+                    "location": "Mumbai, India",
+                    "highlights": [
+                        "Developed and tested REST API endpoints using the Spring framework and built a unit testing infrastructure with Selenium, which reduced defects found during development."
+                    ]
+                }
+            ],
+            "skills": [
+                {
+                    "name": "Programming Languages",
+                    "keywords": [
+                        "Python, Typescript, Java, SQL, Shell"
+                    ]
+                },
+                {
+                    "name": "Frameworks",
+                    "keywords": [
+                        "Flask, Angular, Spring Boot, Spring Data JPA"
+                    ]
+                },
+                {
+                    "name": "Tools & Platforms",
+                    "keywords": [
+                        "Git, Jenkins, Docker, Kubernetes, AWS(EC2, S3, Lambda), Copilot"
+                    ]
+                },
+                {
+                    "name": "AI",
+                    "keywords": [
+                        "AI assisted development, Model Context Protocol, Retrieval-Augmented Generation"
+                    ]
+                }
+            ],
+            "professional_summary": "Senior Full Stack Developer with 6 years of experience building and scaling high-performance financial applications. Expert in Python (Flask), Java (Spring Boot), and Angular, with a proven track record of engineering robust REST APIs and scalable ETL solutions. Adept at leveraging AI-assisted development tools to accelerate testing cycles and streamline code generation, deploying solutions in cloud-native (AWS, Kubernetes) environments.",
+            "basics": {
+                "name": "Satyen Amonkar",
+                "email": "95satyen@gmail.com",
+                "phone": "3154034538",
+                "location": {
+                    "address": "Seattle, Washington"
+                }
+            },
+            "education": [
+                {
+                    "institution": "Syracuse University",
+                    "area": "Information Management",
+                    "studyType": "MS",
+                    "gpa": "3.8",
+                    "startDate": "Aug 2018",
+                    "endDate": "May 2020",
+                    "location": "Syracuse, New York"
+                },
+                {
+                    "institution": "University of Mumbai",
+                    "area": "Computer Science",
+                    "studyType": "BS",
+                    "gpa": "3.6",
+                    "startDate": "Aug 2012",
+                    "endDate": "May 2016",
+                    "location": "Mumbai, India"
+                }
+            ]
+        }
+    },
+    {
+        "id": "fcad761b-b4a5-4dc8-bb65-dcfeca45e064",
+        "timestamp": "2025-11-29T02:14:29.177718",
+        "data": {
+            "work": [
+                {
+                    "company": "Cognizant - Capital One (Python, Angular, AWS)",
+                    "position": "Sr. Full Stack Developer",
+                    "website": "",
+                    "startDate": "10/2021",
+                    "endDate": "Present",
+                    "location": "New York, NY",
+                    "highlights": [
+                        "Designed and developed features for a credit risk platform with optimized risk rating models to enhance decision-making accuracy for commercial loan applications.",
+                        "Led the design of a full-stack REST API generation tool using Python, defining backend architecture and data models to accelerate model deployment from 6 months to 1 month.",
+                        "Created an automated test generation tool (Python, Jenkins) to validate model performance, cutting manual testing time from a month to a week",
+                        "Engineered an interactive sandbox platform in Angular and TypeScript that enabled underwriters to simulate credit risk rating models, significantly reducing the risk of errors in live lending decision.",
+                        "Integrated dynamic UI components in Angular to pre-populate previous ratings for underwriters based on specific conditions, thereby reducing the time required for re-rating models in monthly reports by 90%.",
+                        "Designed a flexible ETL solution in Java, enabling seamless integration of model-generated data with legacy systems and facilitating the data pipelines and data-driven analytics.",
+                        "Managed deployment of various services on CI/CD pipelines (Jenkins, Kubernetes, AWS), ensuring continuous delivery by automating the process and reducing production release time to one week.",
+                        "Collaborated with cross-functional teams to promote tool adoption, migrating two models per quarter.",
+                        "Mentored and onboarded developers, ensuring efficient adoption and modification of existing services.",
+                        "Oversaw repository maintenance, addressing vulnerabilities, infrastructure updates, and ensuring optimal codebase health.",
+                        "Proficient in Agile methodologies, Test driven development, applying Git for version control, and actively participating in sprint planning and refinement processes.",
+                        "Employed AI-powered coding assistants to streamline the scaffolding of new REST APIs and data models, cutting initial setup time and enhancing adherence to design patterns.",
+                        "Leveraged AI-assisted development to accelerate the generation of comprehensive unit tests, reducing associated task completion time by 50% (from two days to one) and consistently achieving the 80% code coverage standard for all new features."
+                    ]
+                },
+                {
+                    "company": "DatafabricX (Java, Angular, Spring Boot)",
+                    "position": "Full Stack Java Developer",
+                    "website": "",
+                    "startDate": "Sep 2020",
+                    "endDate": "Sep 2021",
+                    "location": "Jamesburg, NJ",
+                    "highlights": [
+                        "Designed and implemented scalable RESTful APIs using Spring Boot, leveraging ORM principles with Spring Data JPA to structure relational data access. Ensured API consistency and code quality by implementing automated testing with Postman, JUnit, and Mockito.",
+                        "Designed responsive user interfaces in Angular and Bootstrap, implementing client-side data caching and lazy loading to significantly optimize page load times and enhance user experience."
+                    ]
+                },
+                {
+                    "company": "Accenture - Dell EMC (Java, Selenium)",
+                    "position": "Software Engineer",
+                    "website": "",
+                    "startDate": "Jun 2016",
+                    "endDate": "Dec 2017",
+                    "location": "Mumbai, India",
+                    "highlights": [
+                        "Developed and tested REST API endpoints using the Spring framework and built a unit testing infrastructure with Selenium, which reduced defects found during development."
+                    ]
+                }
+            ],
+            "skills": [
+                {
+                    "name": "Programming Languages",
+                    "keywords": [
+                        "Python, Typescript, Java, SQL, Shell"
+                    ]
+                },
+                {
+                    "name": "Frameworks",
+                    "keywords": [
+                        "Flask, Angular, Spring Boot, Spring Data JPA"
+                    ]
+                },
+                {
+                    "name": "Tools & Platforms",
+                    "keywords": [
+                        "Git, Jenkins, Docker, Kubernetes, AWS(EC2, S3, Lambda), Copilot"
+                    ]
+                },
+                {
+                    "name": "AI",
+                    "keywords": [
+                        "AI assisted development, Model Context Protocol, Retrieval-Augmented Generation"
+                    ]
+                }
+            ],
+            "professional_summary": "Senior Full Stack Developer with 6 years of experience building and scaling high-performance financial applications. Expert in Python (Flask), Java (Spring Boot), and Angular, with a proven track record of engineering robust REST APIs and scalable ETL solutions. Adept at leveraging AI-assisted development tools to accelerate testing cycles and streamline code generation, deploying solutions in cloud-native (AWS, Kubernetes) environments.",
+            "basics": {
+                "name": "Satyen Amonkar",
+                "email": "95satyen@gmail.com",
+                "phone": "3154034538",
+                "location": {
+                    "address": "Seattle, Washington"
+                }
+            },
+            "education": [
+                {
+                    "institution": "Syracuse University",
+                    "area": "Information Management",
+                    "studyType": "MS",
+                    "gpa": "3.8",
+                    "startDate": "Aug 2018",
+                    "endDate": "May 2020",
+                    "location": "Syracuse, New York"
+                },
+                {
+                    "institution": "University of Mumbai",
+                    "area": "Computer Science",
+                    "studyType": "BS",
+                    "gpa": "3.6",
+                    "startDate": "Aug 2012",
+                    "endDate": "May 2016",
+                    "location": "Mumbai, India"
+                }
+            ]
+        }
+    },
+    {
+        "id": "e71bbb60-50ec-4e5d-8898-9e955c46898e",
+        "timestamp": "2025-11-29T11:50:44.673443",
+        "data": {
+            "work": [
+                {
+                    "company": "Cognizant - Capital One (Python, Angular, AWS)",
+                    "position": "Sr. Full Stack Developer",
+                    "website": "",
+                    "startDate": "10/2021",
+                    "endDate": "Present",
+                    "location": "New York, NY",
+                    "highlights": [
+                        "Designed and developed features for a credit risk platform with optimized risk rating models to enhance decision-making accuracy for commercial loan applications.",
+                        "Led the design of a full-stack REST API generation tool using Python, defining backend architecture and data models to accelerate model deployment from 6 months to 1 month.",
+                        "Created an automated test generation tool (Python, Jenkins) to validate model performance, cutting manual testing time from a month to a week",
+                        "Engineered an interactive sandbox platform in Angular and TypeScript that enabled underwriters to simulate credit risk rating models, significantly reducing the risk of errors in live lending decision.",
+                        "Integrated dynamic UI components in Angular to pre-populate previous ratings for underwriters based on specific conditions, thereby reducing the time required for re-rating models in monthly reports by 90%.",
+                        "Designed a flexible ETL solution in Java, enabling seamless integration of model-generated data with legacy systems and facilitating the data pipelines and data-driven analytics.",
+                        "Managed deployment of various services on CI/CD pipelines (Jenkins, Kubernetes, AWS), ensuring continuous delivery by automating the process and reducing production release time to one week.",
+                        "Collaborated with cross-functional teams to promote tool adoption, migrating two models per quarter.",
+                        "Mentored and onboarded developers, ensuring efficient adoption and modification of existing services.",
+                        "Oversaw repository maintenance, addressing vulnerabilities, infrastructure updates, and ensuring optimal codebase health.",
+                        "Proficient in Agile methodologies, Test driven development, applying Git for version control, and actively participating in sprint planning and refinement processes.",
+                        "Employed AI-powered coding assistants to streamline the scaffolding of new REST APIs and data models, cutting initial setup time and enhancing adherence to design patterns.",
+                        "Leveraged AI-assisted development to accelerate the generation of comprehensive unit tests, reducing associated task completion time by 50% (from two days to one) and consistently achieving the 80% code coverage standard for all new features."
+                    ]
+                },
+                {
+                    "company": "DatafabricX (Java, Angular, Spring Boot)",
+                    "position": "Full Stack Java Developer",
+                    "website": "",
+                    "startDate": "Sep 2020",
+                    "endDate": "Sep 2021",
+                    "location": "Jamesburg, NJ",
+                    "highlights": [
+                        "Designed and implemented scalable RESTful APIs using Spring Boot, leveraging ORM principles with Spring Data JPA to structure relational data access. Ensured API consistency and code quality by implementing automated testing with Postman, JUnit, and Mockito.",
+                        "Designed responsive user interfaces in Angular and Bootstrap, implementing client-side data caching and lazy loading to significantly optimize page load times and enhance user experience."
+                    ]
+                },
+                {
+                    "company": "Accenture - Dell EMC (Java, Selenium)",
+                    "position": "Software Engineer",
+                    "website": "",
+                    "startDate": "Jun 2016",
+                    "endDate": "Dec 2017",
+                    "location": "Mumbai, India",
+                    "highlights": [
+                        "Developed and tested REST API endpoints using the Spring framework and built a unit testing infrastructure with Selenium, which reduced defects found during development."
+                    ]
+                }
+            ],
+            "skills": [
+                {
+                    "name": "Programming Languages",
+                    "keywords": [
+                        "Python, Typescript, Java, SQL, Shell"
+                    ]
+                },
+                {
+                    "name": "Frameworks",
+                    "keywords": [
+                        "Flask, Angular, Spring Boot, Spring Data JPA"
+                    ]
+                },
+                {
+                    "name": "Tools & Platforms",
+                    "keywords": [
+                        "Git, Jenkins, Docker, Kubernetes, AWS(EC2, S3, Lambda), Copilot"
+                    ]
+                },
+                {
+                    "name": "AI",
+                    "keywords": [
+                        "AI assisted development, Model Context Protocol, Retrieval-Augmented Generation"
+                    ]
+                }
+            ],
+            "professional_summary": "Senior Full Stack Developer with 6 years of experience building and scaling high-performance financial applications. Expert in Python (Flask), Java (Spring Boot), and Angular, with a proven track record of engineering robust REST APIs and scalable ETL solutions. Adept at leveraging AI-assisted development tools to accelerate testing cycles and streamline code generation, deploying solutions in cloud-native (AWS, Kubernetes) environments.",
+            "basics": {
+                "name": "Satyen P",
+                "email": "95satyen@gmail.com",
+                "phone": "3154034538",
+                "location": {
+                    "address": "Seattle, Washington"
+                }
+            },
+            "education": [
+                {
+                    "institution": "Syracuse University",
+                    "area": "Information Management",
+                    "studyType": "MS",
+                    "gpa": "3.8",
+                    "startDate": "Aug 2018",
+                    "endDate": "May 2020",
+                    "location": "Syracuse, New York"
+                },
+                {
+                    "institution": "University of Mumbai",
+                    "area": "Computer Science",
+                    "studyType": "BS",
+                    "gpa": "3.6",
+                    "startDate": "Aug 2012",
+                    "endDate": "May 2016",
+                    "location": "Mumbai, India"
+                }
+            ]
+        }
+    },
+    {
+        "id": "2eaa2057-1fac-4138-ba48-2268a81ba15d",
+        "timestamp": "2025-11-29T12:08:02.691582",
+        "data": {
+            "work": [
+                {
+                    "company": "Amazon",
+                    "position": "Data Engineer 2",
+                    "website": "",
+                    "startDate": "06/2021",
+                    "endDate": "Present",
+                    "location": "Seattle, WA",
+                    "highlights": [
+                        "Led the migration of 700 data pipelines, achieving an estimated $25.6MM savings over three years through improved efficiency and optimization",
+                        "Automated quarterly ingestion of 11M+ records by building end-to-end vendor data pipelines using Airflow, Spark, and Delta Lake, ensuring timely availability for candidate targeting",
+                        "Architected a unified data foundation using Step Functions, Spark, and Iceberg, enabling schema evolution and metadata-driven governance for the entire owned channel ecosystem",
+                        "Processed 1B+ data points (11M candidates x 148 attributes) in a single job, successfully handling complex array transformations and precedent-dependent logic",
+                        "Achieved a 3.5x performance boost (4h to 1.25h) and 50% cost reduction by optimizing worker usage and migrating to efficient storage formats (Iceberg/Parquet)",
+                        "Built scalable ETL pipelines using DBT, Glue, and Redshift, incorporating Slowly Changing Dimensions (SCD) to preserve historical accuracy for longitudinal analysis",
+                        "Ingested and processed 2 TB raw (Bronze) web event data from Adobe Analytics at hourly cadence, handling incremental updates and pivoting events to generate actionable datasets",
+                        "Defined and implemented data classification standards (Restricted, Highly Confidential, HR PI, Public) at both attribute and dataset levels to ensure granular governance and compliance",
+                        "Enforced Zero Trust access controls using Lake Formation and IAM, restricting sensitive data including HR PII to authorized personnel while enabling broad access to public datasets",
+                        "Guaranteed data integrity and confidentiality by engineering secure transfer mechanisms using SFTP, SHA-256 hashing, and KMS encryption, meeting rigorous legal standards",
+                        "Developed a comprehensive Data Governance Mechanism to ensure access control and maintain quality standards for Personally Identifiable Information (PII) within Seller Support Data",
+                        "Redesigned and streamlined the scalable process for ingesting employee immigration data, catering to the needs of 69,948 employees, enhancing data integrity and reducing processing time",
+                        "Implemented Slowly Changing Dimension (SCD) Type 4, maintaining a 3.5 TB historical version of datasets, enabling longitudinal analysis while preserving historical accuracy"
+                    ]
+                },
+                {
+                    "company": "Amazon",
+                    "position": "Software Development Engineer",
+                    "website": "",
+                    "startDate": "08/2020",
+                    "endDate": "06/2021",
+                    "location": "Seattle, WA",
+                    "highlights": [
+                        "Utilized a suite of technologies including Java, Redshift, S3, Fargate, and Quicksight to craft dynamic Amazon detail page dashboards, facilitating comprehensive insights into product performance and customer engagement",
+                        "Spearheaded the development of a machine learning-driven recommendation system aimed at augmenting the customer experience, leveraging data-driven insights to deliver personalized and optimized product recommendations"
+                    ]
+                },
+                {
+                    "company": "Arkadium",
+                    "position": "Data Science Intern",
+                    "website": "",
+                    "startDate": "05/2019",
+                    "endDate": "05/2020",
+                    "location": "New York City, NY",
+                    "highlights": [
+                        "Identified factors contributing to critical game errors using Root Cause Analysis, thus improving customer retention of online games by 6%",
+                        "Leveraged Microsoft Azure Data Lake and Python to conduct Error Cluster Analysis for a dataset comprising 4 million instances, facilitating precise identification and resolution of recurring issues",
+                        "Visualized KPIs like visits, revenue and CTR with Power BI Dashboard to assess growth and stability of the organization"
+                    ]
+                },
+                {
+                    "company": "Accenture Financial Services",
+                    "position": "Application Development Associate",
+                    "website": "",
+                    "startDate": "11/2016",
+                    "endDate": "07/2018",
+                    "location": "India",
+                    "highlights": [
+                        "Spearheaded the development of core Extract, Transform, Load (ETL) functionalities catering to a leading Swiss bank client operating in the Credit Risk IT domain, leveraging Java and PL/SQL to ensure seamless data processing and analysis",
+                        "Engineered and implemented a Blocking Queue within a multithreaded framework, resulting in a remarkable 75% increase in the system's load capacity, optimizing performance and efficiency",
+                        "Collaborated with 120 team members using GitHub for code reviews and concurrent development"
+                    ]
+                }
+            ],
+            "skills": [
+                {
+                    "name": "Programming Languages",
+                    "keywords": [
+                        "Python, Apache Spark, R, Java, PL-SQL, MS SQL, JavaScript, HTML, CSS"
+                    ]
+                },
+                {
+                    "name": "Data Engineering & ETL",
+                    "keywords": [
+                        "Apache Spark, Airflow, DBT, AWS Glue, Delta Lake, Iceberg, Redshift, Step Functions, Kinesis Firehose"
+                    ]
+                },
+                {
+                    "name": "Cloud & Infrastructure",
+                    "keywords": [
+                        "AWS (S3, Lake Formation, IAM, Fargate, Lambda), MS Azure Data Lake, GitHub, CI/CD"
+                    ]
+                },
+                {
+                    "name": "Data Analytics & Visualization",
+                    "keywords": [
+                        "Tableau, Power BI, Quicksight, Adobe Analytics, MS Excel, Data Visualization"
+                    ]
+                },
+                {
+                    "name": "Machine Learning & Data Science",
+                    "keywords": [
+                        "Regression, Classification, Clustering, PCA, NLP, SVM, Sentiment Analysis"
+                    ]
+                },
+                {
+                    "name": "Databases & Storage",
+                    "keywords": [
+                        "Redshift, DynamoDB, Parquet, Iceberg, Delta Lake, DBMS"
+                    ]
+                },
+                {
+                    "name": "Data Governance & Security",
+                    "keywords": [
+                        "Lake Formation, Zero Trust Access Controls, Data Classification, KMS Encryption, SHA-256, SFTP, CCPA Compliance"
+                    ]
+                }
+            ],
+            "professional_summary": "Data Engineer with 6+ years of experience building scalable data pipelines and analytics platforms at Amazon, specializing in ETL orchestration, data governance, and cloud infrastructure. Expert in Apache Spark, AWS services (Glue, Redshift, Lake Formation), and modern data lakehouse technologies (Delta Lake, Iceberg). Proven track record of delivering high-impact solutions including processing 2TB+ datasets, achieving $25.6MM in cost savings, and implementing enterprise-grade data governance frameworks. Adept at optimizing data infrastructure for performance and cost efficiency while ensuring security and compliance standards.",
+            "basics": {
+                "name": "Satyen Amonkar",
+                "email": "95satyen@gmail.com",
+                "phone": "3154034538",
+                "location": {
+                    "address": "Seattle, Washington"
+                }
+            },
+            "education": []
+        }
+    },
+    {
+        "id": "29fba12c-9e49-495a-9d9f-38fb2c9d8231",
+        "timestamp": "2025-11-29T12:08:27.985484",
+        "data": {
+            "work": [
+                {
+                    "company": "Amazon",
+                    "position": "Data Engineer 2",
+                    "website": "",
+                    "startDate": "06/2021",
+                    "endDate": "Present",
+                    "location": "Seattle, WA",
+                    "highlights": [
+                        "Led the migration of 700 data pipelines, achieving an estimated $25.6MM savings over three years through improved efficiency and optimization",
+                        "Automated quarterly ingestion of 11M+ records by building end-to-end vendor data pipelines using Airflow, Spark, and Delta Lake, ensuring timely availability for candidate targeting",
+                        "Architected a unified data foundation using Step Functions, Spark, and Iceberg, enabling schema evolution and metadata-driven governance for the entire owned channel ecosystem",
+                        "Processed 1B+ data points (11M candidates x 148 attributes) in a single job, successfully handling complex array transformations and precedent-dependent logic",
+                        "Achieved a 3.5x performance boost (4h to 1.25h) and 50% cost reduction by optimizing worker usage and migrating to efficient storage formats (Iceberg/Parquet)",
+                        "Built scalable ETL pipelines using DBT, Glue, and Redshift, incorporating Slowly Changing Dimensions (SCD) to preserve historical accuracy for longitudinal analysis",
+                        "Ingested and processed 2 TB raw (Bronze) web event data from Adobe Analytics at hourly cadence, handling incremental updates and pivoting events to generate actionable datasets",
+                        "Defined and implemented data classification standards (Restricted, Highly Confidential, HR PI, Public) at both attribute and dataset levels to ensure granular governance and compliance",
+                        "Enforced Zero Trust access controls using Lake Formation and IAM, restricting sensitive data including HR PII to authorized personnel while enabling broad access to public datasets",
+                        "Guaranteed data integrity and confidentiality by engineering secure transfer mechanisms using SFTP, SHA-256 hashing, and KMS encryption, meeting rigorous legal standards",
+                        "Developed a comprehensive Data Governance Mechanism to ensure access control and maintain quality standards for Personally Identifiable Information (PII) within Seller Support Data",
+                        "Redesigned and streamlined the scalable process for ingesting employee immigration data, catering to the needs of 69,948 employees, enhancing data integrity and reducing processing time",
+                        "Implemented Slowly Changing Dimension (SCD) Type 4, maintaining a 3.5 TB historical version of datasets, enabling longitudinal analysis while preserving historical accuracy"
+                    ]
+                },
+                {
+                    "company": "Amazon",
+                    "position": "Software Development Engineer",
+                    "website": "",
+                    "startDate": "08/2020",
+                    "endDate": "06/2021",
+                    "location": "Seattle, WA",
+                    "highlights": [
+                        "Utilized a suite of technologies including Java, Redshift, S3, Fargate, and Quicksight to craft dynamic Amazon detail page dashboards, facilitating comprehensive insights into product performance and customer engagement",
+                        "Spearheaded the development of a machine learning-driven recommendation system aimed at augmenting the customer experience, leveraging data-driven insights to deliver personalized and optimized product recommendations"
+                    ]
+                },
+                {
+                    "company": "Arkadium",
+                    "position": "Data Science Intern",
+                    "website": "",
+                    "startDate": "05/2019",
+                    "endDate": "05/2020",
+                    "location": "New York City, NY",
+                    "highlights": [
+                        "Identified factors contributing to critical game errors using Root Cause Analysis, thus improving customer retention of online games by 6%",
+                        "Leveraged Microsoft Azure Data Lake and Python to conduct Error Cluster Analysis for a dataset comprising 4 million instances, facilitating precise identification and resolution of recurring issues",
+                        "Visualized KPIs like visits, revenue and CTR with Power BI Dashboard to assess growth and stability of the organization"
+                    ]
+                },
+                {
+                    "company": "Accenture Financial Services",
+                    "position": "Application Development Associate",
+                    "website": "",
+                    "startDate": "11/2016",
+                    "endDate": "07/2018",
+                    "location": "India",
+                    "highlights": [
+                        "Spearheaded the development of core Extract, Transform, Load (ETL) functionalities catering to a leading Swiss bank client operating in the Credit Risk IT domain, leveraging Java and PL/SQL to ensure seamless data processing and analysis",
+                        "Engineered and implemented a Blocking Queue within a multithreaded framework, resulting in a remarkable 75% increase in the system's load capacity, optimizing performance and efficiency",
+                        "Collaborated with 120 team members using GitHub for code reviews and concurrent development"
+                    ]
+                }
+            ],
+            "skills": [
+                {
+                    "name": "Programming Languages",
+                    "keywords": [
+                        "Python, R, Java, PLSQL, Shell Scripting, JavaScript, HTML, PHP, C, SQL, PySpark"
+                    ]
+                },
+                {
+                    "name": "Data Engineering & ETL",
+                    "keywords": [
+                        "Apache Spark, Apache Airflow, DBT, AWS Glue, Delta Lake, Iceberg, Amazon Redshift, AWS Step Functions, Extract Transform Load (ETL), Data Lakes, Amazon Kinesis, Hive"
+                    ]
+                },
+                {
+                    "name": "Cloud & Infrastructure",
+                    "keywords": [
+                        "AWS (S3, Lake Formation, IAM, Fargate, Lambda, EC2, CDK), Azure Data Lake, Git, Github, Unix, Amazon DynamoDB, Data Lineage, Catalog Development"
+                    ]
+                },
+                {
+                    "name": "Data Analytics & Visualization",
+                    "keywords": [
+                        "Tableau, Amazon QuickSight, Microsoft Power BI, Adobe Analytics, Key Performance Indicators (KPIs), Data Visualization, Data Analysis, Microsoft Excel, Microsoft PowerPoint"
+                    ]
+                },
+                {
+                    "name": "Machine Learning & Data Science",
+                    "keywords": [
+                        "Recommender Systems, Logistic Regression, Gradient Boosting, k-means Clustering, Hierarchical Clustering, Principal Component Analysis (PCA), Sentiment Analysis, NLP, Machine Learning, Data Science, Data Mining, Statistical Data Analysis"
+                    ]
+                },
+                {
+                    "name": "Databases & Storage",
+                    "keywords": [
+                        "Amazon Redshift, Amazon DynamoDB, Parquet, Iceberg, Delta Lake, MySQL, Microsoft SQL Server"
+                    ]
+                },
+                {
+                    "name": "Data Governance & Security",
+                    "keywords": [
+                        "Lake Formation, Data Governance, Data Security, Personally Identifiable Information (PII), Identity and Access Management (IAM), Secure File Transfer Protocol (SFTP), Credit Risk, Risk Management"
+                    ]
+                },
+                {
+                    "name": "Other Technologies & Methodologies",
+                    "keywords": [
+                        "Dimensional Modeling, Data Warehousing, Multithreaded Development, Object-Oriented Programming (OOP), Unit Testing, Integration Testing, JIRA, Tortoise SVN, A/B Testing, Multivariate Testing, Contextual Advertising, Social Media Marketing, Search Engine Optimization (SEO), Investment Banking, Finance, Financial Forecasting, Statistical Modeling, Big Data, API Development, Prompt Engineering, GraphQL, Text Mining, Microsoft Word, Microsoft Office, Management, Teamwork, Communication, Leadership, Root Cause Analysis"
+                    ]
+                }
+            ],
+            "professional_summary": "Data Engineer with 6+ years of experience building scalable data pipelines and analytics platforms at Amazon, specializing in ETL orchestration, data governance, and cloud infrastructure. Expert in Apache Spark, AWS services (Glue, Redshift, Lake Formation), and modern data lakehouse technologies (Delta Lake, Iceberg). Proven track record of delivering high-impact solutions including processing 2TB+ datasets, achieving $25.6MM in cost savings, and implementing enterprise-grade data governance frameworks. Adept at optimizing data infrastructure for performance and cost efficiency while ensuring security and compliance standards.",
+            "basics": {
+                "name": "Satyen Amonkar",
+                "email": "95satyen@gmail.com",
+                "phone": "3154034538",
+                "location": {
+                    "address": "Seattle, Washington"
+                }
+            },
+            "education": []
+        }
+    },
+    {
+        "id": "eb59f78c-96fe-42aa-8585-b8666c00becc",
+        "timestamp": "2025-11-29T12:08:46.313302",
+        "data": {
+            "work": [
+                {
+                    "company": "Amazon",
+                    "position": "Data Engineer 2",
+                    "website": "",
+                    "startDate": "06/2021",
+                    "endDate": "Present",
+                    "location": "Seattle, WA",
+                    "highlights": [
+                        "Led the migration of 700 data pipelines, achieving an estimated $25.6MM savings over three years through improved efficiency and optimization",
+                        "Automated quarterly ingestion of 11M+ records by building end-to-end vendor data pipelines using Airflow, Spark, and Delta Lake, ensuring timely availability for candidate targeting",
+                        "Architected a unified data foundation using Step Functions, Spark, and Iceberg, enabling schema evolution and metadata-driven governance for the entire owned channel ecosystem",
+                        "Processed 1B+ data points (11M candidates x 148 attributes) in a single job, successfully handling complex array transformations and precedent-dependent logic",
+                        "Achieved a 3.5x performance boost (4h to 1.25h) and 50% cost reduction by optimizing worker usage and migrating to efficient storage formats (Iceberg/Parquet)",
+                        "Built scalable ETL pipelines using DBT, Glue, and Redshift, incorporating Slowly Changing Dimensions (SCD) to preserve historical accuracy for longitudinal analysis",
+                        "Ingested and processed 2 TB raw (Bronze) web event data from Adobe Analytics at hourly cadence, handling incremental updates and pivoting events to generate actionable datasets",
+                        "Defined and implemented data classification standards (Restricted, Highly Confidential, HR PI, Public) at both attribute and dataset levels to ensure granular governance and compliance",
+                        "Enforced Zero Trust access controls using Lake Formation and IAM, restricting sensitive data including HR PII to authorized personnel while enabling broad access to public datasets",
+                        "Guaranteed data integrity and confidentiality by engineering secure transfer mechanisms using SFTP, SHA-256 hashing, and KMS encryption, meeting rigorous legal standards",
+                        "Developed a comprehensive Data Governance Mechanism to ensure access control and maintain quality standards for Personally Identifiable Information (PII) within Seller Support Data",
+                        "Redesigned and streamlined the scalable process for ingesting employee immigration data, catering to the needs of 69,948 employees, enhancing data integrity and reducing processing time",
+                        "Implemented Slowly Changing Dimension (SCD) Type 4, maintaining a 3.5 TB historical version of datasets, enabling longitudinal analysis while preserving historical accuracy"
+                    ]
+                },
+                {
+                    "company": "Amazon",
+                    "position": "Software Development Engineer",
+                    "website": "",
+                    "startDate": "08/2020",
+                    "endDate": "06/2021",
+                    "location": "Seattle, WA",
+                    "highlights": [
+                        "Utilized a suite of technologies including Java, Redshift, S3, Fargate, and Quicksight to craft dynamic Amazon detail page dashboards, facilitating comprehensive insights into product performance and customer engagement",
+                        "Spearheaded the development of a machine learning-driven recommendation system aimed at augmenting the customer experience, leveraging data-driven insights to deliver personalized and optimized product recommendations"
+                    ]
+                },
+                {
+                    "company": "Arkadium",
+                    "position": "Data Science Intern",
+                    "website": "",
+                    "startDate": "05/2019",
+                    "endDate": "05/2020",
+                    "location": "New York City, NY",
+                    "highlights": [
+                        "Identified factors contributing to critical game errors using Root Cause Analysis, thus improving customer retention of online games by 6%",
+                        "Leveraged Microsoft Azure Data Lake and Python to conduct Error Cluster Analysis for a dataset comprising 4 million instances, facilitating precise identification and resolution of recurring issues",
+                        "Visualized KPIs like visits, revenue and CTR with Power BI Dashboard to assess growth and stability of the organization"
+                    ]
+                },
+                {
+                    "company": "Accenture Financial Services",
+                    "position": "Application Development Associate",
+                    "website": "",
+                    "startDate": "11/2016",
+                    "endDate": "07/2018",
+                    "location": "India",
+                    "highlights": [
+                        "Spearheaded the development of core Extract, Transform, Load (ETL) functionalities catering to a leading Swiss bank client operating in the Credit Risk IT domain, leveraging Java and PL/SQL to ensure seamless data processing and analysis",
+                        "Engineered and implemented a Blocking Queue within a multithreaded framework, resulting in a remarkable 75% increase in the system's load capacity, optimizing performance and efficiency",
+                        "Collaborated with 120 team members using GitHub for code reviews and concurrent development"
+                    ]
+                }
+            ],
+            "skills": [
+                {
+                    "name": "Programming Languages",
+                    "keywords": [
+                        "Python, R, Java, PLSQL, Shell Scripting, JavaScript, HTML, PHP, C, SQL, PySpark"
+                    ]
+                },
+                {
+                    "name": "Data Engineering & ETL",
+                    "keywords": [
+                        "Apache Spark, Apache Airflow, DBT, AWS Glue, Delta Lake, Iceberg, Amazon Redshift, AWS Step Functions, Extract Transform Load (ETL), Data Lakes, Amazon Kinesis, Hive"
+                    ]
+                },
+                {
+                    "name": "Cloud & Infrastructure",
+                    "keywords": [
+                        "AWS (S3, Lake Formation, IAM, Fargate, Lambda, EC2, CDK), Azure Data Lake, Git, Github, Unix, Amazon DynamoDB, Data Lineage, Catalog Development"
+                    ]
+                },
+                {
+                    "name": "Data Analytics & Visualization",
+                    "keywords": [
+                        "Tableau, Amazon QuickSight, Microsoft Power BI, Adobe Analytics, Key Performance Indicators (KPIs), Data Visualization, Data Analysis, Microsoft Excel, Microsoft PowerPoint"
+                    ]
+                },
+                {
+                    "name": "Machine Learning & Data Science",
+                    "keywords": [
+                        "Recommender Systems, Logistic Regression, Gradient Boosting, k-means Clustering, Hierarchical Clustering, Principal Component Analysis (PCA), Sentiment Analysis, NLP, Machine Learning, Data Science, Data Mining, Statistical Data Analysis"
+                    ]
+                },
+                {
+                    "name": "Databases & Storage",
+                    "keywords": [
+                        "Amazon Redshift, Amazon DynamoDB, Parquet, Iceberg, Delta Lake, MySQL, Microsoft SQL Server"
+                    ]
+                },
+                {
+                    "name": "Data Governance & Security",
+                    "keywords": [
+                        "Lake Formation, Data Governance, Data Security, Personally Identifiable Information (PII), Identity and Access Management (IAM), Secure File Transfer Protocol (SFTP), Credit Risk, Risk Management"
+                    ]
+                },
+                {
+                    "name": "Other Technologies & Methodologies",
+                    "keywords": [
+                        "Dimensional Modeling, Data Warehousing, Multithreaded Development, Object-Oriented Programming (OOP), Unit Testing, Integration Testing, JIRA, Tortoise SVN, A/B Testing, Multivariate Testing, Contextual Advertising, Social Media Marketing, Search Engine Optimization (SEO), Investment Banking, Finance, Financial Forecasting, Statistical Modeling, Big Data, API Development, Prompt Engineering, GraphQL, Text Mining, Microsoft Word, Microsoft Office, Management, Teamwork, Communication, Leadership, Root Cause Analysis"
+                    ]
+                }
+            ],
+            "professional_summary": "Data Engineer with 6+ years of experience building scalable data pipelines and analytics platforms at Amazon, specializing in ETL orchestration, data governance, and cloud infrastructure. Expert in Apache Spark, AWS services (Glue, Redshift, Lake Formation), and modern data lakehouse technologies (Delta Lake, Iceberg). Proven track record of delivering high-impact solutions including processing 2TB+ datasets, achieving $25.6MM in cost savings, and implementing enterprise-grade data governance frameworks. Adept at optimizing data infrastructure for performance and cost efficiency while ensuring security and compliance standards.",
+            "basics": {
+                "name": "Satyen Amonkar",
+                "email": "95satyen@gmail.com",
+                "phone": "3154034538",
+                "location": {
+                    "address": "Seattle, Washington"
+                }
+            },
+            "education": [
+                {
+                    "institution": "Syracuse University",
+                    "area": "Information Management",
+                    "studyType": "MS",
+                    "gpa": "3.8",
+                    "startDate": "Aug 2018",
+                    "endDate": "May 2020",
+                    "location": "Syracuse, New York"
+                },
+                {
+                    "institution": "University of Mumbai",
+                    "area": "Computer Science",
+                    "studyType": "BS",
+                    "gpa": "3.6",
+                    "startDate": "Aug 2012",
+                    "endDate": "May 2016",
+                    "location": "Mumbai, India"
+                }
+            ]
+        }
+    }
+]

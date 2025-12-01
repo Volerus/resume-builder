@@ -1,0 +1,176 @@
+{
+    "work": [
+        {
+            "company": "Amazon",
+            "position": "Data Engineer 2",
+            "website": "",
+            "startDate": "06/2021",
+            "endDate": "Present",
+            "location": "Seattle, WA",
+            "highlights": [
+                "[Experian Data Processing] Automated quarterly ingestion of **11M+ records** using **Airflow, Spark, and Delta Lake**, ensuring timely candidate targeting.",
+                "[Experian Data Processing] Enforced **Zero Trust access controls** via Lake Formation and IAM, securing sensitive HR PII while enabling broad public dataset access.",
+                "[Experian Data Processing] Engineered secure transfer mechanisms using **SFTP, SHA-256 hashing, and KMS encryption**, ensuring 100% data integrity and legal compliance.",
+                "[Experian Data Processing] Implemented **Delta Lake time-travel** for instant rollback and automated CCPA compliance, enabling rapid disaster recovery.",
+                "[Experian Data Processing] Managed end-consumer master table with **514M+ records** (~44.3 GB), supporting large-scale analytics for Talent Acquisition.",
+                "[Marketing Mix Modeling] Built scalable ETL pipelines using **DBT, Glue, and Redshift**, processing **2 TB of raw web event data** at an hourly cadence.",
+                "[Marketing Mix Modeling] Drove **$61M in cumulative savings** (80% spend reduction) by delivering actionable insights that influenced **70% of labor staffing decisions**.",
+                "[Marketing Mix Modeling] Replaced manual allocation with an automated framework integrating Adobe Analytics and spend data, optimizing **marketing channel allocation**.",
+                "[Marketing Mix Modeling] Designed a multi-layered aggregation strategy rolling up weekly site-level data to quarterly geo-clusters for consistent longitudinal modeling.",
+                "[Marketing Mix Modeling] Implemented **Slowly Changing Dimensions (SCD)** to preserve historical accuracy, enabling precise channel performance measurement.",
+                "[Owned Channel Data Model] Architected a unified data foundation using **Step Functions, Spark, and Iceberg**, enabling metadata-driven governance for the owned channel ecosystem.",
+                "[Owned Channel Data Model] Processed **1B+ data points** in a single job, transforming raw data into **400+ high-quality metrics** for customer segmentation.",
+                "[Owned Channel Data Model] Achieved a **3.5x performance boost** and **50% cost reduction** by optimizing Spark tuning (skew joins, salting) and migrating to Iceberg/Parquet.",
+                "[Owned Channel Data Model] Maintained a **3.5 TB historical dataset** via SCD Type 4, enabling accurate longitudinal analysis and retrospective reporting.",
+                "[Owned Channel Data Model] Resolved critical 4h+ timeouts by optimizing worker usage, ensuring high data reliability and rapid incident response.",
+                "[Robust Dataset Migration] Led migration of **29 legacy CMS pipelines** to Robust Service, establishing a centralized platform handling **30M+ monthly cases**.",
+                "[Robust Dataset Migration] Delivered **$25.64MM in business impact** by architecting real-time infrastructure for Paragon Insights Central operational analytics.",
+                "[Robust Dataset Migration] Consolidated **45+ DynamoDB databases**, achieving director-level cost reduction and eliminating redundant infrastructure.",
+                "[Robust Dataset Migration] Optimized ETL pipelines reducing data read time by **98% (3 hours to 2 minutes)** through Iceberg partition tuning and connection optimization.",
+                "[Robust Dataset Migration] Scaled tenant support by **65x** (2 to 131 tenants), establishing centralized CMS data production for previously unsupported units.",
+                "[MHLS WFM Scripts Ownership Transfer] Led emergency recovery of WFM automation scripts, preventing service disruption for operations supporting **18 FTEs**.",
+                "[MHLS WFM Scripts Ownership Transfer] Restored Global Intraday Scripts, maintaining visibility of critical metrics and avoiding capacity loss for **4 FTEs**.",
+                "[MHLS WFM Scripts Ownership Transfer] Implemented robust cron scheduling and monitoring, ensuring **99.9% uptime** for critical WFM automation.",
+                "[MHLS WFM Scripts Ownership Transfer] Restored Quip to S3 automation, preserving real-time insights into queue sizes and service levels for **8 FTEs**.",
+                "[MHLS WFM Scripts Ownership Transfer] Documented disaster recovery procedures and established secure credential management for sustainable operational continuity.",
+                "[HRS-Finance Cost Exploration] Identified **$21K+ monthly savings** opportunities by analyzing **1.4 PB of data storage** and addressing a 55% projected cost increase.",
+                "[HRS-Finance Cost Exploration] Discovered **86.5% of storage costs** were concentrated in non-current object versions, driving a targeted optimization strategy.",
+                "[HRS-Finance Cost Exploration] Designed S3 lifecycle policies targeting **63.5% non-current versions**, enabling automated cost reduction through intelligent tiering.",
+                "[HRS-Finance Cost Exploration] Implemented data-driven monitoring using **Storage Lens and Cost Explorer APIs** to track usage patterns and predict cost trajectories.",
+                "[HRS-Finance Cost Exploration] Proposed automated Glue job monitoring to optimize DPU usage, reducing ETL processing costs and enhancing operational efficiency.",
+                "[Saras Mytime Datalake Migration] Migrated **27 Mytime tables** to modern DataLake CDK architecture, reducing Redshift cluster transaction load by **74%**.",
+                "[Saras Mytime Datalake Migration] Reduced job failure recovery time from **5-8 hours** to optimized execution by atomizing pipeline dependencies.",
+                "[Saras Mytime Datalake Migration] Implemented advanced **Glue Catalog filter optimization** using pushdown predicates to resolve infrastructure filtering bottlenecks.",
+                "[Saras Mytime Datalake Migration] Designed a comprehensive data filtering framework using **Spark SQL and PartiQL**, ensuring accurate partition pruning.",
+                "[Saras Mytime Datalake Migration] Optimized partition strategies using leading zero formatting to resolve string comparison issues and improve query performance.",
+                "[CDK Migration Initiative] Architected migration of **213 legacy ETL pipelines** to AWS CDK, achieving **76% completion** of the director-level modernization goal.",
+                "[CDK Migration Initiative] Led a team of 8 engineers to deliver **42.6 points per week**, deprecating **59 legacy profiles** and 2 Redshift clusters.",
+                "[CDK Migration Initiative] Designed standardized CDK patterns for **4 data processing types**, establishing reusable infrastructure-as-code components.",
+                "[CDK Migration Initiative] Implemented **S3 cost optimization** and Glue Workflow orchestration, addressing infrastructure gaps and reducing storage costs.",
+                "[CDK Migration Initiative] Established comprehensive monitoring and alerting, ensuring **99.9% pipeline reliability** and zero data loss during migration.",
+                "[Contact Lens Onboarding] Achieved **$10K+ monthly cost savings** by deprecating manual DAAS processes through optimized Contact Lens transcript storage.",
+                "[Contact Lens Onboarding] Architected a **dynamic schema evolution framework** to handle nested JSON structures, resolving source data lake compatibility issues.",
+                "[Contact Lens Onboarding] Implemented incremental data loading for high-volume clickstream data, enabling **real-time call quality analytics**.",
+                "[Contact Lens Onboarding] Delivered critical agent performance metrics to leadership, providing visibility into latency and call quality issues.",
+                "[Contact Lens Onboarding] Designed a schema-agnostic processing framework, ensuring **99.9% availability** and immediate notification of anomalies.",
+                "[ICIMS Deprecation Initiative] Orchestrated transition of **50 critical data tables** from ICIMS to internal systems, ensuring zero downtime for HR operations.",
+                "[ICIMS Deprecation Initiative] Revoked **62 unnecessary data access permissions**, improving security posture and reducing system complexity during vendor transition.",
+                "[ICIMS Deprecation Initiative] Managed a **24-milestone project timeline**, coordinating across multiple teams to deliver **61+ comprehensive data attributes**.",
+                "[ICIMS Deprecation Initiative] Designed a tier-2 replacement table architecture to map single-source data to **15+ normalized REDL tables**.",
+                "[ICIMS Deprecation Initiative] Mitigated regulatory risks by ensuring continuous reporting capabilities for **AAP dashboards** and adverse impact analysis."
+            ]
+        },
+        {
+            "company": "Amazon",
+            "position": "Software Development Engineer",
+            "website": "",
+            "startDate": "08/2020",
+            "endDate": "06/2021",
+            "location": "Seattle, WA",
+            "highlights": [
+                "[Contextual Detail Page (CDP) Dashboard] Architected an end-to-end analytics pipeline using **AWS Fargate, Redshift, and QuickSight**, enabling live experiment monitoring.",
+                "[Contextual Detail Page (CDP) Dashboard] Built a scalable **ECS/Fargate application** processing high-volume impression logs with **99.9% reliability**.",
+                "[Contextual Detail Page (CDP) Dashboard] Implemented automated impression logging capturing **6+ key interaction metrics** previously unavailable post-experimentation.",
+                "[Contextual Detail Page (CDP) Dashboard] Resolved complex **Timber permissions and cross-account security** challenges, ensuring compliant log access.",
+                "[Contextual Detail Page (CDP) Dashboard] Enabled customer segmentation based on **device affinity**, improving conversion rates through targeted content optimization."
+            ]
+        },
+        {
+            "company": "Arkadium",
+            "position": "Data Science Intern",
+            "website": "",
+            "startDate": "05/2019",
+            "endDate": "05/2020",
+            "location": "New York City, NY",
+            "highlights": [
+                "Generated **10% profit uplift** by optimizing real-time ad bidding thresholds using **Time Series Forecasting (TBATS, ARIMA)**, dynamically adjusting starting prices to prevent **undervalued bids**.",
+                "Conducted **Error Cluster Analysis** using **K-Means Clustering**, identifying root causes of game defects and driving a **6% increase in customer retention**.",
+                "Processed and analyzed **4 Million+ JSON records** of clickstream data from **Microsoft Azure Data Lake** using Python and MapReduce to identify common errors impacting gameplay.",
+                "Developed **Game Recommender Systems** to deliver personalized content suggestions, significantly enhancing user engagement and session duration.",
+                "Designed interactive **Power BI Dashboards** to visualize critical KPIs (Visits, Revenue, CTR), providing leadership with actionable insights into organizational growth.",
+                "Leveraged **Principal Component Analysis (PCA)** on Adobe Analytics datasets to identify latent customer cohorts (age, visit patterns), driving targeted **retention and acquisition strategies**."
+            ]
+        },
+        {
+            "company": "Syracuse University",
+            "position": "Data Analyst",
+            "website": "",
+            "startDate": "10/2018",
+            "endDate": "05/2019",
+            "location": "Syracuse, NY",
+            "highlights": [
+                "Conducted a **Nationwide Survey** using **Qualtrics** to capture librarians' perspectives on design thinking, gathering data for academic research.",
+                "Performed **quantitative analysis** using **descriptive statistics and correlations** in **R**, identifying key patterns in survey responses.",
+                "Executed **qualitative analysis** via **Text Mining and Sentiment Analysis** in **R and Tableau**, interpreting positive and negative user opinions.",
+                "Collaborated with faculty to derive actionable insights, contributing to the publication of a research paper on **Future Library Leaders**.",
+                "Visualized survey results using **Tableau**, presenting complex statistical findings in an accessible format for research stakeholders."
+            ]
+        },
+        {
+            "company": "Accenture Financial Services",
+            "position": "Associate Software Engineer",
+            "website": "",
+            "startDate": "11/2016",
+            "endDate": "07/2018",
+            "location": "India",
+            "highlights": [
+                "Engineered a **multithreaded ETL framework** using Blocking Queue, boosting system load capacity by **75%** and performance by **50%**.",
+                "Developed core **Java/PL/SQL ETL pipelines** for a top Swiss bank, ensuring seamless processing of high-volume credit risk data.",
+                "Improved system efficiency by **16%** by performing impact analysis and optimizing **15+ critical data components**.",
+                "Designed technical specifications for **8 new wealth management components**, translating business requirements into scalable solutions.",
+                "Collaborated with **120+ global developers** using Git, ensuring successful deployments and compliance with **IFRS/BCBS regulations**."
+            ]
+        }
+    ],
+    "skills": [
+        {
+            "name": "Programming Languages",
+            "keywords": [
+                "Python, R, Java, PLSQL, Shell Scripting, JavaScript, HTML, PHP, C, SQL, PySpark"
+            ]
+        },
+        {
+            "name": "Data Engineering & ETL",
+            "keywords": [
+                "Apache Spark, Apache Airflow, DBT, AWS Glue, Delta Lake, Iceberg, Amazon Redshift, AWS Step Functions, Extract Transform Load (ETL), Data Lakes, Amazon Kinesis, Hive"
+            ]
+        },
+        {
+            "name": "Cloud & Infrastructure",
+            "keywords": [
+                "AWS (S3, Lake Formation, IAM, Fargate, Lambda, EC2, CDK), Azure Data Lake, Git, Github, Unix, Amazon DynamoDB, Data Lineage, Catalog Development"
+            ]
+        },
+        {
+            "name": "Data Analytics & Visualization",
+            "keywords": [
+                "Tableau, Amazon QuickSight, Microsoft Power BI, Adobe Analytics, Key Performance Indicators (KPIs), Data Visualization, Data Analysis, Microsoft Excel, Microsoft PowerPoint"
+            ]
+        },
+        {
+            "name": "Machine Learning & Data Science",
+            "keywords": [
+                "Recommender Systems, Logistic Regression, Gradient Boosting, k-means Clustering, Hierarchical Clustering, Principal Component Analysis (PCA), Sentiment Analysis, NLP, Machine Learning, Data Science, Data Mining, Statistical Data Analysis"
+            ]
+        },
+        {
+            "name": "Databases & Storage",
+            "keywords": [
+                "Amazon Redshift, Amazon DynamoDB, Parquet, Iceberg, Delta Lake, MySQL, Microsoft SQL Server"
+            ]
+        },
+        {
+            "name": "Data Governance & Security",
+            "keywords": [
+                "Lake Formation, Data Governance, Data Security, Personally Identifiable Information (PII), Identity and Access Management (IAM), Secure File Transfer Protocol (SFTP), Credit Risk, Risk Management"
+            ]
+        },
+        {
+            "name": "Other Technologies & Methodologies",
+            "keywords": [
+                "Dimensional Modeling, Data Warehousing, Multithreaded Development, Object-Oriented Programming (OOP), Unit Testing, Integration Testing, JIRA, Tortoise SVN, A/B Testing, Multivariate Testing, Contextual Advertising, Social Media Marketing, Search Engine Optimization (SEO), Investment Banking, Finance, Financial Forecasting, Statistical Modeling, Big Data, API Development, Prompt Engineering, GraphQL, Text Mining, Microsoft Word, Microsoft Office, Management, Teamwork, Communication, Leadership, Root Cause Analysis"
+            ]
+        }
+    ],
+    "professional_summary": "Data Engineer with 6+ years of experience building scalable data pipelines and analytics platforms at Amazon, specializing in ETL orchestration, data governance, and cloud infrastructure. Expert in Apache Spark, AWS services (Glue, Redshift, Lake Formation), and modern data lakehouse technologies (Delta Lake, Iceberg). Proven track record of delivering high-impact solutions including processing 2TB+ datasets, achieving $25.6MM in cost savings, and implementing enterprise-grade data governance frameworks. Adept at optimizing data infrastructure for performance and cost efficiency while ensuring security and compliance standards."
+}

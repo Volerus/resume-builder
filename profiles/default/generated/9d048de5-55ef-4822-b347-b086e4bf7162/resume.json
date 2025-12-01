@@ -1,0 +1,130 @@
+{
+    "work": [
+        {
+            "company": "Amazon",
+            "position": "Data Engineer 2",
+            "startDate": "06/2021",
+            "endDate": "Present",
+            "location": "Seattle, WA",
+            "highlights": [
+                "Owned, built, and maintained scalable data pipelines using DBT, Glue (for ETL), and Redshift, processing 2 TB of raw web event data hourly.",
+                "Architected a unified data foundation using Step Functions, Spark, and Iceberg, enabling metadata-driven governance and transforming raw data into 400+ high-quality metrics for customer segmentation.",
+                "Led migration of 213 legacy ETL pipelines to AWS CDK (Infrastructure as Code), achieving 76% completion of modernization goal and ensuring 99.9% pipeline reliability.",
+                "Optimized ETL pipelines reducing data read time by 98% (3 hours to 2 minutes) through Iceberg partition tuning and connection optimization, aligning with scale requirements.",
+                "Architected dynamic schema evolution framework and implemented incremental data loading for high-volume clickstream data, supporting analytics and fulfilling cross-functional stakeholder needs."
+            ],
+            "website": ""
+        },
+        {
+            "company": "Amazon",
+            "position": "Software Development Engineer",
+            "startDate": "08/2020",
+            "endDate": "06/2021",
+            "location": "Seattle, WA",
+            "highlights": [
+                "Architected an end-to-end analytics pipeline using Fargate, Redshift, and QuickSight, enabling live experiment monitoring for stakeholders.",
+                "Built a scalable ECS/Fargate application processing high-volume impression logs with 99.9% reliability.",
+                "Implemented automated impression logging capturing 6+ key interaction metrics previously unavailable post-experimentation.",
+                "Resolved complex permissions and cross-account security challenges, ensuring compliant log access for data utilization.",
+                "Enabled customer segmentation based on device affinity, improving conversion rates through targeted content optimization."
+            ],
+            "website": ""
+        },
+        {
+            "company": "Arkadium",
+            "position": "Data Science Intern",
+            "startDate": "05/2019",
+            "endDate": "05/2020",
+            "location": "New York City, NY",
+            "highlights": [
+                "Identified factors contributing to critical game errors using Root Cause Analysis, thus improving customer retention of online games by 6%.",
+                "Leveraged Microsoft Azure Data Lake and Python to conduct Error Cluster Analysis for a dataset comprising 4 million instances.",
+                "Visualized KPIs like visits, revenue and CTR with Power BI Dashboard to assess growth and stability of the organization.",
+                "Used Python for data analysis and initial modeling efforts.",
+                "Gained experience with cloud storage solutions like Azure Data Lake."
+            ],
+            "website": ""
+        },
+        {
+            "company": "Accenture Financial Services",
+            "position": "Associate Software Engineer",
+            "startDate": "11/2016",
+            "endDate": "07/2018",
+            "location": "India",
+            "highlights": [
+                "Engineered a multithreaded ETL framework using Blocking Queue, boosting system load capacity by 75% and performance by 50%.",
+                "Developed core Java/PLSQL ETL pipelines for a top Swiss bank, ensuring seamless processing of high-volume credit risk data.",
+                "Improved system efficiency by 16% by performing impact analysis and optimizing 15+ critical data components.",
+                "Designed technical specifications for 8 new wealth management components, translating business requirements into scalable solutions.",
+                "Collaborated with 120+ global developers using Git, ensuring successful deployments and compliance with IFRS/BCBS regulations."
+            ],
+            "website": ""
+        }
+    ],
+    "skills": [
+        {
+            "name": "Core Technologies & Languages",
+            "keywords": [
+                "Python, SQL, Java, Spark, dbt, Snowflake, Dagster, ETL/Reverse ETL"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Cloud & Data Infrastructure",
+            "keywords": [
+                "AWS (S3, Glue, Redshift, CDK, IAM), Data Pipelines, Data Lakes, Iceberg, Delta Lake, Infrastructure as Code"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Data Engineering & Modeling",
+            "keywords": [
+                "Scalable Data Pipelines, Data Modeling, Data Warehousing, Dimensional Modeling, Data Governance, Performance Optimization"
+            ],
+            "level": ""
+        },
+        {
+            "name": "Stakeholder Collaboration & Soft Skills",
+            "keywords": [
+                "Cross-Functional Stakeholder Management, Requirements Derivation, Communication, Creative Problem Solving, Self-Starting Mindset, Documentation"
+            ],
+            "level": ""
+        },
+        {
+            "name": "",
+            "keywords": [
+                ""
+            ],
+            "level": ""
+        }
+    ],
+    "professional_summary": "Experienced Data Engineer with 6+ years building and owning scalable data pipelines connecting cloud data sources, highly aligned with the responsibilities at Figma. Expert in Python and SQL, complemented by proficiency in modern data stack tools including dbt and cloud services like AWS (Glue, Redshift). Proven ability to partner with Data Science and Infrastructure teams to build foundational, trusted datasets and establish best practices for analytics modeling. Strong track record in architecting end-to-end solutions, demonstrating creative problem-solving, and communicating complex data architecture to diverse cross-functional stakeholders to drive business growth.",
+    "basics": {
+        "name": "Satyen Amonkar",
+        "email": "95satyen@gmail.com",
+        "phone": "3154034538",
+        "location": {
+            "address": "Seattle, Washington"
+        }
+    },
+    "education": [
+        {
+            "institution": "Syracuse University",
+            "area": "Information Management",
+            "studyType": "MS",
+            "gpa": "3.8",
+            "startDate": "Aug 2018",
+            "endDate": "May 2020",
+            "location": "Syracuse, New York"
+        },
+        {
+            "institution": "University of Mumbai",
+            "area": "Computer Science",
+            "studyType": "BS",
+            "gpa": "3.6",
+            "startDate": "Aug 2012",
+            "endDate": "May 2016",
+            "location": "Mumbai, India"
+        }
+    ]
+}
